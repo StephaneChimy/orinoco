@@ -67,20 +67,11 @@ function showElements() {
         let div = document.createElement("a");
         div.className = "btn btn-primary";
         div.setAttribute("href", "http://127.0.0.1:5500/products.html?" + allElements[i]._id);
-        div.innerText = "Ajouter au panier";
+        div.setAttribute("target", "_blank");
+        div.innerText = "Détail";
         getTeddy.appendChild(div);
       }
       creatButton()
-
-      /*function getColors() {
-        const getTeddy = document.getElementById("teddy" + i);
-        console.log(document.getElementById("teddy" + i));
-        let div = document.createElement("div");
-        div.className = "colors";
-        div.innerHTML = allElements[i].colors;
-        getTeddy.appendChild(div);
-      }
-      getColors(); */
     }
     populateTeddyDiv();
   }
