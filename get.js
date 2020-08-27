@@ -66,7 +66,7 @@ function showElements() {
         const getTeddy = document.getElementById("card-body" + i);
         let div = document.createElement("a");
         div.className = "btn btn-primary";
-        div.setAttribute("href", "http://127.0.0.1:5500/products.html?id=" + allElements[i]._id);
+        div.setAttribute("href", "http://127.0.0.1:5500/products.html?" + allElements[i]._id);
         div.innerText = "Ajouter au panier";
         getTeddy.appendChild(div);
       }
@@ -104,13 +104,13 @@ request.onload = function () {
 
     
 
-    const getObject = document.getElementsByClassName("btn");
+    /* const getObject = document.getElementsByClassName("btn");
     const getIdOfObject = getObject[0].getAttribute("id");
 
-    var getButton = document.querySelector("button");
+    var getButton = document.querySelector("button"); */
 
     //BUTTON
-    getButton.addEventListener("click", () => {
+    /* getButton.addEventListener("click", () => {
       for (const j of allElements) {
         if (j._id === getIdOfObject) {
           console.log(j._id);
@@ -138,7 +138,7 @@ request.onload = function () {
         console.log(j._id);
       };
 
-    });
+    }); */
     ///
 
     /* for (const j of allElements) {
