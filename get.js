@@ -10,52 +10,69 @@ function showElements() {
       let getAffElem = document.getElementById("affElem");
       let div = document.createElement("div");
       div.setAttribute("id", "teddy" + i);
+      div.className = "card";
       getAffElem.appendChild(div);
     }
     creatTeddyDiv();
 
     function populateTeddyDiv() {
-      function getName() {
+      function getImage() {
         const getTeddy = document.getElementById("teddy" + i);
-        console.log(document.getElementById("teddy" + i));
+        let img = document.createElement("img");
+        img.setAttribute("src", allElements[i].imageUrl);
+        img.className = "image";
+        img.className = "card-img-top";
+        getTeddy.appendChild(img);
+      }
+      getImage();
+
+      function newDiv() {
+        const getTeddy = document.getElementById("teddy" + i);
         let div = document.createElement("div");
-        div.className = "name";
+        div.className = "card-body";
+        div.setAttribute("id", "card-body" + i);
+        getTeddy.appendChild(div);
+      }
+      newDiv();
+
+      function getName() {
+        const getTeddy = document.getElementById("card-body" + i);
+        let div = document.createElement("h5");
+        div.className = "card-title";
         div.innerHTML = allElements[i].name;
         getTeddy.appendChild(div);
       }
       getName();
 
       function getDescription() {
-        const getTeddy = document.getElementById("teddy" + i);
-        console.log(document.getElementById("teddy" + i));
-        let div = document.createElement("div");
-        div.className = "description";
+        const getTeddy = document.getElementById("card-body" + i);
+        let div = document.createElement("p");
+        div.className = "card-text";
         div.innerHTML = allElements[i].description;
         getTeddy.appendChild(div);
       }
       getDescription();
 
       function getPrice() {
-        const getTeddy = document.getElementById("teddy" + i);
-        console.log(document.getElementById("teddy" + i));
-        let div = document.createElement("div");
-        div.className = "prix";
-        div.innerHTML = allElements[i].price;
+        const getTeddy = document.getElementById("card-body" + i);
+        let div = document.createElement("p");
+        div.className = "card-text";
+        div.innerHTML = "Prix:"+ " " + allElements[i].price + "€";
         getTeddy.appendChild(div);
       }
       getPrice();
 
-      function getImage() {
-        const getTeddy = document.getElementById("teddy" + i);
-        console.log(document.getElementById("teddy" + i));
-        let img = document.createElement("img");
-        img.setAttribute("src", allElements[i].imageUrl);
-        img.className = "image";
-        getTeddy.appendChild(img);
+      function  creatButton() {
+        const getTeddy = document.getElementById("card-body" + i);
+        let div = document.createElement("a");
+        div.className = "btn btn-primary";
+        div.setAttribute("href", "teddy" + i);
+        div.innerText = "Ajouter au panier";
+        getTeddy.appendChild(div);
       }
-      getImage();
+      creatButton()
 
-      function getColors() {
+      /*function getColors() {
         const getTeddy = document.getElementById("teddy" + i);
         console.log(document.getElementById("teddy" + i));
         let div = document.createElement("div");
@@ -63,7 +80,7 @@ function showElements() {
         div.innerHTML = allElements[i].colors;
         getTeddy.appendChild(div);
       }
-      getColors();
+      getColors(); */
     }
     populateTeddyDiv();
   }
@@ -82,13 +99,12 @@ request.onload = function () {
     // Control si aucun élément n'est à afficher
     console.log(nombreElements);
     // Creation des elements à afficher
-    
-    if(allElements.length > -1){
+
+    if (allElements.length > -1) {
       showElements();
-    }
-    else {
+    } else {
       alert("Aucun produit n'est disponible pour le moment.");
-    };
+    }
   } else {
     alert("Un problème est survenu, merci de revenir plus tard.");
   }
