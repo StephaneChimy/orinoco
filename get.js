@@ -66,7 +66,7 @@ function showElements() {
         const getTeddy = document.getElementById("card-body" + i);
         let div = document.createElement("a");
         div.className = "btn btn-primary";
-        div.setAttribute("href", "http://127.0.0.1:5500/products.html");
+        div.setAttribute("href", "http://127.0.0.1:5500/products.html?id=" + allElements[i]._id);
         div.innerText = "Ajouter au panier";
         getTeddy.appendChild(div);
       }
