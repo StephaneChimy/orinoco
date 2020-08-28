@@ -7,11 +7,11 @@ var nombreElements;
 function showElements() {
   for (var i = 0; i < allElements.length; i++) {
     function creatTeddyDiv() {
-      let getAffElem = document.getElementById("affElem");
+      let getProduct = document.getElementById("affProduct");
       let div = document.createElement("div");
       div.setAttribute("id", "teddy" + i);
-      div.className = "card";
-      getAffElem.appendChild(div);
+      div.className = "card justify-content-around col-5";
+      getProduct.appendChild(div);
     }
     creatTeddyDiv();
 

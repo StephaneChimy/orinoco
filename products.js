@@ -119,11 +119,7 @@ request.onload = function () {
 
     ////////
 
-    if (allElements.length > -1) {
-      showElements();
-    } else {
-      alert("Aucun produit n'est disponible pour le moment.");
-    }
+    
   } else {
     alert("Un problème est survenu, merci de revenir plus tard.");
   }
