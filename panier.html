@@ -15,19 +15,29 @@
 
 <body>
 
-    <header>
+    <header class="container-fluid">
+        <div class="row">
+            <img class="col img-fluid" src="./baniere.png" alt="Logo et titre">
+        </div>
     </header>
-    <nav>
+    <nav class="navbar navbar-light bg-light justify-content-around">
+        <a href="./index.html" class="nav-link btn btn-primary">accueil</a>
+        <a href="./panier.html" class="nav-link btn btn-primary">Panier <span class="badge badge-light">9</span></a>
+
     </nav>
-    <main>
-        <div id="affPanier" class="container-fluid"></div>
+    <main class="container-fluid">
+        <div id="affProduct" class="row justify-content-around">
 
-    </main>
+        </div>
+        <main class="container-fluid">
+            <div id="affProduct" class="row justify-content-around">
 
-    <footer>
-    </footer>
+            </div>
+
+        </main>
+
+        <footer>
+        </footer>
 </body>
-
-<script src="./get.js"></script>
 
 </html>

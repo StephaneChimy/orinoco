@@ -10,7 +10,7 @@ function showElements() {
       let getProduct = document.getElementById("affProduct");
       let div = document.createElement("div");
       div.setAttribute("id", "teddy" + i);
-      div.className = "card justify-content-around col-5";
+      div.className = "card col-xs-12 col-sm-5";
       getProduct.appendChild(div);
     }
     creatTeddyDiv();
@@ -20,8 +20,7 @@ function showElements() {
         const getTeddy = document.getElementById("teddy" + i);
         let img = document.createElement("img");
         img.setAttribute("src", allElements[i].imageUrl);
-        img.className = "image";
-        img.className = "card-img-top";
+        img.className = "image card-img-top img-fluid";
         getTeddy.appendChild(img);
       }
       getImage();
@@ -67,7 +66,6 @@ function showElements() {
         let div = document.createElement("a");
         div.className = "btn btn-primary";
         div.setAttribute("href", "http://127.0.0.1:5500/products.html?" + allElements[i]._id);
-        div.setAttribute("target", "_blank");
         div.innerText = "Détail";
         getTeddy.appendChild(div);
       }

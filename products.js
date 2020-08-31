@@ -40,7 +40,7 @@ request.onload = function () {
           let getAffElem = document.getElementById("affProduct");
           let div = document.createElement("div");
           div.setAttribute("id", "teddy" + j._id);
-          div.className = "card";
+          div.className = "card col-8";
           getAffElem.appendChild(div);
         }
         creatTeddyDiv();
@@ -82,14 +82,25 @@ request.onload = function () {
         }
         getDescription();
 
-        function getColors() {
+        function newUl() {
           const getTeddy = document.getElementById("card-body" + j._id);
-          let div = document.createElement("p");
-          div.className = "card-text";
-          div.innerHTML = j.colors;
-          getTeddy.appendChild(div);
+          let ul = document.createElement("ul");
+          ul.className = "card-body list-group";
+          ul.setAttribute("id", "list-group" + j._id);
+          getTeddy.appendChild(ul);
         }
-        getColors();
+        newUl();
+
+        for (const eachColors of j.colors) {
+          function getColors() {
+            const getTeddy = document.getElementById("list-group" + j._id);
+            let li = document.createElement("li");
+            li.className = "list-group-item";
+            li.innerHTML = eachColors;
+            getTeddy.appendChild(li);
+          }
+          getColors();
+        }
 
         function getPrice() {
           const getTeddy = document.getElementById("card-body" + j._id);
@@ -118,8 +129,6 @@ request.onload = function () {
     }
 
     ////////
-
-    
   } else {
     alert("Un problème est survenu, merci de revenir plus tard.");
   }
