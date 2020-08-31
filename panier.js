@@ -4,6 +4,7 @@ if(localStorage.length>0){
         let div = document.createElement("div");
         div.setAttribute("id", "panier");
         div.className = "card col-xs-12 col-sm-5";
+        div.innerHTML = localStorage.length;
         getProduct.appendChild(div);
       }
       creatTeddyDiv();

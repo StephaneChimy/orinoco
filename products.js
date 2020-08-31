@@ -114,7 +114,8 @@ request.onload = function () {
         function creatButton() {
           const getTeddy = document.getElementById("card-body" + j._id);
           let div = document.createElement("a");
-          div.className = "btn btn-primary";
+          div.className = "btn btn-primary addToBasket";
+          div.setAttribute("id", "btn" + j._id);
           div.setAttribute(
             "href",
             "http://127.0.0.1:5500/products.html?" + j._id
@@ -123,6 +124,15 @@ request.onload = function () {
           getTeddy.appendChild(div);
         }
         creatButton();
+
+
+        /////Addtobasket
+        var getButton = document.querySelector(".addToBasket");
+        console.log(getButton);
+        getButton.addEventListener("click", () => {
+                localStorage.setItem("item" + localStorage.length, getIdInUrl);
+          });
+        /////
       }
 
       console.log(j._id);
