@@ -1,20 +1,31 @@
-nbOfItems = localStorage.length;
-console.log(localStorage.length);
+var nbOfItems = localStorage.length;
+
+//var itemListParse = JSON.stringify(localStorage);
+
+console.log(localStorage);
+//console.log(itemListParse);
+//console.log(localStorage.length);
+
 if (localStorage.length > 0) {
 
-    for(let nbItem = 0; nbItem < localStorage.length; nbItem++){
+      for(var nbItem = 0; nbItem < localStorage.length; nbItem++){
+
+        
         
         function creatTeddyDiv() {
+            let idProduct = localStorage.getItem("item" + nbItem);
             let getProduct = document.getElementById("affPanier");
             let div = document.createElement("div");
             div.setAttribute("id", "item" + nbItem);
             div.className = "card col-xs-12 col-sm-12";
             div.innerHTML =
-              "Vous avez " + localStorage.length + " items dans votre panier";
+              "Vous avez " + localStorage.length + " items dans votre panier, id : " + idProduct;
             getProduct.appendChild(div);
           }
           creatTeddyDiv();
-    };
+    }; 
+       
+    
   
 } else {
   function creatTeddyDiv() {
