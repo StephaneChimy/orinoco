@@ -135,7 +135,7 @@ request.onload = function () {
         /////
       }
 
-      console.log(j._id);
+      //console.log(j._id);
     }
 
     ////////
