@@ -19,28 +19,41 @@ request.onload = function () {
 
   if (localStorage.length > 0) {
     for (var nbItem = 0; nbItem < localStorage.length; nbItem++) {
-      var nb = 1;
+
+      function checkPanier() {
+        //console.log(panier.length);
+        if (panier.length == 0) {
+          var singleItem = [];
+          let nb = 0;
+          singleItem[0] = localStorage.getItem("item" + nbItem);
+          singleItem[1] = nb;
+          panier.push(singleItem);
+        }
+      }
       
 
       function addToPanier() {
-        var singleItem = {};
-        singleItem["id"] = localStorage.getItem("item" + nbItem);
-        singleItem["nb"] = nb;
-        panier.push(singleItem);
-        console.log(singleItem["id"]);
-      };
-      
+
+        for (const iterator in panier) {
+          if (panier[iterator][0] === localStorage.getItem("item" + nbItem)) {
+            //console.log("item deja dans le panier");
+            nb = panier[iterator][1];
+            console.log(nb);
+            nb = nb + 1;
+            panier.splice([iterator][1],1,localStorage.getItem("item" + nbItem),nb);
+          } else {
+            console.log("nouvel item");
+            //singleItem["id"] = localStorage.getItem("item" + nbItem);
+            //singleItem["nb"] = 1;
+            //panier.push(singleItem);
+          }
+        }
+      }
+      checkPanier();
       addToPanier();
-      console.log(panier[nbItem]["id"]);
-      for (const iterator of panier) {
-        if (panier[iterator]["id"] === localStorage.getItem("item" + nbItem)) {
-          console.log("item deja dans le panier")
-        }else{
-          console.log("nouvel item");
-        };
-      };
-      
+      //console.log(panier[nbItem]);
     }
+    console.log(panier);
 
     /* for (const j of allElements) {
             var idProduct = localStorage.getItem("item" + nbItem);
