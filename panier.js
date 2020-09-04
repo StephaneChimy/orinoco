@@ -17,7 +17,7 @@ request.onload = function () {
     allElements = JSON.parse(this.response);
   }
 
-  if (localStorage.length > 0) {
+  /* if (localStorage.length > 0) {
     for (var nbItem = 0; nbItem < localStorage.length; nbItem++) {
 
       function checkPanier() {
@@ -53,7 +53,7 @@ request.onload = function () {
       addToPanier();
       //console.log(panier[nbItem]);
     }
-    console.log(panier);
+    console.log(panier); */
 
     /* for (const j of allElements) {
             var idProduct = localStorage.getItem("item" + nbItem);
@@ -86,7 +86,7 @@ request.onload = function () {
               getImage();
             }
           } */
-  } else {
+   else {
     function creatTeddyDiv() {
       let getProduct = document.getElementById("affPanier");
       let div = document.createElement("div");
