@@ -132,6 +132,7 @@ function afficherProduit() {
 
     //console.log(j._id);
   }
+  ////////////////////////////////////////////
   console.log(nomOurs);
 
   function listenButton() {

@@ -98,7 +98,7 @@ function showElements() {
         let div = document.createElement("a");
         div.className = "btn btn-primary";
         //A changer
-        div.setAttribute("href", "/products.html?" + allElements[i]._id);
+        div.setAttribute("href", "/product.html?" + allElements[i]._id);
         div.innerText = "Détail";
         getTeddy.appendChild(div);
       }
