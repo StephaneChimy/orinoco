@@ -26,9 +26,6 @@ request.onload = function () {
     alert("Un problème est survenu, merci de revenir plus tard.");
   }
 };
-//////////////////////////////////
-
-//////////////////////////////////
 
 //////////////////////////////////
 function afficherProduit() {
@@ -165,7 +162,8 @@ function afficherProduit() {
         console.log(basketToParam);
 
         getParamFromLocalStorage();
-      } else {
+      }
+      if (nbItem == localStorage.length) {
         console.log(nomOurs + " n'est pas dans localStorage");
         getProductInBasket();
       }
