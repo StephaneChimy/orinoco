@@ -6,7 +6,13 @@ var idOurs;
 var prix;
 
 var getIdInUrl = window.location.search.slice(1);
-var basketToParam = [];
+
+var basketToParam = {
+  Nom: "",
+  id: "",
+  Quantite: "",
+};
+console.log(basketToParam);
 
 ///////////////
 request.open("GET", "http://localhost:3000/api/teddies");
@@ -145,7 +151,7 @@ function afficherProduit() {
   function checkLocalStorage() {
     if (localStorage.length < 1) {
       console.log("rien dans le localstorage");
-      getProductInBasket();
+      pushProductInBasket();
     } else {
       console.log("Au moins une donnée est dans localStorage");
       checkParamFromLocalStorage();
@@ -154,19 +160,21 @@ function afficherProduit() {
   }
 
   function checkParamFromLocalStorage() {
+    var productFound = false;
+
     for (nbItem = 0; nbItem < localStorage.length; nbItem++) {
       if (nomOurs === localStorage.key(nbItem)) {
         console.log(
           "un " + localStorage.key(nbItem) + " est déjà dans le localstorage"
         );
-        console.log(basketToParam);
-
+        //console.log(basketToParam);
+        productFound = true;
         getParamFromLocalStorage();
       }
-      if (nbItem == localStorage.length) {
-        console.log(nomOurs + " n'est pas dans localStorage");
-        getProductInBasket();
-      }
+    }
+    if (!productFound) {
+      console.log(nomOurs + " n'est pas dans localStorage");
+      pushProductInBasket();
     }
   }
   function getParamFromLocalStorage() {
@@ -178,10 +186,13 @@ function afficherProduit() {
 
   function incrementItem() {
     console.log(basketToParam);
-    nb = basketToParam[1];
+    
+    nb = basketToParam["Quantite"];
+    
+    //nb = basketToParam;
     console.log(nb);
     nb++;
-    basketToParam.splice(1, 1, nb);
+    basketToParam["Quantite"] = nb;
     console.log(basketToParam);
 
     sendToLocalStorage();
@@ -194,10 +205,14 @@ function afficherProduit() {
     console.log(localStorage.getItem(nomOurs));
   }
 
-  function getProductInBasket() {
+  function pushProductInBasket() {
     //console.log(id);
     let nombreDeProduit = 1;
-    basketToParam = [idOurs, nombreDeProduit, prix];
+    basketToParam = {
+      Nom: nomOurs,
+      id: idOurs,
+      Quantite: nombreDeProduit,
+    };
     sendToLocalStorage();
   }
   listenButton();

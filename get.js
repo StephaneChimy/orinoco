@@ -97,7 +97,8 @@ function showElements() {
         const getTeddy = document.getElementById("card-body" + i);
         let div = document.createElement("a");
         div.className = "btn btn-primary";
-        div.setAttribute("href", "http://127.0.0.1:5500/products.html?" + allElements[i]._id);
+        //A changer
+        div.setAttribute("href", "/products.html?" + allElements[i]._id);
         div.innerText = "Détail";
         getTeddy.appendChild(div);
       }
