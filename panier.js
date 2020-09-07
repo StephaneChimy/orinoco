@@ -3,6 +3,7 @@ var allElements;
 var nombreElements;
 var nbOfItems = localStorage.length;
 var basket = [];
+var totalPrice = 0;
 
 //var itemListParse = JSON.stringify(localStorage);
 
@@ -67,6 +68,9 @@ request.onload = function () {
       addProductToTable();
       addProductNameLigneTable();
       addProductQuantiteLigneTable();
+      getPriceOfProduct();
+      setPriceOfProduct();
+      getTotalPrice();
     }
     function addProductToTable() {
       {
@@ -102,9 +106,46 @@ request.onload = function () {
       insertDataOfProduct.innerText = basket[nbProductInBasket].Quantite;
       getLigneProduct.appendChild(insertDataOfProduct);
     }
-
-    function addProductPriceLigneTable(){
-      
+    function getPriceOfProduct() {
+      for (var nbElem = 0; nbElem < allElements.length; nbElem++) {
+        if (allElements[nbElem]._id === basket[nbProductInBasket].id) {
+          PriceOfProduct = allElements[nbElem].price;
+          console.log(basket[nbProductInBasket].Nom + " = " + PriceOfProduct);
+        }
+      }
     }
+
+    function setPriceOfProduct() {
+      let getLigneProduct = document.getElementById(
+        basket[nbProductInBasket].Nom
+      );
+      console.log(getLigneProduct);
+      let insertDataOfProduct = document.createElement("td");
+      insertDataOfProduct.setAttribute(
+        "id",
+        "td" + basket[nbProductInBasket].PriceOfProduct
+      );
+      insertDataOfProduct.innerText = PriceOfProduct;
+      getLigneProduct.appendChild(insertDataOfProduct);
+    }
+
+    function getTotalPrice() {
+      for (var nbElem = 0; nbElem < allElements.length; nbElem++) {
+        if (allElements[nbElem]._id === basket[nbProductInBasket].id) {
+          PriceOfProduct = allElements[nbElem].price;
+          var quantiteOfProduct = basket[nbProductInBasket].Quantite;
+          totalPrice += PriceOfProduct * quantiteOfProduct;
+        }
+      }
+    }
+
+    function setTotalPrice() {
+      let getTotalPrice = document.getElementById("Total");
+      let insertTotalPrice = document.createElement("th");
+      insertTotalPrice.innerHTML = totalPrice; //prix total
+      getTotalPrice.appendChild(insertTotalPrice);
+    }
+
+    setTotalPrice();
   }
 };
