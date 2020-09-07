@@ -105,7 +105,7 @@ function afficherProduit() {
       }
       firstSelected();
       
-      var value = "";
+      var value = 0;
         for (const eachColors of allElements["colors"]) {
           
           function getColors() {
