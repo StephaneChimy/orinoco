@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-        <!-- Bootstrap CSS + style.css -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
-        <link rel="stylesheet" href="./style.css">
-        <title>Orinoco</title>
-    
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS + style.css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./style.css">
+    <title>Orinoco</title>
+
 <body>
 
     <header class="container-fluid">
@@ -25,24 +26,46 @@
     </nav>
     <main class="container-fluid">
         <div id="affConfirmation" class="row justify-content-around">
-            <form>
-                <div class="form-group">
-                  <label for="inputName">Nom</label>
-                  <input type="text" class="form-control" id="inputName" placeholder="Entrez votre nom">
-                  
+            <form class="form-row col-8">
+                <div class="form-group col-5">
+                    <label for="inputName">Nom</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Entrez votre nom">
+                    <small id="namelHelp" class="form-text text-muted">ex: Dupont</small>
                 </div>
+                <div class="form-group col">
+                    <label for="inputSurname">Prénom</label>
+                    <input type="text" class="form-control" id="inputSurname" placeholder="Entrez votre prénom">
+                    <small id="surnamelHelp" class="form-text text-muted">ex: Jean-Claude</small>
+                </div>
+            </form>
+            <form class="col-8">
                 <div class="form-group">
-                  <label for="prenom">Prénom</label>
-                  <input type="text" class="form-control" id="inputSurname" placeholder="Entrez votre prénom">
+                    <label for="inputAdresse">Adresse</label>
+                    <input type="text" class="form-control" id="inputAdresse" placeholder="Entrez votre adresse">
+                    <small id="addresslHelp" class="form-text text-muted">ex: 12 rue charles Gounod</small>
+                </div>
+            </form>
+            <form class="form-row col-8">
+                <div class="form-group col">
+                    <label for="inputcity">Ville</label>
+                    <input type="text" class="form-control" id="inputCity" placeholder="Entrez votre Ville">
+                    <small id="citylHelp" class="form-text text-muted">ex: Rueil-Malmaison</small>
+                </div>
+                <div class="form-group col-5">
+                    <label for="inputPostalCode">Code postale</label>
+                    <input type="number" class="form-control" id="inputPostalCode" placeholder="Entrez votre Code postale">
+                    <small id="postalCodelHelp" class="form-text text-muted">ex: 92500</small>
+                </div>
+            </form>
+            <form class="col-8">
+                <div class="form-group">
+                    <label for="inputEmail">email</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Entrez votre adresse email">
+                    <small id="postalCodelHelp" class="form-text text-muted">ex: dupont.jc@gmail.com</small>
                 </div>
 
-                <div class="form-group">
-                    <label for="addresse">Adresse</label>
-                    <input type="text" class="form-control" id="inputAdresse" placeholder="Entrez votre adresse">
-                  </div>
-                
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+                <button type="submit" class="btn btn-primary">Commandez</button>
+            </form>
 
         </div>
 
@@ -51,4 +74,5 @@
     <footer>
     </footer>
 </body>
+
 </html>
