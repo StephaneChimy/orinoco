@@ -88,7 +88,7 @@ function setLastnameInput() {
   });
 }
 function setAddressInput() {
-  let address = document.getElementById("inputAdresse");
+  let address = document.getElementById("inputAddress");
   address.addEventListener("input", function (e) {
     infosToSend.contact.address = e.target.value;
   });
