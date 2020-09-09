@@ -25,47 +25,54 @@
 
     </nav>
     <main class="container-fluid">
-        <div id="affConfirmation" class="row justify-content-around">
-            <form class="form-row col-8">
-                <div class="form-group col-5">
-                    <label for="inputName">Nom</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Entrez votre nom">
-                    <small id="namelHelp" class="form-text text-muted">ex: Dupont</small>
+        <div id="affConfirmation">
+            <form class="row justify-content-around">
+                <div class="form-row col-8">
+                    <div class="form-group col-5">
+                        <label for="inputName">Nom</label>
+                        <input required type="text" class="form-control" id="inputName" placeholder="Entrez votre nom">
+                        <small id="namelHelp" class="form-text text-muted">ex: Dupont</small>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputSurname">Prénom</label>
+                        <input required type="text" class="form-control" id="inputSurname"
+                            placeholder="Entrez votre prénom">
+                        <small id="surnamelHelp" class="form-text text-muted">ex: Jean-Claude</small>
+                    </div>
                 </div>
-                <div class="form-group col">
-                    <label for="inputSurname">Prénom</label>
-                    <input type="text" class="form-control" id="inputSurname" placeholder="Entrez votre prénom">
-                    <small id="surnamelHelp" class="form-text text-muted">ex: Jean-Claude</small>
+                <div class="col-8">
+                    <div class="form-group">
+                        <label for="inputAdresse">Adresse</label>
+                        <input required type="text" class="form-control" id="inputAdresse"
+                            placeholder="Entrez votre adresse">
+                        <small id="addresslHelp" class="form-text text-muted">ex: 12 rue charles Gounod</small>
+                    </div>
                 </div>
-            </form>
-            <form class="col-8">
-                <div class="form-group">
-                    <label for="inputAdresse">Adresse</label>
-                    <input type="text" class="form-control" id="inputAdresse" placeholder="Entrez votre adresse">
-                    <small id="addresslHelp" class="form-text text-muted">ex: 12 rue charles Gounod</small>
+                <div class="form-row col-8">
+                    <div class="form-group col">
+                        <label for="inputcity">Ville</label>
+                        <input required type="text" class="form-control" id="inputCity"
+                            placeholder="Entrez votre Ville">
+                        <small id="citylHelp" class="form-text text-muted">ex: Rueil-Malmaison</small>
+                    </div>
+                    <div class="form-group col-5">
+                        <label for="inputPostalCode">Code postale</label>
+                        <input type="number" class="form-control" id="inputPostalCode"
+                            placeholder="Entrez votre Code postale">
+                        <small id="postalCodelHelp" class="form-text text-muted">ex: 92500</small>
+                    </div>
                 </div>
-            </form>
-            <form class="form-row col-8">
-                <div class="form-group col">
-                    <label for="inputcity">Ville</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="Entrez votre Ville">
-                    <small id="citylHelp" class="form-text text-muted">ex: Rueil-Malmaison</small>
-                </div>
-                <div class="form-group col-5">
-                    <label for="inputPostalCode">Code postale</label>
-                    <input type="number" class="form-control" id="inputPostalCode" placeholder="Entrez votre Code postale">
-                    <small id="postalCodelHelp" class="form-text text-muted">ex: 92500</small>
-                </div>
-            </form>
-            <form class="col-8">
-                <div class="form-group">
-                    <label for="inputEmail">email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Entrez votre adresse email">
-                    <small id="postalCodelHelp" class="form-text text-muted">ex: dupont.jc@gmail.com</small>
-                </div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <label for="inputEmail">email</label>
+                        <input required type="email" class="form-control" id="inputEmail"
+                            placeholder="Entrez votre adresse email">
+                        <small id="postalCodelHelp" class="form-text text-muted">ex: dupont.jc@gmail.com</small>
+                    </div>
 
-                <button type="submit" class="btn btn-primary">Commandez</button>
+                    <button type="submit" id="submit" class="btn btn-primary">Commandez</button>
             </form>
+        </div>
 
         </div>
 
@@ -73,6 +80,7 @@
 
     <footer>
     </footer>
+    <script src="./confirmation.js"></script>
 </body>
 
 </html>
