@@ -1,22 +1,22 @@
-header{
-    background-color: #F3E9F1;
+header {
+  background-color: #f3e9f1;
 }
 
-header img{
-    max-height: 20vh;
-    object-fit: contain;
+header img {
+  max-height: 20vh;
+  object-fit: contain;
 }
 
-.card{
-    margin-bottom: 5px;
+.card {
+  margin-bottom: 5px;
 }
 
-.card-text{
-    overflow: scroll;
-    max-height: 70px;
+.card-text {
+  overflow: scroll;
+  max-height: 70px;
 }
 
-.card-img-top{
-    max-height: 20vh;
-    object-fit: contain;
+.card-img-top {
+  max-height: 20vh;
+  object-fit: contain;
 }

@@ -37,7 +37,7 @@
                         <th>Produit</th>
                         <th>Quantitée</th>
                         <th>Prix Unitaire</th>
-                        <th>Total</th>
+                    
                     </tr>
                 </thead>
                 <tbody>
@@ -45,21 +45,70 @@
                         <tr id="Total">
                             <th>Total</th>
                             <th></th>
-                            <th></th>
+                            
                         </tr>
                     </thead>
 
                 </tbody>
 
             </table>
-            <a class="btn btn-primary" href="/confirmation.html">Valider votre panier</a>
+            <div id="affPanier">
+                <form class="row justify-content-around">
+                    <div class="form-row col-8">
+                        <div class="form-group col-5">
+                            <label for="inputName">Nom</label>
+                            <input required type="text" class="form-control" id="inputName"
+                                placeholder="Entrez votre nom">
+                            <small id="namelHelp" class="form-text text-muted">ex: Dupont</small>
+                        </div>
+                        <div class="form-group col">
+                            <label for="inputSurname">Prénom</label>
+                            <input required type="text" class="form-control" id="inputSurname"
+                                placeholder="Entrez votre prénom">
+                            <small id="surnamelHelp" class="form-text text-muted">ex: Jean-Claude</small>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="inputAddress">Adresse</label>
+                            <input required type="text" class="form-control" id="inputAddress"
+                                placeholder="Entrez votre adresse">
+                            <small id="addresslHelp" class="form-text text-muted">ex: 12 rue charles Gounod</small>
+                        </div>
+                    </div>
+                    <div class="form-row col-8">
+                        <div class="form-group col">
+                            <label for="inputCity">Ville</label>
+                            <input required type="text" class="form-control" id="inputCity"
+                                placeholder="Entrez votre Ville">
+                            <small id="citylHelp" class="form-text text-muted">ex: Rueil-Malmaison</small>
+                        </div>
+                        <div class="form-group col-5">
+                            <label for="inputPostalCode">Code postale</label>
+                            <input type="number" class="form-control" id="inputPostalCode"
+                                placeholder="Entrez votre Code postale">
+                            <small id="postalCodelHelp" class="form-text text-muted">ex: 92500</small>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="inputEmail">email</label>
+                            <input required type="email" class="form-control" id="inputEmail"
+                                placeholder="Entrez votre adresse email">
+                            <small id="postalCodelHelp" class="form-text text-muted">ex: dupont.jc@gmail.com</small>
+                        </div>
+
+                        <button type="submit" id="submit" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModalCenter">Commandez</button>
 
         </main>
 
         <footer>
+            
         </footer>
 </body>
 <script src="./panier.js"></script>
+<script src="./confirmation.js"></script>
 <!-- <script src="./addToBasket.js"></script> -->
 
 </html>
