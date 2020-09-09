@@ -65,11 +65,11 @@ ClickOnButton();
 function ClickOnButton() {
   var button = document.getElementById("submit");
   button.addEventListener("click", (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     //contact = JSON.stringify(contactInfos);
     //console.log(contact);
     infosSendJson = JSON.stringify(infosToSend);
-    console.log(infosToSend);
+    console.log(infosSendJson);
     sendInfosToServer();
   });
 }
