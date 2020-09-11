@@ -64,8 +64,8 @@ ClickOnButton();
 
 function ClickOnButton() {
   var button = document.getElementById("submit");
-  button.addEventListener("click", (e) => {
-    e.preventDefault();
+  button.addEventListener("submit", (e) => {
+    //e.preventDefault();
     //contact = JSON.stringify(contactInfos);
     //console.log(contact);
     infosSendJson = JSON.stringify(infosToSend);

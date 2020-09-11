@@ -1,57 +1,48 @@
-var request = new XMLHttpRequest();
-var allElements;
-var nombreElements;
+let allProducts;
+let numberOfProducts;
 
+function getProducts() {
+  var request = new XMLHttpRequest();
 
-//Récupération des éléments à afficher
-request.open("GET", "http://localhost:3000/api/teddies");
-request.send();
+  // Récupération des éléments à afficher avec requête get
+  request.open("GET", "http://localhost:3000/api/teddies");
+  request.send();
 
-request.onload = function () {
-  if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-    allElements = JSON.parse(this.response);
-    //console.log(allElements);
-    console.log(allElements.length);
-    // Ajout du nombre d'éléments à afficher dans une variable nombreElements
-    nombreElements = allElements.length;
-    // Control si aucun élément n'est à afficher
-    console.log(nombreElements);
-    // Creation des elements à afficher
+  request.onload = function () {
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+      allProducts = JSON.parse(this.response);
+      numberOfProducts = allProducts.length;
 
-    /////////////
-
-    ////////
-
-    if (allElements.length > -1) {
-      showElements();
+      if (numberOfProducts > 0) {
+        showElements();
+      } else {
+        alert("Aucun produit n'est disponible pour le moment.");
+      }
     } else {
-      alert("Aucun produit n'est disponible pour le moment.");
+      alert("Un problème est survenu, merci de revenir plus tard.");
     }
-  } else {
-    alert("Un problème est survenu, merci de revenir plus tard.");
-  }
-};
+  };
+}
 
-
+getProducts();
 
 // Création d'une div affichant le tableau
 //document.body.onload = showElement;
 function showElements() {
-  for (var i = 0; i < allElements.length; i++) {
+  for (var i = 0; i < allProducts.length; i++) {
     function creatTeddyDiv() {
-      let getProduct = document.getElementById("affProduct");
+      let getProduct = document.querySelector("#affProduct");
       let div = document.createElement("div");
       div.setAttribute("id", "teddy" + i);
       div.className = "card col-xs-12 col-sm-5";
       getProduct.appendChild(div);
     }
-    creatTeddyDiv();
 
     function populateTeddyDiv() {
       function getImage() {
         const getTeddy = document.getElementById("teddy" + i);
         let img = document.createElement("img");
-        img.setAttribute("src", allElements[i].imageUrl);
+        img.setAttribute("src", allProducts[i].imageUrl);
         img.className = "image card-img-top img-fluid";
         getTeddy.appendChild(img);
       }
@@ -70,7 +61,7 @@ function showElements() {
         const getTeddy = document.getElementById("card-body" + i);
         let div = document.createElement("h5");
         div.className = "card-title";
-        div.innerHTML = allElements[i].name;
+        div.innerHTML = allProducts[i].name;
         getTeddy.appendChild(div);
       }
       getName();
@@ -79,7 +70,7 @@ function showElements() {
         const getTeddy = document.getElementById("card-body" + i);
         let div = document.createElement("p");
         div.className = "card-text";
-        div.innerHTML = allElements[i].description;
+        div.innerHTML = allProducts[i].description;
         getTeddy.appendChild(div);
       }
       getDescription();
@@ -88,23 +79,23 @@ function showElements() {
         const getTeddy = document.getElementById("card-body" + i);
         let div = document.createElement("p");
         div.className = "card-text";
-        div.innerHTML = "Prix:"+ " " + allElements[i].price + "€";
+        div.innerHTML = "Prix:" + " " + allProducts[i].price + "€";
         getTeddy.appendChild(div);
       }
       getPrice();
 
-      function  creatButton() {
+      function creatButton() {
         const getTeddy = document.getElementById("card-body" + i);
         let div = document.createElement("a");
         div.className = "btn btn-primary";
         //A changer
-        div.setAttribute("href", "/product.html?" + allElements[i]._id);
+        div.setAttribute("href", "/product.html?" + allProducts[i]._id);
         div.innerText = "Détail";
         getTeddy.appendChild(div);
       }
-      creatButton()
+      creatButton();
     }
+    creatTeddyDiv();
     populateTeddyDiv();
   }
 }
-
