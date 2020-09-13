@@ -1,10 +1,12 @@
+// 1 - Récupérer les éléments à afficher
+
 let allProducts;
 let numberOfProducts;
 
 function getProducts() {
-  var request = new XMLHttpRequest();
+  let request = new XMLHttpRequest();
 
-  // Récupération des éléments à afficher avec requête get
+  // Récupération des éléments à afficher avec une requête get
   request.open("GET", "http://localhost:3000/api/teddies");
   request.send();
 

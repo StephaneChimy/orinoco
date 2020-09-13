@@ -37,7 +37,7 @@
                         <th>Produit</th>
                         <th>Quantitée</th>
                         <th>Prix Unitaire</th>
-                    
+
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@
                         <tr id="Total">
                             <th>Total</th>
                             <th></th>
-                            
+
                         </tr>
                     </thead>
 
@@ -53,7 +53,7 @@
 
             </table>
             <div id="affPanier">
-                <form class="row justify-content-around">
+                <form class="row justify-content-around" id="formulaire"> <!-- action="confirmation.html -->
                     <div class="form-row col-8">
                         <div class="form-group col-5">
                             <label for="inputName">Nom</label>
@@ -97,13 +97,17 @@
                                 placeholder="Entrez votre adresse email">
                             <small id="postalCodelHelp" class="form-text text-muted">ex: dupont.jc@gmail.com</small>
                         </div>
-
+                    </div>
+                    <div class="col-8">
                         <button type="submit" id="submit" class="btn btn-primary">Commandez</button>
+                    </div>
+                </form>
+
 
         </main>
 
         <footer>
-            
+
         </footer>
 </body>
 <script src="./panier.js"></script>

@@ -62,16 +62,34 @@ setCityInput();
 setEmailInput();
 ClickOnButton();
 
+
+
 function ClickOnButton() {
-  var button = document.getElementById("submit");
-  button.addEventListener("submit", (e) => {
-    //e.preventDefault();
-    //contact = JSON.stringify(contactInfos);
-    //console.log(contact);
+  let formulaire = document.querySelector("#formulaire");
+
+  formulaire.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("Le bouton fonctionne quand meme");
     infosSendJson = JSON.stringify(infosToSend);
-    console.log(infosSendJson);
     sendInfosToServer();
+    // console.log("redirection dans 2 secondes")
+    // setTimeout(() => {
+    //   document.location.href="confirmation.html";
+    // }, 2000);
+    
+    
   });
+
+
+  // button.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   e.preventDefault();
+  //   contact = JSON.stringify(contactInfos);
+  //   console.log(contact);
+  //   infosSendJson = JSON.stringify(infosToSend);
+  //   console.log(infosSendJson);
+  //   sendInfosToServer();
+  // });
 }
 
 function setFirstnameInput() {
