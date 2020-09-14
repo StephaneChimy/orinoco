@@ -1,14 +1,4 @@
 var request = new XMLHttpRequest();
-//var infosContactToSend;
-/* var contact = {
-  firstName: "toto",
-  lastName: "tota",
-  address: "onsenfou",
-  city: "toyota",
-  email: "jack@toma.com",
-}; */
-
-//contact = JSON.stringify(contact);
 
 var products = [];
 
@@ -25,35 +15,27 @@ var infosToSend = {
 
 var infosSendJson;
 
-//console.log(infosSendJson);
-/* products = JSON.stringify(products);
-
- function Contact(firstName, lastName, address, city, email) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.address = address;
-  this.city = city;
-  this.email = email;
-}  */
-
-//contactInfos = new Contact('toto', 'tota', 'onsenfou', 'tooye', 'a@a')
-//contact = JSON.stringify(contactInfos);
-//console.log(contactInfos);
-
 function sendInfosToServer() {
-  request.open("POST", "http://localhost:3000/api/teddies/order");
-  request.setRequestHeader("Content-Type", "application/json");
-  //request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  request.send(infosSendJson); //contact&products
-  request.onload = function () {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-      console.log(this.response);
-    } else {
-      console.log(JSON.parse(this.response));
-      //alert("Un problème est survenu, merci de revenir plus tard.");
-    }
+  // request.open("POST", "http://localhost:3000/api/teddies/order");
+  // request.setRequestHeader("Content-Type", "application/json");
+  // request.send(infosSendJson);
+  const options = {
+    method: "POST",
+    body: infosSendJson,
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
+
+  fetch("http://localhost:3000/api/teddies/order", options)
+    .then((response) => response.json())
+    .then(
+      (response) =>
+        (document.location.href =
+          "confirmation.html?OrderId=" + response.orderId)
+    );
 }
+
 setProducts();
 setLastnameInput();
 setFirstnameInput();
@@ -61,8 +43,6 @@ setAddressInput();
 setCityInput();
 setEmailInput();
 ClickOnButton();
-
-
 
 function ClickOnButton() {
   let formulaire = document.querySelector("#formulaire");
@@ -72,24 +52,12 @@ function ClickOnButton() {
     console.log("Le bouton fonctionne quand meme");
     infosSendJson = JSON.stringify(infosToSend);
     sendInfosToServer();
-    // console.log("redirection dans 2 secondes")
-    // setTimeout(() => {
-    //   document.location.href="confirmation.html";
-    // }, 2000);
-    
-    
+    //document.location.href = "confirmation.html?" + sendInfosToServer();
   });
+}
 
-
-  // button.addEventListener("click", (e) => {
-  //   e.preventDefault();
-  //   e.preventDefault();
-  //   contact = JSON.stringify(contactInfos);
-  //   console.log(contact);
-  //   infosSendJson = JSON.stringify(infosToSend);
-  //   console.log(infosSendJson);
-  //   sendInfosToServer();
-  // });
+function redirection() {
+  document.location.href = "confirmation.html?" + sendInfosToServer();
 }
 
 function setFirstnameInput() {
