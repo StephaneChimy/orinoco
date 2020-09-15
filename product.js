@@ -5,6 +5,9 @@ var prix;
 var getIdInUrl = window.location.search.slice(11);
 console.log(getIdInUrl);
 
+let basketToParam = {
+  products: [],
+};
 // var basketToParam = {
 //   Nom: "",
 //   id: "",
@@ -61,7 +64,7 @@ function afficherProduit() {
   creatTeddyDiv();
 
   function setImage() {
-    const getTeddyDiv = document.querySelector("#teddy" + product._id);
+    let getTeddyDiv = document.querySelector("#teddy" + product._id);
     let img = document.createElement("img");
     img.src = product["imageUrl"];
     img.className = "image";
@@ -180,58 +183,81 @@ function checkLocalStorage() {
 
 function checkParamFromLocalStorage() {
   var productFound = false;
-
+  // Vérification si la clé est bien basket
   for (nbItem = 0; nbItem < localStorage.length; nbItem++) {
-    if (nomOurs === localStorage.key(nbItem)) {
-      console.log(
-        "un " + localStorage.key(nbItem) + " est déjà dans le localstorage"
+    if (localStorage.key(nbItem) == "basket") {
+      console.log("un item est déjà dans le localstorage");
+      // Rapatriement des infos de basket
+      basketToParam = JSON.parse(
+        localStorage.getItem(localStorage.key("basket"))
       );
-      //console.log(basketToParam);
-      productFound = true;
-      getParamFromLocalStorage();
+
+      console.log(basketToParam);
+      //Vérification si l'id du produit est dans le localStorage
+      for (let item = 0; item < basketToParam.products.length; item++) {
+        if (basketToParam.products[item].id == product._id) {
+          console.log(product.name + " est déjà dans le panier");
+          productFound = true;
+          //getParamFromLocalStorage();
+          incrementItem();
+          function incrementItem() {
+            nb = basketToParam.products[item].Quantite;
+
+            //nb = basketToParam;
+            console.log(nb);
+            nb++;
+            basketToParam.products[item].Quantite = nb;
+            console.log(basketToParam);
+
+            sendToLocalStorage();
+          }
+        }
+        //console.log(getLocalStorage.products[item].id);
+      }
     }
   }
   if (!productFound) {
-    console.log(nomOurs + " n'est pas dans localStorage");
+    console.log(product.name + " n'est pas dans localStorage");
     pushProductInBasket();
   }
 }
-function getParamFromLocalStorage() {
-  basketToParam = JSON.parse(localStorage.getItem(localStorage.key(nbItem)));
-  console.log(basketToParam);
+// function getParamFromLocalStorage() {
+//   basketToParam = JSON.parse(localStorage.getItem(localStorage.key(nbItem)));
+//   console.log(basketToParam);
 
-  incrementItem();
-}
+//   incrementItem();
+// }
 
-function incrementItem() {
-  console.log(basketToParam);
+// function incrementItem() {
+//   let item = maClosure();
+//   nb = basketToParam.products[item].Quantite;
 
-  nb = basketToParam.Quantite;
+//   //nb = basketToParam;
+//   console.log(nb);
+//   nb++;
+//   basketToParam.products[item].Quantite = nb;
+//   console.log(basketToParam);
 
-  //nb = basketToParam;
-  console.log(nb);
-  nb++;
-  basketToParam.Quantite = nb;
-  console.log(basketToParam);
-
-  sendToLocalStorage();
-}
+//   sendToLocalStorage();
+// }
 
 function sendToLocalStorage() {
   basketToParamJson = JSON.stringify(basketToParam);
   //console.log(basketToParamJson);
-  localStorage.setItem(nomOurs, basketToParamJson);
-  console.log(localStorage.getItem(nomOurs));
+  localStorage.setItem("basket", basketToParamJson);
+  console.log(JSON.parse(localStorage.getItem("basket")));
 }
 
 function pushProductInBasket() {
   //console.log(id);
   let nombreDeProduit = 1;
-  basketToParam = {
+  basketToParam.products.push({
     Nom: product.name,
     id: product._id,
     Quantite: nombreDeProduit,
-  };
+  });
+
+  console.log(basketToParam.products.Quantite);
   sendToLocalStorage();
 }
 /////////////////
