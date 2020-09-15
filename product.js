@@ -5,12 +5,12 @@ var prix;
 var getIdInUrl = window.location.search.slice(11);
 console.log(getIdInUrl);
 
-var basketToParam = {
-  Nom: "",
-  id: "",
-  Quantite: "",
-};
-console.log(basketToParam);
+// var basketToParam = {
+//   Nom: "",
+//   id: "",
+//   Quantite: "",
+// };
+// console.log(basketToParam);
 
 ///////////////
 // 1 - Récupérer les éléments à afficher dans une promesse.
@@ -22,10 +22,10 @@ function getProducts() {
     request.send();
     request.onload = function () {
       if (request.readyState == 4 && request.status == 200) {
-        allProducts = JSON.parse(request.response); //Déclaration de allProducts, pas de let?
+        product = JSON.parse(request.response); //Déclaration de product, pas de let?
         console.log("Récupération des produits OK");
-        console.log(allProducts);
-        resolve(allProducts);
+        console.log(product);
+        resolve(product);
       } else {
         reject(
           console.log(
@@ -53,17 +53,17 @@ function afficherProduit() {
   function creatTeddyDiv() {
     let getAffElem = document.querySelector("#affProduct");
     let div = document.createElement("div");
-    div.id = "teddy" + allProducts["_id"];
-    idOurs = allProducts["_id"];
+    div.id = "teddy" + product._id;
+    idOurs = product._id;
     div.className = "card col-8";
     getAffElem.appendChild(div);
   }
   creatTeddyDiv();
 
   function setImage() {
-    const getTeddyDiv = document.querySelector("#teddy" + allProducts["_id"]);
+    const getTeddyDiv = document.querySelector("#teddy" + product._id);
     let img = document.createElement("img");
-    img.src = allProducts["imageUrl"];
+    img.src = product["imageUrl"];
     img.className = "image";
     img.className = "card-img-top";
     getTeddyDiv.appendChild(img);
@@ -71,44 +71,44 @@ function afficherProduit() {
   setImage();
 
   function newDivCardBody() {
-    let getTeddyDiv = document.querySelector("#teddy" + allProducts["_id"]);
+    let getTeddyDiv = document.querySelector("#teddy" + product._id);
     let div = document.createElement("div");
     div.className = "card-body";
-    div.id = "card-body" + allProducts["_id"];
+    div.id = "card-body" + product._id;
     getTeddyDiv.appendChild(div);
   }
   newDivCardBody();
 
   function setName() {
-    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let getCardBody = document.querySelector("#card-body" + product._id);
     let h5 = document.createElement("h5");
     h5.className = "card-title";
-    h5.innerHTML = allProducts["name"];
-    nomOurs = allProducts["name"];
+    h5.innerHTML = product["name"];
+    nomOurs = product["name"];
     getCardBody.appendChild(h5);
   }
   setName();
 
   function setDescription() {
-    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let getCardBody = document.querySelector("#card-body" + product._id);
     let p = document.createElement("p");
     p.className = "card-text";
-    p.innerHTML = allProducts["description"];
+    p.innerHTML = product["description"];
     getCardBody.appendChild(p);
   }
   setDescription();
 
   function newSelect() {
-    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let getCardBody = document.querySelector("#card-body" + product._id);
     let select = document.createElement("select");
     select.className = "custom-select browser-default";
-    select.id = "select" + allProducts["_id"];
+    select.id = "select" + product._id;
     getCardBody.appendChild(select);
   }
   newSelect();
 
   function firstSelected() {
-    let getSelect = document.querySelector("#select" + allProducts["_id"]);
+    let getSelect = document.querySelector("#select" + product._id);
     let firstOption = document.createElement("option");
     firstOption.className = "selected";
     firstOption.innerText = "Choisissez votre couleur";
@@ -118,8 +118,8 @@ function afficherProduit() {
 
   function setColors() {
     let value = 1;
-    for (const eachColors of allProducts["colors"]) {
-      let getSelect = document.querySelector("#select" + allProducts["_id"]);
+    for (const eachColors of product["colors"]) {
+      let getSelect = document.querySelector("#select" + product._id);
       let colorsOption = document.createElement("option");
       colorsOption.className = "value=" + value;
       colorsOption.innerText = eachColors;
@@ -130,21 +130,21 @@ function afficherProduit() {
   setColors();
 
   function setPrice() {
-    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let getCardBody = document.querySelector("#card-body" + product._id);
     let p = document.createElement("p");
     p.className = "card-text";
-    p.innerText = "Prix:" + " " + allProducts["price"] + "€";
-    prix = allProducts["price"];
+    p.innerText = "Prix:" + " " + product["price"] + "€";
+    prix = product["price"];
     getCardBody.appendChild(p);
   }
   setPrice();
 
   function creatButton() {
-    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let getCardBody = document.querySelector("#card-body" + product._id);
     let button = document.createElement("button");
     button.className = "btn btn-primary addToBasket";
-    button.id = "btn" + allProducts["_id"];
-    button.href = "http://127.0.0.1:5500/products.html?" + allProducts["_id"];
+    button.id = "btn" + product._id;
+    button.href = "http://127.0.0.1:5500/products.html?" + product._id;
     button.innerText = "Ajouter au panier";
     getCardBody.appendChild(button);
   }
@@ -206,12 +206,12 @@ function getParamFromLocalStorage() {
 function incrementItem() {
   console.log(basketToParam);
 
-  nb = basketToParam["Quantite"];
+  nb = basketToParam.Quantite;
 
   //nb = basketToParam;
   console.log(nb);
   nb++;
-  basketToParam["Quantite"] = nb;
+  basketToParam.Quantite = nb;
   console.log(basketToParam);
 
   sendToLocalStorage();
@@ -228,14 +228,14 @@ function pushProductInBasket() {
   //console.log(id);
   let nombreDeProduit = 1;
   basketToParam = {
-    Nom: nomOurs,
-    id: idOurs,
+    Nom: product.name,
+    id: product._id,
     Quantite: nombreDeProduit,
   };
   sendToLocalStorage();
 }
 /////////////////
-getProducts().then((allProducts) => {
+getProducts().then((product) => {
   afficherProduit();
   listenButton();
 });
