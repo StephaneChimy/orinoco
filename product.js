@@ -1,11 +1,9 @@
-var request = new XMLHttpRequest();
-var allElements;
-var nombreElements;
 var nomOurs;
 var idOurs;
 var prix;
 
 var getIdInUrl = window.location.search.slice(11);
+console.log(getIdInUrl);
 
 var basketToParam = {
   Nom: "",
@@ -15,142 +13,142 @@ var basketToParam = {
 console.log(basketToParam);
 
 ///////////////
-request.open("GET", "http://localhost:3000/api/teddies/" + getIdInUrl);
-request.send();
-request.onload = function () {
-  if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-    allElements = JSON.parse(this.response);
-    console.log(allElements);
-    //console.log(allElements.length);
-    // Ajout du nombre d'éléments à afficher dans une variable nombreElements
-    //nombreElements = allElements.length;
-    // Control si aucun élément n'est à afficher
-    //console.log(nombreElements);
-    // Creation des elements à afficher
-    afficherProduit();
-    listenButton();
-  } else {
-    alert("Un problème est survenu, merci de revenir plus tard.");
-  }
-};
+// 1 - Récupérer les éléments à afficher dans une promesse.
+
+function getProducts() {
+  return new Promise((resolve, reject) => {
+    let request = new XMLHttpRequest();
+    request.open("GET", "http://localhost:3000/api/teddies/" + getIdInUrl);
+    request.send();
+    request.onload = function () {
+      if (request.readyState == 4 && request.status == 200) {
+        allProducts = JSON.parse(request.response); //Déclaration de allProducts, pas de let?
+        console.log("Récupération des produits OK");
+        console.log(allProducts);
+        resolve(allProducts);
+      } else {
+        reject(
+          console.log(
+            "Un Problème est survenu lors du chargement de la page, merci de revenir plus tard."
+          )
+        );
+      }
+    };
+
+    request.onerror = function () {
+      alert("erreur de connection, merci de revenir plus tard");
+      console.log(
+        "Status de la requête: " +
+          request.status +
+          " | " +
+          "ReadyState de la requête: " +
+          request.readyState
+      );
+    };
+  });
+}
 
 //////////////////////////////////
 function afficherProduit() {
-  
-    
-      function creatTeddyDiv() {
-        let getAffElem = document.getElementById("affProduct");
-        let div = document.createElement("div");
-        div.setAttribute("id", "teddy" + allElements["_id"]);
-        idOurs = allElements["_id"];
-        div.className = "card col-8";
-        getAffElem.appendChild(div);
-      }
-      creatTeddyDiv();
+  function creatTeddyDiv() {
+    let getAffElem = document.querySelector("#affProduct");
+    let div = document.createElement("div");
+    div.id = "teddy" + allProducts["_id"];
+    idOurs = allProducts["_id"];
+    div.className = "card col-8";
+    getAffElem.appendChild(div);
+  }
+  creatTeddyDiv();
 
-      function getImage() {
-        const getTeddy = document.getElementById("teddy" + allElements["_id"]);
-        let img = document.createElement("img");
-        img.setAttribute("src", allElements["imageUrl"]);
-        img.className = "image";
-        img.className = "card-img-top";
-        getTeddy.appendChild(img);
-      }
-      getImage();
+  function setImage() {
+    const getTeddyDiv = document.querySelector("#teddy" + allProducts["_id"]);
+    let img = document.createElement("img");
+    img.src = allProducts["imageUrl"];
+    img.className = "image";
+    img.className = "card-img-top";
+    getTeddyDiv.appendChild(img);
+  }
+  setImage();
 
-      function newDiv() {
-        const getTeddy = document.getElementById("teddy" + allElements["_id"]);
-        let div = document.createElement("div");
-        div.className = "card-body";
-        div.setAttribute("id", "card-body" + allElements["_id"]);
-        getTeddy.appendChild(div);
-      }
-      newDiv();
+  function newDivCardBody() {
+    let getTeddyDiv = document.querySelector("#teddy" + allProducts["_id"]);
+    let div = document.createElement("div");
+    div.className = "card-body";
+    div.id = "card-body" + allProducts["_id"];
+    getTeddyDiv.appendChild(div);
+  }
+  newDivCardBody();
 
-      function getName() {
-        const getTeddy = document.getElementById("card-body" + allElements["_id"]);
-        let div = document.createElement("h5");
-        div.className = "card-title";
-        div.innerHTML = allElements["name"];
-        nomOurs = allElements["name"];
-        getTeddy.appendChild(div);
-      }
-      getName();
+  function setName() {
+    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let h5 = document.createElement("h5");
+    h5.className = "card-title";
+    h5.innerHTML = allProducts["name"];
+    nomOurs = allProducts["name"];
+    getCardBody.appendChild(h5);
+  }
+  setName();
 
-      function getDescription() {
-        const getTeddy = document.getElementById("card-body" + allElements["_id"]);
-        let div = document.createElement("p");
-        div.className = "card-text";
-        div.innerHTML = allElements["description"];
-        getTeddy.appendChild(div);
-      }
-      getDescription();
+  function setDescription() {
+    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let p = document.createElement("p");
+    p.className = "card-text";
+    p.innerHTML = allProducts["description"];
+    getCardBody.appendChild(p);
+  }
+  setDescription();
 
-      function newSelect() {
-        const getTeddy = document.getElementById("card-body" + allElements["_id"]);
-        let select = document.createElement("select");
-        select.className = "custom-select browser-default";
-        select.setAttribute("id", "select" + allElements["_id"]);
-        getTeddy.appendChild(select);
-      }
-      newSelect();
+  function newSelect() {
+    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let select = document.createElement("select");
+    select.className = "custom-select browser-default";
+    select.id = "select" + allProducts["_id"];
+    getCardBody.appendChild(select);
+  }
+  newSelect();
 
-      function firstSelected(){
-        const getTeddy = document.getElementById("select" + allElements["_id"]);
-        let firstOption = document.createElement("option");
-          firstOption.className = "selected";
-          firstOption.innerHTML = "Choisissez votre couleur";
-          getTeddy.appendChild(firstOption);
-          
-      }
-      firstSelected();
-      
-      var value = 0;
-        for (const eachColors of allElements["colors"]) {
-          
-          function getColors() {
-            
-            const getTeddy = document.getElementById("select" + allElements["_id"]);
-            let colorsOption = document.createElement("option");
-            colorsOption.className = "value="+ value;
-            colorsOption.innerHTML = eachColors;
-            getTeddy.appendChild(colorsOption);
-            
-          }
-          value++
-          getColors();
-        }
-      
-      
+  function firstSelected() {
+    let getSelect = document.querySelector("#select" + allProducts["_id"]);
+    let firstOption = document.createElement("option");
+    firstOption.className = "selected";
+    firstOption.innerText = "Choisissez votre couleur";
+    getSelect.appendChild(firstOption);
+  }
+  firstSelected();
 
-      function getPrice() {
-        const getTeddy = document.getElementById("card-body" + allElements["_id"]);
-        let div = document.createElement("p");
-        div.className = "card-text";
-        div.innerHTML = "Prix:" + " " + allElements["price"] + "€";
-        prix = allElements["price"];
-        getTeddy.appendChild(div);
-      }
-      getPrice();
+  function setColors() {
+    let value = 1;
+    for (const eachColors of allProducts["colors"]) {
+      let getSelect = document.querySelector("#select" + allProducts["_id"]);
+      let colorsOption = document.createElement("option");
+      colorsOption.className = "value=" + value;
+      colorsOption.innerText = eachColors;
+      getSelect.appendChild(colorsOption);
+      value++;
+    }
+  }
+  setColors();
 
-      function creatButton() {
-        const getTeddy = document.getElementById("card-body" + allElements["_id"]);
-        let div = document.createElement("button");
-        div.className = "btn btn-primary addToBasket";
-        div.setAttribute("id", "btn" + allElements["_id"]);
-        div.setAttribute(
-          "href",
-          "http://127.0.0.1:5500/products.html?" + allElements["_id"]
-        );
-        div.innerText = "Ajouter au panier";
-        getTeddy.appendChild(div);
-      }
-      creatButton();
-    
+  function setPrice() {
+    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let p = document.createElement("p");
+    p.className = "card-text";
+    p.innerText = "Prix:" + " " + allProducts["price"] + "€";
+    prix = allProducts["price"];
+    getCardBody.appendChild(p);
+  }
+  setPrice();
 
-    //console.log(j._id);
-  
-  
+  function creatButton() {
+    let getCardBody = document.querySelector("#card-body" + allProducts["_id"]);
+    let button = document.createElement("button");
+    button.className = "btn btn-primary addToBasket";
+    button.id = "btn" + allProducts["_id"];
+    button.href = "http://127.0.0.1:5500/products.html?" + allProducts["_id"];
+    button.innerText = "Ajouter au panier";
+    getCardBody.appendChild(button);
+  }
+  creatButton();
 }
 ////////////////////////////////////////////
 console.log(nomOurs);
@@ -207,9 +205,9 @@ function getParamFromLocalStorage() {
 
 function incrementItem() {
   console.log(basketToParam);
-  
+
   nb = basketToParam["Quantite"];
-  
+
   //nb = basketToParam;
   console.log(nb);
   nb++;
@@ -236,4 +234,8 @@ function pushProductInBasket() {
   };
   sendToLocalStorage();
 }
-
+/////////////////
+getProducts().then((allProducts) => {
+  afficherProduit();
+  listenButton();
+});

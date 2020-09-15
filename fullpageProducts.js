@@ -33,7 +33,7 @@ function getProducts() {
   });
 }
 
-// 2 - showElements = Création d'une card type bootstrap pour chaque produit dans l'objet allProduct
+// 2 - showElements = Création d'une card type bootstrap pour chaque produit dans l'objet allProducts
 
 function showElements() {
   for (var i = 0; i < allProducts.length; i++) {
