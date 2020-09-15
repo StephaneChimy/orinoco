@@ -9,6 +9,7 @@ function getProducts() {
       if (request.readyState == 4 && request.status == 200) {
         allProducts = JSON.parse(request.response); //Déclaration de allProducts, pas de let?
         console.log("Récupération des produits OK");
+        console.log(allProducts);
         resolve(allProducts);
       } else {
         reject(
@@ -32,80 +33,76 @@ function getProducts() {
   });
 }
 
-getProducts().then((allProducts) => {
-  showElements();
-});
-
-// 2 - Création d'une div pour chaque produit dans l'objet allProduct
+// 2 - showElements = Création d'une card type bootstrap pour chaque produit dans l'objet allProduct
 
 function showElements() {
   for (var i = 0; i < allProducts.length; i++) {
     function creatTeddyDiv() {
-      let getProduct = document.querySelector("#affProduct");
+      let getAffProduct = document.querySelector("#affProduct");
       let div = document.createElement("div");
-      div.setAttribute("id", "teddy" + i);
+      div.id = "teddy" + i;
       div.className = "card col-xs-12 col-sm-5";
-      getProduct.appendChild(div);
-    }
-
-    function populateTeddyDiv() {
-      function getImage() {
-        const getTeddy = document.getElementById("teddy" + i);
-        let img = document.createElement("img");
-        img.setAttribute("src", allProducts[i].imageUrl);
-        img.className = "image card-img-top img-fluid";
-        getTeddy.appendChild(img);
-      }
-      getImage();
-
-      function newDiv() {
-        const getTeddy = document.getElementById("teddy" + i);
-        let div = document.createElement("div");
-        div.className = "card-body";
-        div.setAttribute("id", "card-body" + i);
-        getTeddy.appendChild(div);
-      }
-      newDiv();
-
-      function getName() {
-        const getTeddy = document.getElementById("card-body" + i);
-        let div = document.createElement("h5");
-        div.className = "card-title";
-        div.innerHTML = allProducts[i].name;
-        getTeddy.appendChild(div);
-      }
-      getName();
-
-      function getDescription() {
-        const getTeddy = document.getElementById("card-body" + i);
-        let div = document.createElement("p");
-        div.className = "card-text";
-        div.innerHTML = allProducts[i].description;
-        getTeddy.appendChild(div);
-      }
-      getDescription();
-
-      function getPrice() {
-        const getTeddy = document.getElementById("card-body" + i);
-        let div = document.createElement("p");
-        div.className = "card-text";
-        div.innerHTML = "Prix:" + " " + allProducts[i].price + "€";
-        getTeddy.appendChild(div);
-      }
-      getPrice();
-
-      function creatButton() {
-        const getTeddy = document.getElementById("card-body" + i);
-        let div = document.createElement("a");
-        div.className = "btn btn-primary";
-        //A changer
-        div.setAttribute("href", "/product.html?" + allProducts[i]._id);
-        div.innerText = "Détail";
-        getTeddy.appendChild(div);
-      }
-      creatButton();
+      getAffProduct.appendChild(div);
     }
     creatTeddyDiv();
-    populateTeddyDiv();
+
+    function setImage() {
+      let getTeddyDiv = document.querySelector("#teddy" + i);
+      let img = document.createElement("img");
+      img.src = allProducts[i].imageUrl;
+      img.className = "image card-img-top img-fluid";
+      getTeddyDiv.appendChild(img);
+    }
+    setImage();
+
+    function newDivCardBody() {
+      let getTeddyDiv = document.querySelector("#teddy" + i);
+      let div = document.createElement("div");
+      div.className = "card-body";
+      div.id = "card-body" + i;
+      getTeddyDiv.appendChild(div);
+    }
+    newDivCardBody();
+
+    function setName() {
+      let getCardBody = document.querySelector("#card-body" + i);
+      let h5 = document.createElement("h5");
+      h5.className = "card-title";
+      h5.innerHTML = allProducts[i].name;
+      getCardBody.appendChild(h5);
+    }
+    setName();
+
+    function setDescription() {
+      let getCardBody = document.querySelector("#card-body" + i);
+      let p = document.createElement("p");
+      p.className = "card-text";
+      p.innerHTML = allProducts[i].description;
+      getCardBody.appendChild(p);
+    }
+    setDescription();
+
+    function setPrice() {
+      let getCardBody = document.querySelector("#card-body" + i);
+      let p = document.createElement("p");
+      p.className = "card-text";
+      p.innerHTML = "Prix:" + " " + allProducts[i].price + "€";
+      getCardBody.appendChild(p);
+    }
+    setPrice();
+
+    function creatButton() {
+      let getCardBody = document.querySelector("#card-body" + i);
+      let a = document.createElement("a");
+      a.className = "btn btn-primary";
+      a.href = "/product.html?ProductId=" + allProducts[i]._id;
+      a.innerText = "Détail";
+      getCardBody.appendChild(a);
+    }
+    creatButton();
   }
 }
+
+getProducts().then((allProducts) => {
+  showElements();
+});

@@ -5,7 +5,7 @@ var nomOurs;
 var idOurs;
 var prix;
 
-var getIdInUrl = window.location.search.slice(1);
+var getIdInUrl = window.location.search.slice(11);
 
 var basketToParam = {
   Nom: "",
