@@ -1,35 +1,43 @@
-// 1 - Récupérer les éléments à afficher
-
-let allProducts;
-let numberOfProducts;
+// 1 - Récupérer les éléments à afficher dans une promesse.
 
 function getProducts() {
-  let request = new XMLHttpRequest();
-
-  // Récupération des éléments à afficher avec une requête get
-  request.open("GET", "http://localhost:3000/api/teddies");
-  request.send();
-
-  request.onload = function () {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-      allProducts = JSON.parse(this.response);
-      numberOfProducts = allProducts.length;
-
-      if (numberOfProducts > 0) {
-        showElements();
+  return new Promise((resolve, reject) => {
+    let request = new XMLHttpRequest();
+    request.open("GET", "http://localhost:3000/api/teddies");
+    request.send();
+    request.onload = function () {
+      if (request.readyState == 4 && request.status == 200) {
+        allProducts = JSON.parse(request.response); //Déclaration de allProducts, pas de let?
+        console.log("Récupération des produits OK");
+        resolve(allProducts);
       } else {
-        alert("Aucun produit n'est disponible pour le moment.");
+        reject(
+          console.log(
+            "Un Problème est survenu lors du chargement de la page, merci de revenir plus tard."
+          )
+        );
       }
-    } else {
-      alert("Un problème est survenu, merci de revenir plus tard.");
-    }
-  };
+    };
+
+    request.onerror = function () {
+      alert("erreur de connection, merci de revenir plus tard");
+      console.log(
+        "Status de la requête: " +
+          request.status +
+          " | " +
+          "ReadyState de la requête: " +
+          request.readyState
+      );
+    };
+  });
 }
 
-getProducts();
+getProducts().then((allProducts) => {
+  showElements();
+});
 
-// Création d'une div affichant le tableau
-//document.body.onload = showElement;
+// 2 - Création d'une div pour chaque produit dans l'objet allProduct
+
 function showElements() {
   for (var i = 0; i < allProducts.length; i++) {
     function creatTeddyDiv() {
