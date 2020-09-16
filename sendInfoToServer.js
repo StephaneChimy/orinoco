@@ -1,8 +1,6 @@
-let request = new XMLHttpRequest();
+let products = [];
 
-var products = [];
-
-var infosToSend = {
+let infosToSend = {
   contact: {
     firstName: "",
     lastName: "",
@@ -13,7 +11,7 @@ var infosToSend = {
   products: "",
 };
 
-var infosSendJson;
+let infosSendJson;
 
 function sendInfosToServer() {
   // request.open("POST", "http://localhost:3000/api/teddies/order");
@@ -94,12 +92,16 @@ function setEmailInput() {
 }
 
 function setProducts() {
-  var productTemp = [];
-  for (let nbProducts = 0; nbProducts < localStorage.length; nbProducts++) {
-    productTemp.push(
-      JSON.parse(localStorage.getItem(localStorage.key(nbProducts)))
-    );
-    products.push(productTemp[nbProducts].id);
+  for (nbItem = 0; nbItem < localStorage.length; nbItem++) {
+    if (localStorage.key(nbItem) == "basket") {
+      let productsInLocalStorage = JSON.parse(
+        localStorage.getItem(localStorage.key("basket"))
+      );
+      for (const nbProducts in productsInLocalStorage.products)
+        products.push(productsInLocalStorage.products[nbProducts].id);
+
+      console.log(products);
+    }
   }
   infosToSend.products = products;
   //products = JSON.stringify(products);
