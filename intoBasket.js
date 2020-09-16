@@ -2,12 +2,10 @@ function listenButton() {
   var getButton = document.querySelector(".addToBasket");
   console.log(getButton);
   getButton.addEventListener("click", () => {
-    //localStorage.setItem("item" + localStorage.length, getIdInUrl);
     console.log("Button cliqué");
 
     checkLocalStorage();
 
-    //console.log(basketToParam);
     console.log(localStorage);
   });
 }
@@ -19,7 +17,6 @@ function checkLocalStorage() {
   } else {
     console.log("Au moins une donnée est dans localStorage");
     checkParamFromLocalStorage();
-    //productControlBeforeBasket();
   }
 }
 
@@ -40,12 +37,10 @@ function checkParamFromLocalStorage() {
         if (basketToParam.products[item].id == product._id) {
           console.log(product.name + " est déjà dans le panier");
           productFound = true;
-          //getParamFromLocalStorage();
           incrementItem();
           function incrementItem() {
             nb = basketToParam.products[item].Quantite;
 
-            //nb = basketToParam;
             console.log(nb);
             nb++;
             basketToParam.products[item].Quantite = nb;
@@ -54,7 +49,6 @@ function checkParamFromLocalStorage() {
             sendToLocalStorage();
           }
         }
-        //console.log(getLocalStorage.products[item].id);
       }
     }
   }
@@ -63,35 +57,14 @@ function checkParamFromLocalStorage() {
     pushProductInBasket();
   }
 }
-// function getParamFromLocalStorage() {
-//   basketToParam = JSON.parse(localStorage.getItem(localStorage.key(nbItem)));
-//   console.log(basketToParam);
-
-//   incrementItem();
-// }
-
-// function incrementItem() {
-//   let item = maClosure();
-//   nb = basketToParam.products[item].Quantite;
-
-//   //nb = basketToParam;
-//   console.log(nb);
-//   nb++;
-//   basketToParam.products[item].Quantite = nb;
-//   console.log(basketToParam);
-
-//   sendToLocalStorage();
-// }
 
 function sendToLocalStorage() {
   basketToParamJson = JSON.stringify(basketToParam);
-  //console.log(basketToParamJson);
   localStorage.setItem("basket", basketToParamJson);
   console.log(JSON.parse(localStorage.getItem("basket")));
 }
 
 function pushProductInBasket() {
-  //console.log(id);
   let nombreDeProduit = 1;
   basketToParam.products.push({
     Nom: product.name,

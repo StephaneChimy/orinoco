@@ -1,20 +1,14 @@
-var getIdInUrl = window.location.search.slice(11);
 
 let basketToParam = {
   products: [],
 };
-// var basketToParam = {
-//   Nom: "",
-//   id: "",
-//   Quantite: "",
-// };
-// console.log(basketToParam);
 
 ///////////////
 // 1 - Récupérer les éléments à afficher dans une promesse.
 
 function getProducts() {
   return new Promise((resolve, reject) => {
+    let getIdInUrl = window.location.search.slice(11);
     let request = new XMLHttpRequest();
     request.open("GET", "http://localhost:3000/api/teddies/" + getIdInUrl);
     request.send();
@@ -47,7 +41,7 @@ function getProducts() {
 }
 
 //////////////////////////////////
-function afficherProduit() {
+function showProduct() {
   function creatTeddyDiv() {
     let getAffElem = document.querySelector("#affProduct");
     let div = document.createElement("div");
@@ -158,5 +152,5 @@ function afficherProduit() {
 
 
 getProducts().then((product) => {
-  afficherProduit();
+  showProduct();
 });
