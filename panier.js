@@ -102,7 +102,6 @@ function showBasket() {
     getPriceOfProduct();
     setPriceOfProduct();
     getTotalPrice();
-    //setTotalPrice();
   }
   function addProductToTable() {
     {
