@@ -1,4 +1,4 @@
-var request = new XMLHttpRequest();
+let request = new XMLHttpRequest();
 
 var products = [];
 
