@@ -4,7 +4,7 @@ let totalPrice = 0;
 let basket;
 
 checkLocalStorage();
-getProducts().then((allProducts) => {
+getProducts().then(() => {
   showBasket();
 });
 
@@ -96,78 +96,71 @@ function showBasket() {
     nbProductInBasket < basket.products.length;
     nbProductInBasket++
   ) {
-    addProductToTable();
-    addProductNameLigneTable();
-    addProductQuantiteLigneTable();
-    getPriceOfProduct();
-    setPriceOfProduct();
-    getTotalPrice();
-  }
-  function addProductToTable() {
-    {
-      let getLigneProduct = document.querySelector("tbody");
-      let creatNewLigne = document.createElement("tr");
-      creatNewLigne.id = basket.products[nbProductInBasket].Nom;
-      getLigneProduct.appendChild(creatNewLigne);
-    }
-  }
-  function addProductNameLigneTable() {
-    let getLigneProduct = document.querySelector(
-      "#" + basket.products[nbProductInBasket].Nom
-    );
-    let insertDataOfProduct = document.createElement("td");
-    insertDataOfProduct.id = "td" + basket.products[nbProductInBasket].Nom;
-    insertDataOfProduct.innerText = basket.products[nbProductInBasket].Nom;
-    getLigneProduct.appendChild(insertDataOfProduct);
-  }
-  function addProductQuantiteLigneTable() {
-    let getLigneProduct = document.querySelector(
-      "#" + basket.products[nbProductInBasket].Nom
-    );
-    console.log(getLigneProduct);
-    let insertDataOfProduct = document.createElement("td");
-    insertDataOfProduct.id = "td" + basket.products[nbProductInBasket].Quantite;
-    insertDataOfProduct.innerText = basket.products[nbProductInBasket].Quantite;
-    getLigneProduct.appendChild(insertDataOfProduct);
-  }
-  function getPriceOfProduct() {
-    for (var nbElem = 0; nbElem < allProducts.length; nbElem++) {
-      if (allProducts[nbElem]._id === basket.products[nbProductInBasket].id) {
-        PriceOfProduct = allProducts[nbElem].price;
-        console.log(
-          basket.products[nbProductInBasket].Nom + " = " + PriceOfProduct
-        );
-      }
-    }
-  }
-
-  function setPriceOfProduct() {
-    let getLigneProduct = document.querySelector(
-      "#" + basket.products[nbProductInBasket].Nom
-    );
-    console.log(getLigneProduct);
-    let insertDataOfProduct = document.createElement("td");
-    insertDataOfProduct.id =
-      "td" + basket.products[nbProductInBasket].PriceOfProduct;
-    insertDataOfProduct.innerText = PriceOfProduct;
-    getLigneProduct.appendChild(insertDataOfProduct);
-  }
-
-  function getTotalPrice() {
-    for (var nbElem = 0; nbElem < allProducts.length; nbElem++) {
-      if (allProducts[nbElem]._id === basket.products[nbProductInBasket].id) {
-        PriceOfProduct = allProducts[nbElem].price;
-        var quantiteOfProduct = basket.products[nbProductInBasket].Quantite;
-        totalPrice += PriceOfProduct * quantiteOfProduct;
-      }
-    }
-  }
-
-  function setTotalPrice() {
-    let getTotalPrice = document.querySelector("#Total");
-    let insertTotalPrice = document.createElement("th");
-    insertTotalPrice.innerHTML = totalPrice; //prix total
-    getTotalPrice.appendChild(insertTotalPrice);
+    addProductToTable(nbProductInBasket);
+    addProductNameLigneTable(nbProductInBasket);
+    addProductQuantiteLigneTable(nbProductInBasket);
+    getPriceOfProduct(nbProductInBasket);
+    setPriceOfProduct(nbProductInBasket);
+    getTotalPrice(nbProductInBasket);
   }
   setTotalPrice();
+}
+function addProductToTable(nbProductInBasket) {
+  {
+    let getLigneProduct = document.querySelector("tbody");
+    let creatNewLigne = document.createElement("tr");
+    creatNewLigne.id = "tbody" + nbProductInBasket;
+    getLigneProduct.appendChild(creatNewLigne);
+  }
+}
+function addProductNameLigneTable(nbProductInBasket) {
+  let getLigneProduct = document.querySelector("#tbody" + nbProductInBasket);
+  let insertDataOfProduct = document.createElement("td");
+  insertDataOfProduct.id = "tdProduct" + nbProductInBasket;
+  insertDataOfProduct.innerText = basket.products[nbProductInBasket].Nom;
+  getLigneProduct.appendChild(insertDataOfProduct);
+}
+function addProductQuantiteLigneTable(nbProductInBasket) {
+  let getLigneProduct = document.querySelector("#tbody" + nbProductInBasket);
+  console.log(getLigneProduct);
+  let insertDataOfProduct = document.createElement("td");
+  insertDataOfProduct.id = "tdQuantite" + nbProductInBasket;
+  insertDataOfProduct.innerText = basket.products[nbProductInBasket].Quantite;
+  getLigneProduct.appendChild(insertDataOfProduct);
+}
+function getPriceOfProduct(nbProductInBasket) {
+  for (var nbElem = 0; nbElem < allProducts.length; nbElem++) {
+    if (allProducts[nbElem]._id === basket.products[nbProductInBasket].id) {
+      PriceOfProduct = allProducts[nbElem].price;
+      console.log(
+        basket.products[nbProductInBasket].Nom + " = " + PriceOfProduct
+      );
+    }
+  }
+}
+function setPriceOfProduct(nbProductInBasket) {
+  let getLigneProduct = document.querySelector(
+    "#tbody" + nbProductInBasket
+  );
+  console.log(getLigneProduct);
+  let insertDataOfProduct = document.createElement("td");
+  insertDataOfProduct.id =
+    "tdPrice" + nbProductInBasket;
+  insertDataOfProduct.innerText = PriceOfProduct;
+  getLigneProduct.appendChild(insertDataOfProduct);
+}
+function getTotalPrice(nbProductInBasket) {
+  for (var nbElem = 0; nbElem < allProducts.length; nbElem++) {
+    if (allProducts[nbElem]._id === basket.products[nbProductInBasket].id) {
+      PriceOfProduct = allProducts[nbElem].price;
+      var quantiteOfProduct = basket.products[nbProductInBasket].Quantite;
+      totalPrice += PriceOfProduct * quantiteOfProduct;
+    }
+  }
+}
+function setTotalPrice() {
+  let getTotalPrice = document.querySelector("#Total");
+  let insertTotalPrice = document.createElement("th");
+  insertTotalPrice.innerHTML = totalPrice; //prix total
+  getTotalPrice.appendChild(insertTotalPrice);
 }

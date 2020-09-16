@@ -3,9 +3,7 @@ function listenButton() {
   console.log(getButton);
   getButton.addEventListener("click", () => {
     console.log("Button cliqué");
-
     checkLocalStorage();
-
     console.log(localStorage);
   });
 }
