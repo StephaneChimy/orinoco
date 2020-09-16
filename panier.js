@@ -102,7 +102,7 @@ function showBasket() {
     getPriceOfProduct();
     setPriceOfProduct();
     getTotalPrice();
-    setTotalPrice();
+    //setTotalPrice();
   }
   function addProductToTable() {
     {
@@ -170,4 +170,5 @@ function showBasket() {
     insertTotalPrice.innerHTML = totalPrice; //prix total
     getTotalPrice.appendChild(insertTotalPrice);
   }
+  setTotalPrice();
 }
