@@ -27,16 +27,11 @@ function sendInfosToServer() {
   fetch("http://localhost:3000/api/teddies/order", options)
     .then((response) => {
       if (response.ok) {
-        response
-          .json()
-          .then(
-            (response) =>{
-              console.log(response);
-              // document.location.href =
-              //   "confirmation.html?OrderId=" + response.orderId;
-            }
-              
-          );
+        response.json().then((response) => {
+          console.log(response);
+          // document.location.href =
+          //   "confirmation.html?OrderId=" + response.orderId;
+        });
       }
     })
     .catch((error) => {
@@ -99,8 +94,13 @@ function setProducts() {
       let productsInLocalStorage = JSON.parse(
         localStorage.getItem(localStorage.key("basket"))
       );
-      for (const nbProducts in productsInLocalStorage.products)
-        products.push(productsInLocalStorage.products[nbProducts].id);
+      for (let nbProducts in productsInLocalStorage.products) {
+        let quantity = productsInLocalStorage.products[nbProducts].Quantite;
+        console.log(quantity);
+        for (let i = 0; i < quantity; i++) {
+          products.push(productsInLocalStorage.products[nbProducts].id);
+        }
+      }
 
       console.log(products);
     }
