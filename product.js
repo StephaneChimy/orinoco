@@ -60,7 +60,7 @@ function showProduct() {
   }
   creatTeddyDiv();
 
-  function setImage() {
+  function showImage() {
     let getTeddyDiv = document.querySelector("#teddy" + product._id);
     let img = document.createElement("img");
     img.src = product["imageUrl"];
@@ -68,25 +68,25 @@ function showProduct() {
     img.className = "card-img-top";
     getTeddyDiv.appendChild(img);
   }
-  setImage();
+  showImage();
 
-  function newDivCardBody() {
+  function CreatDivCardBody() {
     let getTeddyDiv = document.querySelector("#teddy" + product._id);
     let div = document.createElement("div");
     div.className = "card-body";
     div.id = "card-body" + product._id;
     getTeddyDiv.appendChild(div);
   }
-  newDivCardBody();
+  CreatDivCardBody();
 
-  function setName() {
+  function showName() {
     let getCardBody = document.querySelector("#card-body" + product._id);
     let h5 = document.createElement("h5");
     h5.className = "card-title";
     h5.innerHTML = product["name"];
     getCardBody.appendChild(h5);
   }
-  setName();
+  showName();
 
   function setDescription() {
     let getCardBody = document.querySelector("#card-body" + product._id);
@@ -95,27 +95,27 @@ function showProduct() {
     p.innerHTML = product["description"];
     getCardBody.appendChild(p);
   }
-  setDescription();
+  showDescription();
 
-  function newSelect() {
+  function creatSelect() {
     let getCardBody = document.querySelector("#card-body" + product._id);
     let select = document.createElement("select");
     select.className = "custom-select browser-default";
     select.id = "select" + product._id;
     getCardBody.appendChild(select);
   }
-  newSelect();
+  creatSelect();
 
-  function firstSelected() {
+  function CreatFirstSelected() {
     let getSelect = document.querySelector("#select" + product._id);
     let firstOption = document.createElement("option");
     firstOption.className = "selected";
     firstOption.innerText = "Choisissez votre couleur";
     getSelect.appendChild(firstOption);
   }
-  firstSelected();
+  CreatFirstSelected();
 
-  function setColors() {
+  function showColors() {
     let value = 1;
     for (const eachColors of product["colors"]) {
       let getSelect = document.querySelector("#select" + product._id);
@@ -126,18 +126,18 @@ function showProduct() {
       value++;
     }
   }
-  setColors();
+  showColors();
 
-  function setPrice() {
+  function showPrice() {
     let getCardBody = document.querySelector("#card-body" + product._id);
     let p = document.createElement("p");
     p.className = "card-text";
     p.innerText = "Prix:" + " " + product["price"] + "€";
     getCardBody.appendChild(p);
   }
-  setPrice();
+  showPrice();
 
-  function creatButton() {
+  function showButton() {
     let getCardBody = document.querySelector("#card-body" + product._id);
     let button = document.createElement("button");
     button.className = "btn btn-primary addToBasket";
@@ -146,19 +146,19 @@ function showProduct() {
     button.innerText = "Ajouter au panier";
     getCardBody.appendChild(button);
   }
-  creatButton();
+  showButton();
   // rajout du script pour le bon chargement de la page.
-  function creatScriptIntoBasket(){
+  function showScriptIntoBasket(){
     let getScript = document.querySelector("body");
     let script = document.createElement("script");
     script.src = "./intoBasket.js";
     getScript.appendChild(script);
   }
-  creatScriptIntoBasket();
+  showScriptIntoBasket();
 }
 ////////////////////////////////////////////
 
 
-getProducts().then((product) => {
-  showProduct();
-});
+getProducts().then(function () {
+    showProduct();
+  });

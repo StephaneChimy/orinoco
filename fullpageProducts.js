@@ -99,7 +99,7 @@ function showElements() {
     }
     showPrice();
 
-    function creatButton() {
+    function showButton() {
       let getCardBody = document.querySelector("#card-body" + i);
       let a = document.createElement("a");
       a.className = "btn btn-primary";
@@ -107,7 +107,7 @@ function showElements() {
       a.innerText = "Détail";
       getCardBody.appendChild(a);
     }
-    creatButton();
+    showButton();
   }
 }
 
