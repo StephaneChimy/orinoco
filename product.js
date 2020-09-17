@@ -28,7 +28,7 @@ function getProducts() {
     };
 
     request.onerror = function () {
-      alert("erreur de connection, merci de revenir plus tard");
+      showError();
       console.log(
         "Status de la requête: " +
           request.status +
@@ -41,12 +41,20 @@ function getProducts() {
 }
 
 //////////////////////////////////
+function showError(){
+  let getAffElem = document.querySelector("#affProduct");
+    let div = document.createElement("div");
+    div.id = "error";
+    div.className = "card col text-center text-light bg-danger";
+    div.innerText = "Erreur de connection, merci de revenir plus tard."
+    getAffElem.appendChild(div);
+  }
+
 function showProduct() {
   function creatTeddyDiv() {
     let getAffElem = document.querySelector("#affProduct");
     let div = document.createElement("div");
     div.id = "teddy" + product._id;
-    idOurs = product._id;
     div.className = "card col-8";
     getAffElem.appendChild(div);
   }
