@@ -1,5 +1,6 @@
 let products = [];
 let infosSendJson;
+let totalPaid = 0;
 let infosToSend = {
   contact: {
     firstName: "",
@@ -29,8 +30,14 @@ function sendInfosToServer() {
       if (response.ok) {
         response.json().then((response) => {
           console.log(response);
-          // document.location.href =
-          //   "confirmation.html?OrderId=" + response.orderId;
+          for (let i = 0; i < response.products.length; i++) {
+            //console.log(response.products[i].price);
+            totalPaid += response.products[i].price;
+            console.log(totalPaid);
+          }
+          console.log(totalPaid);
+          document.location.href =
+            "confirmation.html?OrderId=" + response.orderId + "&" + "totalPaid=" + totalPaid;
         });
       }
     })
@@ -96,7 +103,7 @@ function setProducts() {
       );
       for (let nbProducts in productsInLocalStorage.products) {
         let quantity = productsInLocalStorage.products[nbProducts].Quantite;
-        console.log(quantity);
+        //console.log(quantity);
         for (let i = 0; i < quantity; i++) {
           products.push(productsInLocalStorage.products[nbProducts].id);
         }
