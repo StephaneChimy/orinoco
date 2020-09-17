@@ -46,50 +46,50 @@ function showElements() {
     }
     creatTeddyDiv();
 
-    function setImage() {
+    function showImage() {
       let getTeddyDiv = document.querySelector("#teddy" + i);
       let img = document.createElement("img");
       img.src = allProducts[i].imageUrl;
       img.className = "image card-img-top img-fluid";
       getTeddyDiv.appendChild(img);
     }
-    setImage();
+    showImage();
 
-    function newDivCardBody() {
+    function CreatDivCardBody() {
       let getTeddyDiv = document.querySelector("#teddy" + i);
       let div = document.createElement("div");
       div.className = "card-body";
       div.id = "card-body" + i;
       getTeddyDiv.appendChild(div);
     }
-    newDivCardBody();
+    CreatDivCardBody();
 
-    function setName() {
+    function showName() {
       let getCardBody = document.querySelector("#card-body" + i);
       let h5 = document.createElement("h5");
       h5.className = "card-title";
       h5.innerHTML = allProducts[i].name;
       getCardBody.appendChild(h5);
     }
-    setName();
+    showName();
 
-    function setDescription() {
+    function showDescription() {
       let getCardBody = document.querySelector("#card-body" + i);
       let p = document.createElement("p");
       p.className = "card-text";
       p.innerHTML = allProducts[i].description;
       getCardBody.appendChild(p);
     }
-    setDescription();
+    showDescription();
 
-    function setPrice() {
+    function showPrice() {
       let getCardBody = document.querySelector("#card-body" + i);
       let p = document.createElement("p");
       p.className = "card-text";
       p.innerHTML = "Prix:" + " " + allProducts[i].price + "€";
       getCardBody.appendChild(p);
     }
-    setPrice();
+    showPrice();
 
     function creatButton() {
       let getCardBody = document.querySelector("#card-body" + i);
@@ -103,6 +103,6 @@ function showElements() {
   }
 }
 
-getProducts().then((allProducts) => {
-  showElements();
-});
+getProducts().then(function () {
+    showElements();
+  });
