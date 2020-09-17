@@ -1,5 +1,5 @@
 let products = [];
-
+let infosSendJson;
 let infosToSend = {
   contact: {
     firstName: "",
@@ -10,8 +10,7 @@ let infosToSend = {
   },
   products: "",
 };
-
-let infosSendJson;
+////////////////////////////////
 
 function sendInfosToServer() {
   // request.open("POST", "http://localhost:3000/api/teddies/order");
@@ -26,21 +25,24 @@ function sendInfosToServer() {
   };
 
   fetch("http://localhost:3000/api/teddies/order", options)
-    .then((response) => response.json())
-    .then(
-      (response) =>
-        (document.location.href =
-          "confirmation.html?OrderId=" + response.orderId)
-    );
+    .then((response) => {
+      if (response.ok) {
+        response
+          .json()
+          .then(
+            (response) =>{
+              console.log(response);
+              // document.location.href =
+              //   "confirmation.html?OrderId=" + response.orderId;
+            }
+              
+          );
+      }
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
 }
-
-setProducts();
-setLastnameInput();
-setFirstnameInput();
-setAddressInput();
-setCityInput();
-setEmailInput();
-ClickOnButton();
 
 function ClickOnButton() {
   let formulaire = document.querySelector("#formulaire");
@@ -104,6 +106,12 @@ function setProducts() {
     }
   }
   infosToSend.products = products;
-  //products = JSON.stringify(products);
-  //console.log(products);
 }
+////////////////////////////////
+setProducts();
+setLastnameInput();
+setFirstnameInput();
+setAddressInput();
+setCityInput();
+setEmailInput();
+ClickOnButton();

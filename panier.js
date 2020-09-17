@@ -2,11 +2,7 @@ let request = new XMLHttpRequest();
 let allProducts;
 let totalPrice = 0;
 let basket;
-
-checkLocalStorage();
-getProducts().then(() => {
-  showBasket();
-});
+////////////////////////////////////
 
 function checkLocalStorage() {
   if (localStorage.length < 1) {
@@ -90,21 +86,6 @@ function getProducts() {
   });
 }
 
-function showBasket() {
-  for (
-    var nbProductInBasket = 0;
-    nbProductInBasket < basket.products.length;
-    nbProductInBasket++
-  ) {
-    addProductToTable(nbProductInBasket);
-    addProductNameLigneTable(nbProductInBasket);
-    addProductQuantiteLigneTable(nbProductInBasket);
-    getPriceOfProduct(nbProductInBasket);
-    setPriceOfProduct(nbProductInBasket);
-    getTotalPrice(nbProductInBasket);
-  }
-  setTotalPrice();
-}
 function addProductToTable(nbProductInBasket) {
   {
     let getLigneProduct = document.querySelector("tbody");
@@ -139,13 +120,10 @@ function getPriceOfProduct(nbProductInBasket) {
   }
 }
 function setPriceOfProduct(nbProductInBasket) {
-  let getLigneProduct = document.querySelector(
-    "#tbody" + nbProductInBasket
-  );
+  let getLigneProduct = document.querySelector("#tbody" + nbProductInBasket);
   console.log(getLigneProduct);
   let insertDataOfProduct = document.createElement("td");
-  insertDataOfProduct.id =
-    "tdPrice" + nbProductInBasket;
+  insertDataOfProduct.id = "tdPrice" + nbProductInBasket;
   insertDataOfProduct.innerText = PriceOfProduct;
   getLigneProduct.appendChild(insertDataOfProduct);
 }
@@ -164,3 +142,25 @@ function setTotalPrice() {
   insertTotalPrice.innerHTML = totalPrice; //prix total
   getTotalPrice.appendChild(insertTotalPrice);
 }
+
+function showBasket() {
+  for (
+    var nbProductInBasket = 0;
+    nbProductInBasket < basket.products.length;
+    nbProductInBasket++
+  ) {
+    addProductToTable(nbProductInBasket);
+    addProductNameLigneTable(nbProductInBasket);
+    addProductQuantiteLigneTable(nbProductInBasket);
+    getPriceOfProduct(nbProductInBasket);
+    setPriceOfProduct(nbProductInBasket);
+    getTotalPrice(nbProductInBasket);
+  }
+  setTotalPrice();
+}
+//////////////////////////////////
+
+checkLocalStorage();
+getProducts().then(() => {
+  showBasket();
+});
