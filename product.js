@@ -1,5 +1,5 @@
 
-let basketToParam = {
+let basket = {
   products: [],
 };
 

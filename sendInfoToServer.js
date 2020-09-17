@@ -96,10 +96,10 @@ function setEmailInput() {
 }
 
 function setProducts() {
-  for (nbItem = 0; nbItem < localStorage.length; nbItem++) {
-    if (localStorage.key(nbItem) == "basket") {
+  for (cle = 0; cle < localStorage.length; cle++) {
+    if (localStorage.key(cle) == "basket") {
       let productsInLocalStorage = JSON.parse(
-        localStorage.getItem(localStorage.key("basket"))
+        localStorage.getItem(localStorage.key(cle))
       );
       for (let nbProducts in productsInLocalStorage.products) {
         let quantity = productsInLocalStorage.products[nbProducts].Quantite;

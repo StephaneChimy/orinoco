@@ -5,52 +5,34 @@ let basket;
 ////////////////////////////////////
 
 function checkLocalStorage() {
-  if (localStorage.length < 1) {
+  if (localStorage.length == 0) {
     console.log("rien dans le localstorage");
-    //pushProductInBasket();
+    emptyBasket();
+    return false;
   } else {
     console.log("Au moins une donnée est dans localStorage");
-    getParamFromLocalStorage();
+    //getParamFromLocalStorage();
+    return true;
   }
 }
 
+
 function getParamFromLocalStorage() {
-  //var productFound = false;
-  // Vérification si la clé est bien basket
-  for (nbItem = 0; nbItem < localStorage.length; nbItem++) {
-    if (localStorage.key(nbItem) == "basket") {
+var cleFound = false;
+  for (cle = 0; cle < localStorage.length; cle++) {
+    if (localStorage.key(cle) == "basket") {
       console.log("un item est dans le localstorage");
       // Rapatriement des infos de basket
-      basket = JSON.parse(localStorage.getItem(localStorage.key("basket")));
-
+      basket = JSON.parse(localStorage.getItem(localStorage.key(cle)));
       console.log(basket);
-      //Vérification si l'id du produit est dans le localStorage
-      // for (let item = 0; item < basketToParam.products.length; item++) {
-      //   if (basketToParam.products[item].id == product._id) {
-      //     console.log(product.name + " est déjà dans le panier");
-      //     productFound = true;
-      //     //getParamFromLocalStorage();
-      //     //incrementItem();
-      //     function incrementItem() {
-      //       nb = basketToParam.products[item].Quantite;
-
-      //       //nb = basketToParam;
-      //       console.log(nb);
-      //       nb++;
-      //       basketToParam.products[item].Quantite = nb;
-      //       console.log(basketToParam);
-
-      //       //sendToLocalStorage();
-      //     }
-      //   }
-      //   //console.log(getLocalStorage.products[item].id);
-      // }
-    }
+      cleFound = true;
+      return true;
+    } 
   }
-  // if (!productFound) {
-  //   console.log("Le produit n'est pas dans localStorage");
-  //   //pushProductInBasket();
-  // }
+  if (!cleFound){
+    emptyBasket();
+    return false;
+  }
 }
 
 function getProducts() {
@@ -60,7 +42,7 @@ function getProducts() {
     request.send();
     request.onload = function () {
       if (request.readyState == 4 && request.status == 200) {
-        allProducts = JSON.parse(request.response); //Déclaration de allProducts, pas de let?
+        allProducts = JSON.parse(request.response);
         console.log("Récupération des produits OK");
         console.log(allProducts);
         resolve(allProducts);
@@ -74,7 +56,7 @@ function getProducts() {
     };
 
     request.onerror = function () {
-      alert("erreur de connection, merci de revenir plus tard");
+      showErrorConnection();
       console.log(
         "Status de la requête: " +
           request.status +
@@ -85,53 +67,78 @@ function getProducts() {
     };
   });
 }
+function showErrorConnection() {
+  let getTable = document.querySelector("table");
+  getTable.style.display = "none";
+  let getAffPanier = document.querySelector("#affPanier");
+  getAffPanier.style.display = "none";
+  let geMain = document.querySelector("main");
+  let div = document.createElement("div");
+  div.id = "error";
+  div.className = "card col text-center text-light bg-danger";
+  div.innerText = "Erreur de connection, merci de revenir plus tard.";
+  geMain.appendChild(div);
+}
+function emptyBasket() {
+  let getTable = document.querySelector("table");
+  getTable.style.display = "none";
+  let getAffPanier = document.querySelector("#affPanier");
+  getAffPanier.style.display = "none";
+  let geMain = document.querySelector("main");
+  let div = document.createElement("div");
+  div.id = "error";
+  div.className = "card col text-center text-info";
+  div.innerText = "Votre panier est vide.";
+  geMain.appendChild(div);
+}
 
-function addProductToTable(nbProductInBasket) {
+
+function addProductToTable(product) {
   {
     let getLigneProduct = document.querySelector("tbody");
     let creatNewLigne = document.createElement("tr");
-    creatNewLigne.id = "tbody" + nbProductInBasket;
+    creatNewLigne.id = "tbody" + product;
     getLigneProduct.appendChild(creatNewLigne);
   }
 }
-function addProductNameLigneTable(nbProductInBasket) {
-  let getLigneProduct = document.querySelector("#tbody" + nbProductInBasket);
+function addProductNameLigneTable(product) {
+  let getLigneProduct = document.querySelector("#tbody" + product);
   let insertDataOfProduct = document.createElement("td");
-  insertDataOfProduct.id = "tdProduct" + nbProductInBasket;
-  insertDataOfProduct.innerText = basket.products[nbProductInBasket].Nom;
+  insertDataOfProduct.id = "tdProduct" + product;
+  insertDataOfProduct.innerText = basket.products[product].Nom;
   getLigneProduct.appendChild(insertDataOfProduct);
 }
-function addProductQuantiteLigneTable(nbProductInBasket) {
-  let getLigneProduct = document.querySelector("#tbody" + nbProductInBasket);
+function addProductQuantiteLigneTable(product) {
+  let getLigneProduct = document.querySelector("#tbody" + product);
   console.log(getLigneProduct);
   let insertDataOfProduct = document.createElement("td");
-  insertDataOfProduct.id = "tdQuantite" + nbProductInBasket;
-  insertDataOfProduct.innerText = basket.products[nbProductInBasket].Quantite;
+  insertDataOfProduct.id = "tdQuantite" + product;
+  insertDataOfProduct.innerText = basket.products[product].Quantite;
   getLigneProduct.appendChild(insertDataOfProduct);
 }
-function getPriceOfProduct(nbProductInBasket) {
+function getPriceOfProduct(product) {
   for (var nbElem = 0; nbElem < allProducts.length; nbElem++) {
-    if (allProducts[nbElem]._id === basket.products[nbProductInBasket].id) {
+    if (allProducts[nbElem]._id === basket.products[product].id) {
       PriceOfProduct = allProducts[nbElem].price;
       console.log(
-        basket.products[nbProductInBasket].Nom + " = " + PriceOfProduct
+        basket.products[product].Nom + " = " + PriceOfProduct
       );
     }
   }
 }
-function setPriceOfProduct(nbProductInBasket) {
-  let getLigneProduct = document.querySelector("#tbody" + nbProductInBasket);
+function setPriceOfProduct(product) {
+  let getLigneProduct = document.querySelector("#tbody" + product);
   console.log(getLigneProduct);
   let insertDataOfProduct = document.createElement("td");
-  insertDataOfProduct.id = "tdPrice" + nbProductInBasket;
-  insertDataOfProduct.innerText = PriceOfProduct;
+  insertDataOfProduct.id = "tdPrice" + product;
+  insertDataOfProduct.innerText = new Intl.NumberFormat().format(PriceOfProduct);
   getLigneProduct.appendChild(insertDataOfProduct);
 }
-function getTotalPrice(nbProductInBasket) {
+function getTotalPrice(product) {
   for (var nbElem = 0; nbElem < allProducts.length; nbElem++) {
-    if (allProducts[nbElem]._id === basket.products[nbProductInBasket].id) {
+    if (allProducts[nbElem]._id === basket.products[product].id) {
       PriceOfProduct = allProducts[nbElem].price;
-      var quantiteOfProduct = basket.products[nbProductInBasket].Quantite;
+      var quantiteOfProduct = basket.products[product].Quantite;
       totalPrice += PriceOfProduct * quantiteOfProduct;
     }
   }
@@ -139,28 +146,29 @@ function getTotalPrice(nbProductInBasket) {
 function setTotalPrice() {
   let getTotalPrice = document.querySelector("#Total");
   let insertTotalPrice = document.createElement("th");
-  insertTotalPrice.innerHTML = totalPrice; //prix total
+  insertTotalPrice.innerHTML = new Intl.NumberFormat().format(totalPrice); //formatage du prix avec une fonction.
   getTotalPrice.appendChild(insertTotalPrice);
 }
 
 function showBasket() {
   for (
-    var nbProductInBasket = 0;
-    nbProductInBasket < basket.products.length;
-    nbProductInBasket++
+    var product = 0;
+    product < basket.products.length;
+    product++
   ) {
-    addProductToTable(nbProductInBasket);
-    addProductNameLigneTable(nbProductInBasket);
-    addProductQuantiteLigneTable(nbProductInBasket);
-    getPriceOfProduct(nbProductInBasket);
-    setPriceOfProduct(nbProductInBasket);
-    getTotalPrice(nbProductInBasket);
+    addProductToTable(product);
+    addProductNameLigneTable(product);
+    addProductQuantiteLigneTable(product);
+    getPriceOfProduct(product);
+    setPriceOfProduct(product);
+    getTotalPrice(product);
   }
   setTotalPrice();
 }
 //////////////////////////////////
-
-checkLocalStorage();
-getProducts().then(() => {
-  showBasket();
-});
+if (checkLocalStorage() === true && getParamFromLocalStorage() === true){
+  console.log("Verification passée");
+  getProducts().then(() => {
+    showBasket();
+  });
+}

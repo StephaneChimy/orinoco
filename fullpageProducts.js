@@ -49,7 +49,7 @@ function showElements() {
       let getAffProduct = document.querySelector("#affProduct");
       let div = document.createElement("div");
       div.id = "teddy" + i;
-      div.className = "card col-xs-12 col-sm-5";
+      div.className = "card col-12";
       getAffProduct.appendChild(div);
     }
     creatTeddyDiv();

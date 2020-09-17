@@ -20,18 +20,19 @@ function checkLocalStorage() {
 // 3 - Si le localStorage contient la clé "basket", si oui => checkProduct() // Sinon pushProductInBasket()
 function checkKeyFromLocalStorage() {
   // Vérification si la clé est bien "basket"
+  let keyFound = false;
   for (cle = 0; cle < localStorage.length; cle++) {
     if (localStorage.key(cle) == "basket") {
       console.log("un produit est déjà dans le localstorage");
       // Rapatriement des infos de la clé basket dans basket
-      basket = JSON.parse(
-        localStorage.getItem(localStorage.key("basket"))
-      );
+      basket = JSON.parse(localStorage.getItem(localStorage.key(cle)));
       console.log(basket);
       checkIdProduct();
-    } else {
-      pushProductInBasket();
+      return keyFound = true;
     }
+  }
+  if (!keyFound) {
+    pushProductInBasket();
   }
 }
 // 4 - Vérification si l'id du produit est dans basket, si oui => incrementItem() // Sinon pushProductInBasket()
