@@ -88,7 +88,7 @@ function showProduct() {
   }
   showName();
 
-  function setDescription() {
+  function showDescription() {
     let getCardBody = document.querySelector("#card-body" + product._id);
     let p = document.createElement("p");
     p.className = "card-text";
