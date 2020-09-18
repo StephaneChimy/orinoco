@@ -56,6 +56,7 @@ function incrementItem(item) {
   basket.products[item].Quantite += 1;
   console.log(basket);
   sendToLocalStorage();
+  window.location.reload();
 }
 // 6 - Send the basket to the localstorage
 function sendToLocalStorage() {
@@ -74,6 +75,7 @@ function pushProductInBasket() {
 
   console.log(basket.products.Quantite);
   sendToLocalStorage();
+  window.location.reload();
 }
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 

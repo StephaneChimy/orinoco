@@ -36,7 +36,8 @@ function sendInfosToServer() {
             console.log(totalPaid);
           }
           //console.log(totalPaid);
-
+          // Clear of the basket
+          localStorage.removeItem("basket");
           // Redirection with the order id and total paid in parameters
           document.location.href =
             "confirmation.html?OrderId=" +

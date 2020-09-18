@@ -145,19 +145,20 @@ function showProduct() {
     button.innerText = "Ajouter au panier";
     getCardBody.appendChild(button);
   }
-  showButton();
+  
+// Format price
+function PriceFormat(price) {
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
+}
+showButton();
   // Add the script after creating all elements on the page.
   function showScriptIntoBasket(){
     let getScript = document.querySelector("body");
     let script = document.createElement("script");
-    script.src = "./intoBasket.js";
+    script.src = "./js/intoBasket.js";
     getScript.appendChild(script);
   }
   showScriptIntoBasket();
-}
-// Format price
-function PriceFormat(price) {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
 }
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
