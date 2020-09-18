@@ -1,8 +1,9 @@
+////////////////////////////////////////////// Variables //////////////////////////////////////////////
 let request = new XMLHttpRequest();
 let allProducts;
 let totalPrice = 0;
 let basket;
-////////////////////////////////////
+////////////////////////////////////////////// Fonction //////////////////////////////////////////////
 
 function checkLocalStorage() {
   if (localStorage.length == 0) {
@@ -15,7 +16,6 @@ function checkLocalStorage() {
     return true;
   }
 }
-
 
 function getParamFromLocalStorage() {
 var cleFound = false;
@@ -191,7 +191,9 @@ function clearBasket() {
     window.location.reload();
   });
 }
-//////////////////////////////////
+
+////////////////////////////////////////////// Exection of the script //////////////////////////////////////////////
+
 if (checkLocalStorage() === true && getParamFromLocalStorage() === true){
   console.log("Verification passée");
   getProducts()
