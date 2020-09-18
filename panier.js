@@ -146,8 +146,16 @@ function getTotalPrice(product) {
 function setTotalPrice() {
   let getTotalPrice = document.querySelector("#Total");
   let insertTotalPrice = document.createElement("th");
-  insertTotalPrice.innerHTML = PriceFormat(totalPrice);
+  insertTotalPrice.innerText = PriceFormat(totalPrice);
   getTotalPrice.appendChild(insertTotalPrice);
+}
+function setClearButton() {
+  let getTotalPrice = document.querySelector("#Total");
+  let button = document.createElement("th");
+  button.id ="clear";
+  button.className="btn btn-outline-secondary";
+  button.innerText = "x";
+  getTotalPrice.appendChild(button);
 }
 // Formatage du prix
 function PriceFormat(price) {
@@ -168,6 +176,7 @@ function showBasket() {
     getTotalPrice(product);
   }
   setTotalPrice();
+  setClearButton();
 }
 //////////////////////////////////
 if (checkLocalStorage() === true && getParamFromLocalStorage() === true){
