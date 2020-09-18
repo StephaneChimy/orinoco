@@ -27,34 +27,38 @@
     </nav>
 
 
-    <main class="container-fluid">
-        <h1>
-            Panier
-        </h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Produit</th>
-                    <th>Quantités</th>
-                    <th>Prix Unitaire</th>
-
-                </tr>
-            </thead>
-            <tbody>
+    <main class="row container-fluid justify-content-around">
+        <section class="card col-lg-5 mx-auto">
+            <h1>
+                Panier
+            </h1>
+            <table class="table table-striped">
                 <thead>
-                    <tr id="Total">
-                        <th>Total</th>
-                        <th></th>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Quantités</th>
+                        <th>Prix Unitaire</th>
 
                     </tr>
                 </thead>
+                <tbody>
+                    <thead>
+                        <tr id="Total">
+                            <th>Total</th>
+                            <th></th>
 
-            </tbody>
+                        </tr>
+                    </thead>
 
-        </table>
-        <div id="affPanier">
+                </tbody>
+
+            </table>
+        </section>
+        <section id="affPanier" class=" card  col-lg-5 mx-auto">
             <form class="row justify-content-around" id="formulaire">
-                <!-- action="confirmation.html -->
+                <h2>
+                    Informations de commande
+                </h2>
                 <div class="form-row col-8">
                     <div class="form-group col-5">
                         <label for="inputName">Nom</label>
