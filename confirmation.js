@@ -1,5 +1,7 @@
+////////////////////////////////////////////// Variables //////////////////////////////////////////////
+
 let parsedUrl = new URL(window.location.href);
-///////////////////////////
+////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
 function getOrderId() {
   return parsedUrl.searchParams.get("OrderId");
@@ -7,7 +9,7 @@ function getOrderId() {
 function getTotalPaid() {
   return parsedUrl.searchParams.get("totalPaid");
 }
-// Formatage du prix
+// Format price
 function PriceFormat(price) {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
 }
@@ -26,6 +28,6 @@ function showConfirmation() {
   populatetotalPaid();
   populateOrderId();
 }
-/////////////////////////
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
 showConfirmation();
