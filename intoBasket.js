@@ -1,4 +1,6 @@
-// 1 - Écoute sur le bouton / Si cliqué => fonction checkLocalStorage
+////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
+
+// 1 - Listen button / If clicked => Fonction checkLocalStorage
 
 function listenButton() {
   var getButton = document.querySelector(".addToBasket");
@@ -7,7 +9,7 @@ function listenButton() {
     checkLocalStorage();
   });
 }
-// 2 - Si le localStorage est vide => Met le produit dans le panier // Sinon Check des paramètres dans le localStorage
+// 2 - If localStorage is empty => Put the product in the basket // Else check parameters in localStorage
 function checkLocalStorage() {
   if (localStorage.length < 1) {
     console.log("rien dans le localstorage");
@@ -17,9 +19,8 @@ function checkLocalStorage() {
     checkKeyFromLocalStorage();
   }
 }
-// 3 - Si le localStorage contient la clé "basket", si oui => checkProduct() // Sinon pushProductInBasket()
+// 3 - Check if localStorage have a key named "basket", If yes => checkProduct() // Else pushProductInBasket()
 function checkKeyFromLocalStorage() {
-  // Vérification si la clé est bien "basket"
   let keyFound = false;
   for (cle = 0; cle < localStorage.length; cle++) {
     if (localStorage.key(cle) == "basket") {
@@ -28,14 +29,14 @@ function checkKeyFromLocalStorage() {
       basket = JSON.parse(localStorage.getItem(localStorage.key(cle)));
       console.log(basket);
       checkIdProduct();
-      return keyFound = true;
+      return (keyFound = true);
     }
   }
   if (!keyFound) {
     pushProductInBasket();
   }
 }
-// 4 - Vérification si l'id du produit est dans basket, si oui => incrementItem() // Sinon pushProductInBasket()
+// 4 - Check if the id of the product is in the basket, if yes => incrementItem() // Else pushProductInBasket()
 function checkIdProduct() {
   var productFound = false;
   for (let item = 0; item < basket.products.length; item++) {
@@ -50,20 +51,19 @@ function checkIdProduct() {
     pushProductInBasket();
   }
 }
-// 5 - Incrémentation de la quantité puis envoi au localStorage
+// 5 - Incrementation of quantity then sendToLocalStorage()
 function incrementItem(item) {
   basket.products[item].Quantite += 1;
   console.log(basket);
-
   sendToLocalStorage();
 }
-// 6 - Envoi du panier au localStorage
+// 6 - Send the basket to the localstorage
 function sendToLocalStorage() {
   basketJsoned = JSON.stringify(basket);
   localStorage.setItem("basket", basketJsoned);
   console.log(JSON.parse(localStorage.getItem("basket")));
 }
-// 7 - Envoi du produit dans le panier
+// 7 - Send the product in the basket
 function pushProductInBasket() {
   let numberOfProduct = 1;
   basket.products.push({
@@ -75,6 +75,6 @@ function pushProductInBasket() {
   console.log(basket.products.Quantite);
   sendToLocalStorage();
 }
-/////////////////////
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
 listenButton();

@@ -1,3 +1,5 @@
+////////////////////////////////////////////// Variables //////////////////////////////////////////////
+
 let products = [];
 let infosSendJson;
 let totalPaid = 0;
@@ -11,12 +13,10 @@ let infosToSend = {
   },
   products: "",
 };
-////////////////////////////////
+
+////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
 function sendInfosToServer() {
-  // request.open("POST", "http://localhost:3000/api/teddies/order");
-  // request.setRequestHeader("Content-Type", "application/json");
-  // request.send(infosSendJson);
   const options = {
     method: "POST",
     body: infosSendJson,
@@ -29,15 +29,21 @@ function sendInfosToServer() {
     .then((response) => {
       if (response.ok) {
         response.json().then((response) => {
-          console.log(response);
-          for (let i = 0; i < response.products.length; i++) {
-            //console.log(response.products[i].price);
-            totalPaid += response.products[i].price;
+          //console.log(response);
+          for (let product = 0; product < response.products.length; product++) {
+            // Calculate total paid in the answer
+            totalPaid += response.products[product].price;
             console.log(totalPaid);
           }
-          console.log(totalPaid);
+          //console.log(totalPaid);
+
+          // Redirection with the order id and total paid in parameters
           document.location.href =
-            "confirmation.html?OrderId=" + response.orderId + "&" + "totalPaid=" + totalPaid;
+            "confirmation.html?OrderId=" +
+            response.orderId +
+            "&" +
+            "totalPaid=" +
+            totalPaid;
         });
       }
     })
@@ -51,15 +57,9 @@ function ClickOnButton() {
 
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("Le bouton fonctionne quand meme");
     infosSendJson = JSON.stringify(infosToSend);
     sendInfosToServer();
-    //document.location.href = "confirmation.html?" + sendInfosToServer();
   });
-}
-
-function redirection() {
-  document.location.href = "confirmation.html?" + sendInfosToServer();
 }
 
 function setFirstnameInput() {
@@ -101,11 +101,10 @@ function setProducts() {
       let productsInLocalStorage = JSON.parse(
         localStorage.getItem(localStorage.key(cle))
       );
-      for (let nbProducts in productsInLocalStorage.products) {
-        let quantity = productsInLocalStorage.products[nbProducts].Quantite;
-        //console.log(quantity);
+      for (let product in productsInLocalStorage.products) {
+        let quantity = productsInLocalStorage.products[product].Quantite;
         for (let i = 0; i < quantity; i++) {
-          products.push(productsInLocalStorage.products[nbProducts].id);
+          products.push(productsInLocalStorage.products[product].id);
         }
       }
 
@@ -114,7 +113,7 @@ function setProducts() {
   }
   infosToSend.products = products;
 }
-////////////////////////////////
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 setProducts();
 setLastnameInput();
 setFirstnameInput();

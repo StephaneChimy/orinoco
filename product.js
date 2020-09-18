@@ -4,7 +4,7 @@ let basket = {
 };
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-// Récupérer les éléments à afficher dans une promesse.
+// Get the product to show
 
 function getProducts() {
   return new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ function getProducts() {
     request.send();
     request.onload = function () {
       if (request.readyState == 4 && request.status == 200) {
-        product = JSON.parse(request.response); //Déclaration de product, pas de let?
+        product = JSON.parse(request.response);
         console.log("Récupération des produits OK");
         console.log(product);
         resolve(product);
@@ -39,7 +39,6 @@ function getProducts() {
     };
   });
 }
-
 
 function showError(){
   let getAffElem = document.querySelector("#affProduct");
@@ -147,7 +146,7 @@ function showProduct() {
     getCardBody.appendChild(button);
   }
   showButton();
-  // rajout du script pour le bon chargement de la page.
+  // Add the script after creating all elements on the page.
   function showScriptIntoBasket(){
     let getScript = document.querySelector("body");
     let script = document.createElement("script");
@@ -156,7 +155,7 @@ function showProduct() {
   }
   showScriptIntoBasket();
 }
-// Formatage du prix
+// Format price
 function PriceFormat(price) {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
 }

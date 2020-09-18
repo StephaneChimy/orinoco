@@ -92,7 +92,6 @@ function emptyBasket() {
   geMain.appendChild(div);
 }
 
-
 function addProductToTable(product) {
   {
     let getLigneProduct = document.querySelector("tbody");
@@ -128,7 +127,6 @@ function getPriceOfProduct(product) {
 }
 function setPriceOfProduct(product) {
   let getLigneProduct = document.querySelector("#tbody" + product);
-  console.log(getLigneProduct);
   let insertDataOfProduct = document.createElement("td");
   insertDataOfProduct.id = "tdPrice" + product;
   insertDataOfProduct.innerText = PriceFormat(PriceOfProduct);
@@ -157,7 +155,7 @@ function setClearButton() {
   button.innerText = "x";
   getTotalPrice.appendChild(button);
 }
-// Formatage du prix
+// Format price
 function PriceFormat(price) {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
 }
@@ -185,9 +183,8 @@ function clearBasket() {
   button.addEventListener("click", (e) => {
     //e.preventDefault();
     console.log("Vidage du panier");
-    // Efface la clé "basket" du localStorage
     localStorage.removeItem("basket");
-    // Recharge la page
+    // Reload the page
     window.location.reload();
   });
 }
