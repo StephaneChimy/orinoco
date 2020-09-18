@@ -37,7 +37,7 @@ function sendInfosToServer() {
           }
           console.log(totalPaid);
           document.location.href =
-            "confirmation.html?OrderId=" + response.orderId + "&" + "totalPaid=" + totalPaid + " €";
+            "confirmation.html?OrderId=" + response.orderId + "&" + "totalPaid=" + totalPaid;
         });
       }
     })

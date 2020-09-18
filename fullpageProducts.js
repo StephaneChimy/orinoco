@@ -1,3 +1,4 @@
+
 // 1 - Récupérer les éléments à afficher dans une promesse.
 
 function getProducts() {
@@ -94,7 +95,7 @@ function showElements() {
       let getCardBody = document.querySelector("#card-body" + i);
       let p = document.createElement("p");
       p.className = "card-text";
-      p.innerHTML = "Prix:" + " " + allProducts[i].price + "€";
+      p.innerHTML = "Prix:" + " " + PriceFormat(allProducts[i].price);
       getCardBody.appendChild(p);
     }
     showPrice();
@@ -111,6 +112,11 @@ function showElements() {
   }
 }
 
+// Formatage du prix
+function PriceFormat(price) {
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
+} 
+/////////////////////////////////
 getProducts().then(function () {
     showElements();
   });

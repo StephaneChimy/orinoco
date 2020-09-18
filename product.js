@@ -132,7 +132,7 @@ function showProduct() {
     let getCardBody = document.querySelector("#card-body" + product._id);
     let p = document.createElement("p");
     p.className = "card-text";
-    p.innerText = "Prix:" + " " + product["price"] + "€";
+    p.innerText = "Prix:" + " " + PriceFormat(product["price"]);
     getCardBody.appendChild(p);
   }
   showPrice();
@@ -155,6 +155,10 @@ function showProduct() {
     getScript.appendChild(script);
   }
   showScriptIntoBasket();
+}
+// Formatage du prix
+function PriceFormat(price) {
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
 }
 ////////////////////////////////////////////
 

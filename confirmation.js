@@ -7,18 +7,19 @@ function getOrderId() {
 function getTotalPaid() {
   return parsedUrl.searchParams.get("totalPaid");
 }
-function populatetotalPaid() {
-  let totalPaid = getTotalPaid();
+// Formatage du prix
+function PriceFormat(price) {
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
+}
 
+function populatetotalPaid() {
   let getConfirmation = document.querySelector("#total");
-  getConfirmation.innerHTML = "Le montant de votre achat est de: " + totalPaid;
+  getConfirmation.innerHTML = "Le montant de votre achat est de: " + PriceFormat(getTotalPaid());
 }
 
 function populateOrderId() {
-  let orderId = getOrderId();
-
   let getConfirmation = document.querySelector("#orderId");
-  getConfirmation.innerHTML = "Votre numéros de commande est le: " + orderId;
+  getConfirmation.innerHTML = "Votre numéros de commande est le: " + getOrderId();
 }
 
 function showConfirmation() {

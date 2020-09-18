@@ -131,7 +131,7 @@ function setPriceOfProduct(product) {
   console.log(getLigneProduct);
   let insertDataOfProduct = document.createElement("td");
   insertDataOfProduct.id = "tdPrice" + product;
-  insertDataOfProduct.innerText = new Intl.NumberFormat().format(PriceOfProduct);
+  insertDataOfProduct.innerText = PriceFormat(PriceOfProduct);
   getLigneProduct.appendChild(insertDataOfProduct);
 }
 function getTotalPrice(product) {
@@ -146,8 +146,12 @@ function getTotalPrice(product) {
 function setTotalPrice() {
   let getTotalPrice = document.querySelector("#Total");
   let insertTotalPrice = document.createElement("th");
-  insertTotalPrice.innerHTML = new Intl.NumberFormat().format(totalPrice); //formatage du prix avec une fonction.
+  insertTotalPrice.innerHTML = PriceFormat(totalPrice);
   getTotalPrice.appendChild(insertTotalPrice);
+}
+// Formatage du prix
+function PriceFormat(price) {
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
 }
 
 function showBasket() {
