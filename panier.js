@@ -178,10 +178,24 @@ function showBasket() {
   setTotalPrice();
   setClearButton();
 }
+
+function clearBasket() {
+  let button = document.querySelector("#clear");
+
+  button.addEventListener("click", (e) => {
+    //e.preventDefault();
+    console.log("Vidage du panier");
+    // Efface la clé "basket" du localStorage
+    localStorage.removeItem("basket");
+    // Recharge la page
+    window.location.reload();
+  });
+}
 //////////////////////////////////
 if (checkLocalStorage() === true && getParamFromLocalStorage() === true){
   console.log("Verification passée");
-  getProducts().then(() => {
-    showBasket();
-  });
+  getProducts()
+  .then(() => {showBasket()})
+  .then(()=>{clearBasket()});
 }
+
