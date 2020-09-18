@@ -1,7 +1,7 @@
 ////////////////////////////////////////////// Variables //////////////////////////////////////////////
 
 let products = [];
-let infosSendJson;
+let infosToSendJsoned;
 let totalPaid = 0;
 let infosToSend = {
   contact: {
@@ -19,7 +19,7 @@ let infosToSend = {
 function sendInfosToServer() {
   const options = {
     method: "POST",
-    body: infosSendJson,
+    body: infosToSendJsoned,
     headers: {
       "Content-Type": "application/json",
     },
@@ -57,7 +57,7 @@ function ClickOnButton() {
 
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
-    infosSendJson = JSON.stringify(infosToSend);
+    infosToSendJsoned = JSON.stringify(infosToSend);
     sendInfosToServer();
   });
 }
