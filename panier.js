@@ -68,10 +68,10 @@ function getProducts() {
   });
 }
 function showErrorConnection() {
-  let getTable = document.querySelector("table");
-  getTable.style.display = "none";
-  let getAffPanier = document.querySelector("#affPanier");
-  getAffPanier.style.display = "none";
+  let getShowBasket = document.querySelector("#showBasket");
+  getShowBasket.style.display = "none";
+  let getShowForm = document.querySelector("#showForm");
+  getShowForm.style.display = "none";
   let geMain = document.querySelector("main");
   let div = document.createElement("div");
   div.id = "error";
@@ -80,14 +80,14 @@ function showErrorConnection() {
   geMain.appendChild(div);
 }
 function emptyBasket() {
-  let getTable = document.querySelector("table");
-  getTable.style.display = "none";
-  let getAffPanier = document.querySelector("#affPanier");
-  getAffPanier.style.display = "none";
+  let getShowBasket = document.querySelector("#showBasket");
+  getShowBasket.style.display = "none";
+  let getShowForm = document.querySelector("#showForm");
+  getShowForm.style.display = "none";
   let geMain = document.querySelector("main");
   let div = document.createElement("div");
   div.id = "error";
-  div.className = "card col text-center text-info";
+  div.className = "card col text-center text-info mx-auto";
   div.innerText = "Votre panier est vide.";
   geMain.appendChild(div);
 }
