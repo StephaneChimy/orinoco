@@ -1,5 +1,6 @@
+////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-// 1 - Récupérer les éléments à afficher dans une promesse.
+// Get elements to show in a promise.
 
 function getProducts() {
   return new Promise((resolve, reject) => {
@@ -8,7 +9,7 @@ function getProducts() {
     request.send();
     request.onload = function () {
       if (request.readyState == 4 && request.status == 200) {
-        allProducts = JSON.parse(request.response); //Déclaration de allProducts, pas de let?
+        allProducts = JSON.parse(request.response);
         console.log("Récupération des produits OK");
         console.log(allProducts);
         resolve(allProducts);
@@ -34,89 +35,88 @@ function getProducts() {
   });
 }
 
-// 2 - showElements = Création d'une card type bootstrap pour chaque produit dans l'objet allProducts
-function showError(){
+function showError() {
   let getAffElem = document.querySelector("#affProduct");
-    let div = document.createElement("div");
-    div.id = "error";
-    div.className = "card col text-center text-light bg-danger";
-    div.innerText = "Erreur de connection, merci de revenir plus tard."
-    getAffElem.appendChild(div);
-  }
+  let div = document.createElement("div");
+  div.id = "error";
+  div.className = "card col text-center text-light bg-danger";
+  div.innerText = "Erreur de connection, merci de revenir plus tard.";
+  getAffElem.appendChild(div);
+}
 
+function creatTeddyDiv(product) {
+  let getAffProduct = document.querySelector("#affProduct");
+  let div = document.createElement("div");
+  div.id = "teddy" + product;
+  div.className = "card col-12";
+  getAffProduct.appendChild(div);
+}
+function showImage(product) {
+  let getTeddyDiv = document.querySelector("#teddy" + product);
+  let img = document.createElement("img");
+  img.src = allProducts[product].imageUrl;
+  img.className = "image card-img-top img-fluid";
+  getTeddyDiv.appendChild(img);
+}
+function CreatDivCardBody(product) {
+  let getTeddyDiv = document.querySelector("#teddy" + product);
+  let div = document.createElement("div");
+  div.className = "card-body";
+  div.id = "card-body" + product;
+  getTeddyDiv.appendChild(div);
+}
+function showName(product) {
+  let getCardBody = document.querySelector("#card-body" + product);
+  let h5 = document.createElement("h5");
+  h5.className = "card-title";
+  h5.innerHTML = allProducts[product].name;
+  getCardBody.appendChild(h5);
+}
+function showDescription(product) {
+  let getCardBody = document.querySelector("#card-body" + product);
+  let p = document.createElement("p");
+  p.className = "card-text";
+  p.innerHTML = allProducts[product].description;
+  getCardBody.appendChild(p);
+}
+function showPrice(product) {
+  let getCardBody = document.querySelector("#card-body" + product);
+  let p = document.createElement("p");
+  p.className = "card-text";
+  p.innerHTML = "Prix:" + " " + PriceFormat(allProducts[product].price);
+  getCardBody.appendChild(p);
+}
+function showButton(product) {
+  let getCardBody = document.querySelector("#card-body" + product);
+  let a = document.createElement("a");
+  a.className = "btn btn-primary";
+  a.href = "/product.html?ProductId=" + allProducts[product]._id;
+  a.innerText = "Détail";
+  getCardBody.appendChild(a);
+}
+// Format price
+function PriceFormat(price) {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+  }).format(price);
+}
+
+// showElements = Create a bootstrap card for each product in allProducts
 function showElements() {
-  for (var i = 0; i < allProducts.length; i++) {
-    function creatTeddyDiv() {
-      let getAffProduct = document.querySelector("#affProduct");
-      let div = document.createElement("div");
-      div.id = "teddy" + i;
-      div.className = "card col-12";
-      getAffProduct.appendChild(div);
-    }
-    creatTeddyDiv();
-
-    function showImage() {
-      let getTeddyDiv = document.querySelector("#teddy" + i);
-      let img = document.createElement("img");
-      img.src = allProducts[i].imageUrl;
-      img.className = "image card-img-top img-fluid";
-      getTeddyDiv.appendChild(img);
-    }
-    showImage();
-
-    function CreatDivCardBody() {
-      let getTeddyDiv = document.querySelector("#teddy" + i);
-      let div = document.createElement("div");
-      div.className = "card-body";
-      div.id = "card-body" + i;
-      getTeddyDiv.appendChild(div);
-    }
-    CreatDivCardBody();
-
-    function showName() {
-      let getCardBody = document.querySelector("#card-body" + i);
-      let h5 = document.createElement("h5");
-      h5.className = "card-title";
-      h5.innerHTML = allProducts[i].name;
-      getCardBody.appendChild(h5);
-    }
-    showName();
-
-    function showDescription() {
-      let getCardBody = document.querySelector("#card-body" + i);
-      let p = document.createElement("p");
-      p.className = "card-text";
-      p.innerHTML = allProducts[i].description;
-      getCardBody.appendChild(p);
-    }
-    showDescription();
-
-    function showPrice() {
-      let getCardBody = document.querySelector("#card-body" + i);
-      let p = document.createElement("p");
-      p.className = "card-text";
-      p.innerHTML = "Prix:" + " " + PriceFormat(allProducts[i].price);
-      getCardBody.appendChild(p);
-    }
-    showPrice();
-
-    function showButton() {
-      let getCardBody = document.querySelector("#card-body" + i);
-      let a = document.createElement("a");
-      a.className = "btn btn-primary";
-      a.href = "/product.html?ProductId=" + allProducts[i]._id;
-      a.innerText = "Détail";
-      getCardBody.appendChild(a);
-    }
-    showButton();
+  for (var product = 0; product < allProducts.length; product++) {
+    creatTeddyDiv(product);
+    showImage(product);
+    CreatDivCardBody(product);
+    showName(product);
+    showDescription(product);
+    showPrice(product);
+    showButton(product);
   }
 }
 
-// Formatage du prix
-function PriceFormat(price) {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
-} 
-/////////////////////////////////
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
+
 getProducts().then(function () {
-    showElements();
-  });
+  showElements();
+});
