@@ -1,10 +1,10 @@
-
+////////////////////////////////////////////// Variables //////////////////////////////////////////////
 let basket = {
   products: [],
 };
+////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-///////////////
-// 1 - Récupérer les éléments à afficher dans une promesse.
+// Récupérer les éléments à afficher dans une promesse.
 
 function getProducts() {
   return new Promise((resolve, reject) => {
@@ -40,7 +40,7 @@ function getProducts() {
   });
 }
 
-//////////////////////////////////
+
 function showError(){
   let getAffElem = document.querySelector("#affProduct");
     let div = document.createElement("div");
@@ -160,8 +160,7 @@ function showProduct() {
 function PriceFormat(price) {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
 }
-////////////////////////////////////////////
-
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
 getProducts().then(function () {
     showProduct();
