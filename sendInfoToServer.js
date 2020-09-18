@@ -61,7 +61,7 @@ function ClickOnButton() {
     sendInfosToServer();
   });
 }
-
+// Set informations from user in infoToSend
 function setFirstnameInput() {
   let firstName = document.getElementById("inputSurname");
   firstName.addEventListener("input", function (e) {
