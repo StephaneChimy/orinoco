@@ -1,13 +1,13 @@
-function checkLocalStorageKey() {
-  var cleFound = false;
-  for (cle = 0; cle < localStorage.length; cle++) {
-    if (localStorage.key(cle) == "basket") {
-      console.log("un item est dans le localstorage");
-      cleFound = true;
+function checkLocalStorageKey(keyName) {
+  var keyFound = false;
+  for (key = 0; key < localStorage.length; key++) {
+    if (localStorage.key(key) == keyName) {
+      console.log("Clé trouvé");
+      keyFound = true;
       return true;
     }
   }
-  if (!cleFound) {
+  if (!keyFound) {
     return false;
   }
 }
@@ -24,11 +24,11 @@ function getQuantityOfProductsInBasket(basket) {
 
 function showBadges() {
   let badgesSpan = document.querySelector(".badge");
-  if (checkLocalStorageKey()) {
-    let basket = JSON.parse(localStorage.getItem(localStorage.key(cle)));
+  if (checkLocalStorageKey("basket")) {
+    let basket = JSON.parse(localStorage.getItem(localStorage.key(key)));
     // console.log(basket);
     nbProducts = getQuantityOfProductsInBasket(basket);
-  }else{
+  } else {
     nbProducts = "";
   }
   badgesSpan.innerHTML = nbProducts;
