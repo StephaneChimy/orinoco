@@ -15,12 +15,19 @@ function showError(){
   }
 
 function showProduct() {
+  function creatTeddySection(){
+    let getMain = document.querySelector("main");
+    let section = document.createElement("section");
+    section.className = "row justify-content-around";
+    getMain.append(section);
+    }
+    creatTeddySection()
   function creatTeddyDiv() {
-    let getAffElem = document.querySelector("main");
+    let getSection = document.querySelector("section");
     let div = document.createElement("div");
     div.id = "teddy" + product._id;
     div.className = "card col-8";
-    getAffElem.appendChild(div);
+    getSection.appendChild(div);
   }
   creatTeddyDiv();
 
