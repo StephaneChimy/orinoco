@@ -2,21 +2,21 @@
 
 // Get elements to show in a promise.
 
-function getProducts() {
+function getProducts(apiUrl,productType) {
   return new Promise((resolve, reject) => {
     let request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:3000/api/teddies");
+    request.open("GET", apiUrl + productType);
     request.send();
     request.onload = function () {
       if (request.readyState == 4 && request.status == 200) {
-        allProducts = JSON.parse(request.response);
+        products = JSON.parse(request.response);
         console.log("Récupération des produits OK");
-        console.log(allProducts);
-        resolve(allProducts);
+        console.log(products);
+        resolve(products);
       } else {
         reject(
           console.log(
-            "Un Problème est survenu lors du chargement de la page, merci de revenir plus tard."
+            "Problème execution fonction getProducts."
           )
         );
       }
@@ -54,7 +54,7 @@ function creatTeddyDiv(product) {
 function showImage(product) {
   let getTeddyDiv = document.querySelector("#teddy" + product);
   let img = document.createElement("img");
-  img.src = allProducts[product].imageUrl;
+  img.src = products[product].imageUrl;
   img.className = "image card-img-top img-fluid";
   getTeddyDiv.appendChild(img);
 }
@@ -69,28 +69,28 @@ function showName(product) {
   let getCardBody = document.querySelector("#card-body" + product);
   let h5 = document.createElement("h5");
   h5.className = "card-title";
-  h5.innerHTML = allProducts[product].name;
+  h5.innerHTML = products[product].name;
   getCardBody.appendChild(h5);
 }
 function showDescription(product) {
   let getCardBody = document.querySelector("#card-body" + product);
   let p = document.createElement("p");
   p.className = "card-text";
-  p.innerHTML = allProducts[product].description;
+  p.innerHTML = products[product].description;
   getCardBody.appendChild(p);
 }
 function showPrice(product) {
   let getCardBody = document.querySelector("#card-body" + product);
   let p = document.createElement("p");
   p.className = "card-text";
-  p.innerHTML = "Prix:" + " " + PriceFormat(allProducts[product].price);
+  p.innerHTML = "Prix:" + " " + PriceFormat(products[product].price);
   getCardBody.appendChild(p);
 }
 function showButton(product) {
   let getCardBody = document.querySelector("#card-body" + product);
   let a = document.createElement("a");
   a.className = "btn btn-primary";
-  a.href = "/product.html?ProductId=" + allProducts[product]._id;
+  a.href = "/product.html?ProductId=" + products[product]._id;
   a.innerText = "Détail";
   getCardBody.appendChild(a);
 }
@@ -102,9 +102,9 @@ function PriceFormat(price) {
   }).format(price);
 }
 
-// showElements = Create a bootstrap card for each product in allProducts
+// showElements = Create a bootstrap card for each product in products
 function showElements() {
-  for (var product = 0; product < allProducts.length; product++) {
+  for (var product = 0; product < products.length; product++) {
     creatTeddyDiv(product);
     showImage(product);
     CreatDivCardBody(product);
@@ -117,6 +117,6 @@ function showElements() {
 
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
-getProducts().then(function () {
+getProducts("http://localhost:3000/api/","teddies").then(function () {
   showElements();
 });
