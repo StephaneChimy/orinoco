@@ -1,42 +1,7 @@
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-// Get elements to show in a promise.
-
-function getProducts(apiUrl,productType) {
-  return new Promise((resolve, reject) => {
-    let request = new XMLHttpRequest();
-    request.open("GET", apiUrl + productType);
-    request.send();
-    request.onload = function () {
-      if (request.readyState == 4 && request.status == 200) {
-        products = JSON.parse(request.response);
-        console.log("Récupération des produits OK");
-        console.log(products);
-        resolve(products);
-      } else {
-        reject(
-          console.log(
-            "Problème execution fonction getProducts."
-          )
-        );
-      }
-    };
-
-    request.onerror = function () {
-      showError();
-      console.log(
-        "Status de la requête: " +
-          request.status +
-          " | " +
-          "ReadyState de la requête: " +
-          request.readyState
-      );
-    };
-  });
-}
-
 function showError() {
-  let getAffElem = document.querySelector("#affProduct");
+  let getAffElem = document.querySelector("main");
   let div = document.createElement("div");
   div.id = "error";
   div.className = "card col text-center text-light bg-danger";
@@ -45,7 +10,7 @@ function showError() {
 }
 
 function creatTeddyDiv(product) {
-  let getAffProduct = document.querySelector("#affProduct");
+  let getAffProduct = document.querySelector("main");
   let div = document.createElement("div");
   div.id = "teddy" + product;
   div.className = "card col-12";
@@ -117,6 +82,6 @@ function showElements() {
 
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
-getProducts("http://localhost:3000/api/","teddies").then(function () {
+getProducts("http://localhost:3000/api","teddies").then(function () {
   showElements();
 });

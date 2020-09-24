@@ -2,56 +2,21 @@
 let basket = {
   products: [],
 };
+let productId =  window.location.search.slice(11);
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-// Get the product to show
-
-function getProducts() {
-  return new Promise((resolve, reject) => {
-    let getIdInUrl = window.location.search.slice(11);
-    let request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:3000/api/teddies/" + getIdInUrl);
-    request.send();
-    request.onload = function () {
-      if (request.readyState == 4 && request.status == 200) {
-        product = JSON.parse(request.response);
-        console.log("Récupération des produits OK");
-        console.log(product);
-        resolve(product);
-      } else {
-        reject(
-          console.log(
-            "Un Problème est survenu lors du chargement de la page, merci de revenir plus tard."
-          )
-        );
-      }
-    };
-
-    request.onerror = function () {
-      showError();
-      console.log(
-        "Status de la requête: " +
-          request.status +
-          " | " +
-          "ReadyState de la requête: " +
-          request.readyState
-      );
-    };
-  });
-}
-
 function showError(){
-  let getAffElem = document.querySelector("#affProduct");
+  let getMain = document.querySelector("#main");
     let div = document.createElement("div");
     div.id = "error";
     div.className = "card col text-center text-light bg-danger";
     div.innerText = "Erreur de connection, merci de revenir plus tard."
-    getAffElem.appendChild(div);
+    getMain.appendChild(div);
   }
 
 function showProduct() {
   function creatTeddyDiv() {
-    let getAffElem = document.querySelector("#affProduct");
+    let getAffElem = document.querySelector("main");
     let div = document.createElement("div");
     div.id = "teddy" + product._id;
     div.className = "card col-8";
@@ -162,6 +127,6 @@ showButton();
 }
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
-getProducts().then(function () {
+getProduct("http://localhost:3000/api","teddies", productId).then(function () {
     showProduct();
   });
