@@ -1,9 +1,9 @@
 ////////////////////////////////////////////// Variables //////////////////////////////////////////////
 
 let products = [];
-let infosToSendJsoned;
+let orderJsoned;
 let totalPaid = 0;
-let infosToSend = {
+let order = {
   contact: {
     firstName: "",
     lastName: "",
@@ -16,83 +16,46 @@ let infosToSend = {
 
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-function sendInfosToServer() {
-  const options = {
-    method: "POST",
-    body: infosToSendJsoned,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  fetch("http://localhost:3000/api/teddies/order", options)
-    .then((response) => {
-      if (response.ok) {
-        response.json().then((response) => {
-          //console.log(response);
-          for (let product = 0; product < response.products.length; product++) {
-            // Calculate total paid in the answer
-            totalPaid += response.products[product].price;
-            console.log(totalPaid);
-          }
-          //console.log(totalPaid);
-          // Clear of the basket
-          localStorage.removeItem("basket");
-          // Redirection with the order id and total paid in parameters
-          document.location.href =
-            "confirmation.html?OrderId=" +
-            response.orderId +
-            "&" +
-            "totalPaid=" +
-            totalPaid;
-        });
-      }
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-}
-
 function ClickOnButton() {
   let formulaire = document.querySelector("#formulaire");
 
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
-    infosToSendJsoned = JSON.stringify(infosToSend);
-    sendInfosToServer();
+    orderJsoned = JSON.stringify(order);
+    sendOrder();
   });
 }
 // Set informations from user in infoToSend
 function setFirstnameInput() {
   let firstName = document.getElementById("inputSurname");
   firstName.addEventListener("input", function (e) {
-    infosToSend.contact.firstName = e.target.value;
+    order.contact.firstName = e.target.value;
   });
 }
 
 function setLastnameInput() {
   let lastName = document.getElementById("inputName");
   lastName.addEventListener("input", function (e) {
-    infosToSend.contact.lastName = e.target.value;
+    order.contact.lastName = e.target.value;
   });
 }
 function setAddressInput() {
   let address = document.getElementById("inputAddress");
   address.addEventListener("input", function (e) {
-    infosToSend.contact.address = e.target.value;
+    order.contact.address = e.target.value;
   });
 }
 function setCityInput() {
   let city = document.getElementById("inputCity");
   city.addEventListener("input", function (e) {
-    infosToSend.contact.city = e.target.value;
+    order.contact.city = e.target.value;
   });
 }
 function setEmailInput() {
   let email = document.getElementById("inputEmail");
   email.addEventListener("input", function (e) {
-    infosToSend.contact.email = e.target.value;
-    console.log(infosToSend);
+    order.contact.email = e.target.value;
+    console.log(order);
   });
 }
 
@@ -112,7 +75,7 @@ function setProducts() {
       console.log(products);
     }
   }
-  infosToSend.products = products;
+  order.products = products;
 }
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 setProducts();
