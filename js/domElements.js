@@ -6,60 +6,59 @@ function showError() {
     div.innerText = "Erreur de connection, merci de revenir plus tard.";
     getAffElem.appendChild(div);
   }
-  function creatTeddySection(){
+  function creatProductsSection(){
   let getMain = document.querySelector("main");
   let section = document.createElement("section");
   section.className = "row justify-content-between mx-auto";
   getMain.append(section);
   }
   
-  function creatTeddyDiv(product) {
+  function creatProductDiv(productNumber, colSize, productType) {
     let getSection = document.querySelector("section");
     let div = document.createElement("div");
-    div.id = "teddy" + product;
-    div.className = "card col-12";
+    div.className = "card" + " " + colSize + " " + productType + productNumber;
     getSection.appendChild(div);
   }
-  function showImage(product) {
-    let getTeddyDiv = document.querySelector("#teddy" + product);
+  function showProductImage(productNumber) {
+    let getTeddyDiv = document.querySelector(".teddy" + productNumber);
     let img = document.createElement("img");
-    img.src = products[product].imageUrl;
+    img.src = products[productNumber].imageUrl;
     img.className = "image card-img-top img-fluid";
     getTeddyDiv.appendChild(img);
   }
-  function CreatDivCardBody(product) {
-    let getTeddyDiv = document.querySelector("#teddy" + product);
+  function CreatDivCardBody(productNumber) {
+    let getTeddyDiv = document.querySelector(".teddy" + productNumber);
     let div = document.createElement("div");
-    div.className = "card-body";
-    div.id = "card-body" + product;
+    div.className = "card-body" + productNumber;
+    // div.id = "card-body" + product;
     getTeddyDiv.appendChild(div);
   }
-  function showName(product) {
-    let getCardBody = document.querySelector("#card-body" + product);
+  function showProductName(productNumber) {
+    let getCardBody = document.querySelector(".card-body" + productNumber);
     let h5 = document.createElement("h5");
     h5.className = "card-title";
-    h5.innerHTML = products[product].name;
+    h5.innerHTML = products[productNumber].name;
     getCardBody.appendChild(h5);
   }
-  function showDescription(product) {
-    let getCardBody = document.querySelector("#card-body" + product);
+  function showProductDescription(productNumber) {
+    let getCardBody = document.querySelector(".card-body" + productNumber);
     let p = document.createElement("p");
     p.className = "card-text";
-    p.innerHTML = products[product].description;
+    p.innerHTML = products[productNumber].description;
     getCardBody.appendChild(p);
   }
-  function showPrice(product) {
-    let getCardBody = document.querySelector("#card-body" + product);
+  function showProductPrice(productNumber) {
+    let getCardBody = document.querySelector(".card-body" + productNumber);
     let p = document.createElement("p");
     p.className = "card-text";
-    p.innerHTML = "Prix:" + " " + PriceFormat(products[product].price);
+    p.innerHTML = "Prix:" + " " + PriceFormat(products[productNumber].price);
     getCardBody.appendChild(p);
   }
-  function showButton(product) {
-    let getCardBody = document.querySelector("#card-body" + product);
+  function showProductButton(productNumber) {
+    let getCardBody = document.querySelector(".card-body" + productNumber);
     let a = document.createElement("a");
     a.className = "btn btn-primary";
-    a.href = "/product.html?ProductId=" + products[product]._id;
+    a.href = "/product.html?ProductId=" + products[productNumber]._id;
     a.innerText = "Détail";
     getCardBody.appendChild(a);
   }

@@ -11,15 +11,15 @@ function PriceFormat(price) {
 
 // showProducts = Create a bootstrap card for each product in products
 function showProducts() {
-  creatTeddySection()
-  for (var product = 0; product < products.length; product++) {
-    creatTeddyDiv(product);
-    showImage(product);
-    CreatDivCardBody(product);
-    showName(product);
-    showDescription(product);
-    showPrice(product);
-    showButton(product);
+  creatProductsSection()
+  for (let productNumber = 0; productNumber < products.length; productNumber++) {
+    creatProductDiv(productNumber, "col-12", "teddy");
+    showProductImage(productNumber);
+    CreatDivCardBody(productNumber);
+    showProductName(productNumber);
+    showProductDescription(productNumber);
+    showProductPrice(productNumber);
+    showProductButton(productNumber);
   }
 }
 

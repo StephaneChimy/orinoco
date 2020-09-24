@@ -2,36 +2,36 @@
 let basket = {
   products: [],
 };
-let productId =  window.location.search.slice(11);
+let productId = window.location.search.slice(11);
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-function showError(){
+function showError() {
   let getMain = document.querySelector("#main");
-    let div = document.createElement("div");
-    div.id = "error";
-    div.className = "card col text-center text-light bg-danger";
-    div.innerText = "Erreur de connection, merci de revenir plus tard."
-    getMain.appendChild(div);
-  }
+  let div = document.createElement("div");
+  div.id = "error";
+  div.className = "card col text-center text-light bg-danger";
+  div.innerText = "Erreur de connection, merci de revenir plus tard.";
+  getMain.appendChild(div);
+}
 
-function showProduct() {
-  function creatTeddySection(){
+function showCardProduct() {
+  function creatCardTeddySection() {
     let getMain = document.querySelector("main");
     let section = document.createElement("section");
     section.className = "row justify-content-around";
     getMain.append(section);
-    }
-    creatTeddySection()
-  function creatTeddyDiv() {
+  }
+  creatCardTeddySection();
+  function creatCardTeddyDiv() {
     let getSection = document.querySelector("section");
     let div = document.createElement("div");
     div.id = "teddy" + product._id;
     div.className = "card col-8";
     getSection.appendChild(div);
   }
-  creatTeddyDiv();
+  creatCardTeddyDiv();
 
-  function showImage() {
+  function showCardImage() {
     let getTeddyDiv = document.querySelector("#teddy" + product._id);
     let img = document.createElement("img");
     img.src = product["imageUrl"];
@@ -39,7 +39,7 @@ function showProduct() {
     img.className = "card-img-top";
     getTeddyDiv.appendChild(img);
   }
-  showImage();
+  showCardImage();
 
   function CreatDivCardBody() {
     let getTeddyDiv = document.querySelector("#teddy" + product._id);
@@ -117,14 +117,17 @@ function showProduct() {
     button.innerText = "Ajouter au panier";
     getCardBody.appendChild(button);
   }
-  
-// Format price
-function PriceFormat(price) {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
-}
-showButton();
+
+  // Format price
+  function PriceFormat(price) {
+    return new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
+    }).format(price);
+  }
+  showButton();
   // Add the script after creating all elements on the page.
-  function showScriptIntoBasket(){
+  function showScriptIntoBasket() {
     let getScript = document.querySelector("body");
     let script = document.createElement("script");
     script.src = "./js/intoBasket.js";
@@ -134,6 +137,6 @@ showButton();
 }
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
-getProduct("http://localhost:3000/api","teddies", productId).then(function () {
-    showProduct();
-  });
+getProduct("http://localhost:3000/api", "teddies", productId).then(function () {
+  showCardProduct();
+});
