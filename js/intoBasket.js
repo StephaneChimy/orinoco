@@ -1,12 +1,13 @@
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-// 1 - Listen button / If clicked => Fonction checkLocalStorage
+// 1 - Listen button / If clicked => Fonction checkLocalStorage & showBadges()
 
 function listenButton() {
   var getButton = document.querySelector(".addToBasket");
   console.log(getButton);
   getButton.addEventListener("click", () => {
     checkLocalStorage();
+    showBadges();
   });
 }
 // 2 - If localStorage is empty => Put the product in the basket // Else check parameters in localStorage
@@ -56,7 +57,7 @@ function incrementItem(item) {
   basket.products[item].Quantite += 1;
   console.log(basket);
   sendToLocalStorage();
-  window.location.reload();
+  //window.location.reload();
 }
 // 6 - Send the basket to the localstorage
 function sendToLocalStorage() {
@@ -75,7 +76,7 @@ function pushProductInBasket() {
 
   console.log(basket.products.Quantite);
   sendToLocalStorage();
-  window.location.reload();
+  //window.location.reload();
 }
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 

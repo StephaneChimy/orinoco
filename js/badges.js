@@ -1,50 +1,40 @@
-let basketTemp;
-
-function checkLocalStorage() {
-    if (localStorage.length == 0) {
-      console.log("rien dans le localstorage");
-      showBadges("");
-      return false;
-    } else {
-      console.log("Au moins une donnée est dans localStorage");
-      getParamFromLocalStorage();
+function checkLocalStorageKey() {
+  var cleFound = false;
+  for (cle = 0; cle < localStorage.length; cle++) {
+    if (localStorage.key(cle) == "basket") {
+      console.log("un item est dans le localstorage");
+      cleFound = true;
       return true;
     }
   }
-  
-  function getParamFromLocalStorage() {
-  var cleFound = false;
-    for (cle = 0; cle < localStorage.length; cle++) {
-      if (localStorage.key(cle) == "basket") {
-        console.log("un item est dans le localstorage");
-        // Rapatriement des infos de basket
-        basketTemp = JSON.parse(localStorage.getItem(localStorage.key(cle)));
-        console.log(basketTemp);
-        cleFound = true;
-        showBadges(getQuantityOfProducts())
-        return true;
-      } 
-    }
-    if (!cleFound){
-        showBadges("");
-      return false;
-    }
+  if (!cleFound) {
+    return false;
   }
-function getQuantityOfProducts() {
+}
+
+function getQuantityOfProductsInBasket(basket) {
   let quantite = 0;
   let quantiteOfProducts = 0;
-  for (var product = 0; product < basketTemp.products.length; product++) {
-    quantite = basketTemp.products[product].Quantite;
+  for (var product = 0; product < basket.products.length; product++) {
+    quantite = basket.products[product].Quantite;
     quantiteOfProducts += quantite;
   }
   return quantiteOfProducts;
 }
 
-function showBadges(products) {
+function showBadges() {
   let badgesSpan = document.querySelector(".badge");
-  badgesSpan.textContent = products;
+  if (checkLocalStorageKey()) {
+    let basket = JSON.parse(localStorage.getItem(localStorage.key(cle)));
+    // console.log(basket);
+    nbProducts = getQuantityOfProductsInBasket(basket);
+  }else{
+    nbProducts = "";
+  }
+  badgesSpan.innerHTML = nbProducts;
 }
+
 if (config.badgesEnabled) {
-  getParamFromLocalStorage();
+  showBadges();
   console.log("Écriture des badges");
 }
