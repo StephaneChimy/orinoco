@@ -61,7 +61,7 @@ function getProduct(apiUrl, productType, productId) {
   });
 }
 
-function sendOrder() {
+function sendOrder(serverUrl) {
   const options = {
     method: "POST",
     body: orderJsoned,
@@ -70,7 +70,7 @@ function sendOrder() {
     },
   };
 
-  fetch("http://localhost:3000/api/teddies/order", options)
+  fetch(serverUrl, options)
     .then((response) => {
       if (response.ok) {
         response.json().then((response) => {

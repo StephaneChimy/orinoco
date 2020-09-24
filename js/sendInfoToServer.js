@@ -22,7 +22,7 @@ function ClickOnButton() {
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
     orderJsoned = JSON.stringify(order);
-    sendOrder();
+    sendOrder("http://localhost:3000/api/teddies/order");
   });
 }
 // Set informations from user in infoToSend
