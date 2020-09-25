@@ -5,15 +5,6 @@ let basket = {
 let productId = window.location.search.slice(11);
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-function showError() {
-  let getMain = document.querySelector("#main");
-  let div = document.createElement("div");
-  div.id = "error";
-  div.className = "card col text-center text-light bg-danger";
-  div.innerText = "Erreur de connection, merci de revenir plus tard.";
-  getMain.appendChild(div);
-}
-
 function showCardProduct() {
   creatProductsSection("row justify-content-around");
   creatProductDiv(product._id, "col-8", "teddy");
