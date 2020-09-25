@@ -19,7 +19,7 @@ function PriceFormat(price) {
   }).format(price);
 }
 function getBasket() {
-  let basket = JSON.parse(localStorage.getItem(localStorage.key(key)));
+  let basket = JSON.parse(localStorage.getItem("basket"));
   return basket;
 }
 
