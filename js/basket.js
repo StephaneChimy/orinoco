@@ -35,9 +35,9 @@
 function showBasket(basket) {
   for (let product = 0; product < basket.products.length; product++) {
     addProductToTable(product);
-    addProductNameLigneTable(product,getBasket());
-    addProductQuantiteLigneTable(product, getBasket());
-    getPriceOfProduct(product, getBasket());
+    addProductNameLigneTable(product,basket);
+    addProductQuantiteLigneTable(product, basket);
+    getPriceOfProduct(product, basket);
     setPriceOfProduct(product);
     getTotalPrice();
   }
