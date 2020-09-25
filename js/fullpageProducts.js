@@ -1,14 +1,5 @@
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
-
-// Format price
-function PriceFormat(price) {
-  return new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: "EUR",
-  }).format(price);
-}
-
 // showProducts = Create a bootstrap card for each product in products
 function showProducts() {
   creatProductsSection("row mx-auto justify-content-between")
