@@ -123,13 +123,6 @@ function setClearButton() {
   button.innerText = "x";
   getTotalPrice.appendChild(button);
 }
-// Format price
-function PriceFormat(price) {
-  return new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: "EUR",
-  }).format(price);
-}
 
 function showBasket() {
   for (let product = 0; product < basket.products.length; product++) {
@@ -138,7 +131,7 @@ function showBasket() {
     addProductQuantiteLigneTable(product);
     getPriceOfProduct(product);
     setPriceOfProduct(product);
-    getTotalPrice(product);
+    getTotalPrice();
   }
   setTotalPrice(getTotalPrice());
   setClearButton();
