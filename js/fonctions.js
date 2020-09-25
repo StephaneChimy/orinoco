@@ -11,18 +11,29 @@ function checkLocalStorageKey(keyName) {
     return false;
   }
 }
-
+// Format price
+function PriceFormat(price) {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+  }).format(price);
+}
 function getBasket() {
   let basket = JSON.parse(localStorage.getItem(localStorage.key(key)));
   return basket;
 }
-// Format price
-function PriceFormat(price) {
-    return new Intl.NumberFormat("fr-FR", {
-      style: "currency",
-      currency: "EUR",
-    }).format(price);
-  }
+
+function clearBasket() {
+  let button = document.querySelector("#clear");
+
+  button.addEventListener("click", (e) => {
+    //e.preventDefault();
+    console.log("Vidage du panier");
+    localStorage.removeItem("basket");
+    // Reload the page
+    window.location.reload();
+  });
+}
 
 // fonctions of showProducts are in domElements.js
 function showProducts() {
