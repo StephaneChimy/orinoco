@@ -1,7 +1,6 @@
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
 // 1 - Listen button / If clicked => Fonction checkLocalStorage & showBadges()
-
 function listenButton() {
   var getButton = document.querySelector(".addToBasket");
   console.log(getButton);
@@ -10,6 +9,7 @@ function listenButton() {
     showBadges();
   });
 }
+
 // 2 - If localStorage is empty => Put the product in the basket // Else check parameters in localStorage
 function checkLocalStorage() {
   if (localStorage.length < 1) {
@@ -29,7 +29,7 @@ function checkKeyFromLocalStorage() {
       // Rapatriement des infos de la clé basket dans basket
       basket = JSON.parse(localStorage.getItem(localStorage.key(cle)));
       console.log(basket);
-      checkIdProduct();
+      checkIdProduct(basket);
       return (keyFound = true);
     }
   }
@@ -38,17 +38,17 @@ function checkKeyFromLocalStorage() {
   }
 }
 // 4 - Check if the id of the product is in the basket, if yes => incrementItem() // Else pushProductInBasket()
-function checkIdProduct() {
+function checkIdProduct(basket) {
   var productFound = false;
   for (let item = 0; item < basket.products.length; item++) {
-    if (basket.products[item].id == product._id) {
-      console.log(product.name + " est déjà dans le panier");
+    if (basket.products[item].id == beingWatchedProduct._id) {
+      // console.log(product.name + " est déjà dans le panier");
       productFound = true;
       incrementItem(item);
     }
   }
   if (!productFound) {
-    console.log(product.name + " n'est pas dans localStorage");
+    // console.log(product.name + " n'est pas dans localStorage");
     pushProductInBasket();
   }
 }
@@ -69,8 +69,8 @@ function sendToLocalStorage() {
 function pushProductInBasket() {
   let numberOfProduct = 1;
   basket.products.push({
-    Nom: product.name,
-    id: product._id,
+    Nom: beingWatchedProduct.name,
+    id: beingWatchedProduct._id,
     Quantite: numberOfProduct,
   });
 
