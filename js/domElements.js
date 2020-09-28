@@ -159,15 +159,6 @@ function addProductQuantiteLigneTable(product, basket) {
   insertDataOfProduct.innerText = basket.products[product].Quantite;
   getLigneProduct.appendChild(insertDataOfProduct);
 }
-function getPriceOfProduct(product, basket) {
-  for (nbElem = 0; nbElem < products.length; nbElem++) {
-    if (products[nbElem]._id === basket.products[product].id) {
-      PriceOfProduct = products[nbElem].price;
-      console.log(basket.products[product].Nom + " = " + PriceOfProduct);
-      return PriceOfProduct;
-    }
-  }
-}
 
 function setPriceOfProduct(product) {
   let getLigneProduct = document.querySelector("#tbody" + product);
@@ -177,19 +168,6 @@ function setPriceOfProduct(product) {
   getLigneProduct.appendChild(insertDataOfProduct);
 }
 
-function getTotalPrice() {
-  let totalPrice = 0;
-  for (let product = 0; product < basket.products.length; product++) {
-    for (var nbElem = 0; nbElem < products.length; nbElem++) {
-      if (products[nbElem]._id === basket.products[product].id) {
-        PriceOfProduct = products[nbElem].price;
-        var quantiteOfProduct = basket.products[product].Quantite;
-        totalPrice += PriceOfProduct * quantiteOfProduct;
-      }
-    }
-  }
-  return totalPrice;
-}
 function setTotalPrice(totalPrice) {
   let getTotalPrice = document.querySelector("#Total");
   let insertTotalPrice = document.createElement("th");
