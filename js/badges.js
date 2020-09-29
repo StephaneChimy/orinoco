@@ -1,11 +1,11 @@
 function getQuantityOfProductsInBasket(basket) {
-  let quantite = 0;
-  let quantiteOfProducts = 0;
+  let quantity = 0;
+  let quantityOfProducts = 0;
   for (var product = 0; product < basket.products.length; product++) {
-    quantite = basket.products[product].Quantite;
-    quantiteOfProducts += quantite;
+    quantity = basket.products[product].quantity;
+    quantityOfProducts += quantity;
   }
-  return quantiteOfProducts;
+  return quantityOfProducts;
 }
 
 function showBadges() {

@@ -16,12 +16,12 @@ function showBasket(basket, products) {
 
     // Ajoute le nom du produit
     //addProductNameLigneTable(basket.products[index], basket);
-    createNode(".tbody" + index, "td", false, "tdProduct" + basket.products[index].id, false, false, basket.products[index].Nom);
+    createNode(".tbody" + index, "td", false, "tdProduct" + basket.products[index].id, false, false, basket.products[index].name);
     //
 
     // Ajoute la quantité
     //addProductQuantiteLigneTable(basket.products[index], basket);
-    createNode(".tbody" + index, "td", false, "tdQuantite" + basket.products[index].id, false, false, basket.products[index].Quantite);
+    createNode(".tbody" + index, "td", false, "tdQuantite" + basket.products[index].id, false, false, basket.products[index].quantity);
     //
 
     // Ajoute la prix unitaire du produit
@@ -30,7 +30,7 @@ function showBasket(basket, products) {
     //
 
     // Calcul du total
-    totalPrice += foundProduct.price * basket.products[index].Quantite;
+    totalPrice += foundProduct.price * basket.products[index].quantity;
   }
   // Afficher le total
   //setTotalPrice(totalPrice);

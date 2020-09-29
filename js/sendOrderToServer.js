@@ -72,7 +72,7 @@ function setProducts() {
         localStorage.getItem(localStorage.key(cle))
       );
       for (let product in productsInLocalStorage.products) {
-        let quantity = productsInLocalStorage.products[product].Quantite;
+        let quantity = productsInLocalStorage.products[product].quantity;
         for (let i = 0; i < quantity; i++) {
           products.push(productsInLocalStorage.products[product].id);
         }
