@@ -1,17 +1,3 @@
-function checkLocalStorageKey(keyName) {
-  var keyFound = false;
-  for (key = 0; key < localStorage.length; key++) {
-    if (localStorage.key(key) == keyName) {
-      console.log("Clé trouvé");
-      keyFound = true;
-      return true;
-    }
-  }
-  if (!keyFound) {
-    return false;
-  }
-}
-
 function getQuantityOfProductsInBasket(basket) {
   let quantite = 0;
   let quantiteOfProducts = 0;
