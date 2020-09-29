@@ -1,11 +1,11 @@
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
-listenButton();
+clickedButton();
 
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
 // 1 - Listen button / If clicked => Fonction pushProductInBasket() & showBadges()
-function listenButton() {
+function clickedButton() {
   var getButton = document.querySelector(".addToBasket");
   console.log(getButton);
   getButton.addEventListener("click", () => {
