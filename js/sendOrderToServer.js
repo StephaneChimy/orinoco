@@ -66,11 +66,9 @@ function setEmailInput() {
 }
 
 function setProducts() {
-  for (cle = 0; cle < localStorage.length; cle++) {
-    if (localStorage.key(cle) == "basket") {
-      let productsInLocalStorage = JSON.parse(
-        localStorage.getItem(localStorage.key(cle))
-      );
+  
+    if (checkLocalStorageKey("basket")) {
+      let productsInLocalStorage = getLocalstorageKey("basket");
       for (let product in productsInLocalStorage.products) {
         let quantity = productsInLocalStorage.products[product].quantity;
         for (let i = 0; i < quantity; i++) {
@@ -80,7 +78,7 @@ function setProducts() {
 
       console.log(products);
     }
-  }
+  
   order.products = products;
 }
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
