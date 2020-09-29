@@ -1,3 +1,7 @@
+function getLocalstorageKey(key) {
+  let basket = JSON.parse(localStorage.getItem(key));
+  return basket;
+}
 function checkLocalStorageKey(keyName) {
   var keyFound = false;
   for (key = 0; key < localStorage.length; key++) {

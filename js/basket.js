@@ -1,10 +1,4 @@
 ////////////////////////////////////////////// Fonction //////////////////////////////////////////////
-
-function getBasket() {
-  let basket = JSON.parse(localStorage.getItem("basket"));
-  return basket;
-}
-
 function showBasket(basket, products) {
   let totalPrice = 0;
   // Parcours le basket qui comprend les id des produits
@@ -53,7 +47,7 @@ if (checkLocalStorageKey("basket") === true) {
   console.log("Verification passée");
   fetchProducts("teddies")
     .then((products) => {
-      showBasket(getBasket(), products);
+      showBasket(getLocalstorageKey("basket"), products);
     })
     .then(() => {
       clearBasket();
