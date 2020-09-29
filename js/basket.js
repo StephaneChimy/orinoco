@@ -16,7 +16,7 @@ function showBasket(basket, products) {
 
     // Ajoute le nom du produit
     //addProductNameLigneTable(basket.products[index], basket);
-    createNode(".tbody" + index, "td", false, "tdProduct" + basket.products[index].id, false, false, basket.products[index].name);
+    createNode(".tbody" + index, "td", false, "tdProduct" + basket.products[index].id, false, false, basket.products[index].Nom);
     //
 
     // Ajoute la quantité
@@ -34,7 +34,7 @@ function showBasket(basket, products) {
   }
   // Afficher le total
   //setTotalPrice(totalPrice);
-  createNode(".total", "th", false, false, false, PriceFormat(totalPrice));
+  createNode(".total", "th", false, false, false, false ,PriceFormat(totalPrice));
 
   // Affiche le bouton Clear
   //setClearButton();
