@@ -23,7 +23,6 @@ function PriceFormat(price) {
   }).format(price);
 }
 
-
 function clearBasket() {
   let button = document.querySelector("#clear");
 
@@ -35,5 +34,3 @@ function clearBasket() {
     window.location.reload();
   });
 }
-
-

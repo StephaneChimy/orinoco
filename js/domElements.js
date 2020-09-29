@@ -10,11 +10,11 @@ function createNode(location, tag, id, className, src, href, content) {
     createdTag.className = className;
   }
 
-  if (src){
+  if (src) {
     createdTag.src = src;
   }
 
-  if (href){
+  if (href) {
     createdTag.href = href;
   }
 

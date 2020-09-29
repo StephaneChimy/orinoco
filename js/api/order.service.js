@@ -3,6 +3,7 @@ function postOrder(body) {
   return apiPost("teddies/order", body)
     .then((response) => {
       console.log("Réponse chargée, boucle de calcul en cours");
+      let totalPaid = 0;
       for (let product = 0; product < response.products.length; product++) {
         // Calculate total paid in the answer
         totalPaid += response.products[product].price;

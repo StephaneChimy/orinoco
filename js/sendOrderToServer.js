@@ -1,8 +1,4 @@
 ////////////////////////////////////////////// Variables //////////////////////////////////////////////
-
-let products = [];
-let orderJsoned;
-let totalPaid = 0;
 let order = {
   contact: {
     firstName: "",
@@ -13,6 +9,14 @@ let order = {
   },
   products: "",
 };
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
+setProducts();
+setLastnameInput();
+setFirstnameInput();
+setAddressInput();
+setCityInput();
+setEmailInput();
+ClickOnButton();
 
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
@@ -21,24 +25,23 @@ function ClickOnButton() {
 
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
-    orderJsoned = JSON.stringify(order);
+    let orderJsoned = JSON.stringify(order);
     //try {
-      console.log("bouton cliqué");
-      postOrder(orderJsoned);
-      console.log("function postorder");
+    console.log("bouton cliqué");
+    postOrder(orderJsoned);
+    console.log("function postorder");
     //} catch (error) {
     //  throw new error(error);
-   // }
+    // }
   });
 }
-// Set informations from user in infoToSend
+// Set informations from user in order.contact
 function setFirstnameInput() {
   let firstName = document.getElementById("inputSurname");
   firstName.addEventListener("input", function (e) {
     order.contact.firstName = e.target.value;
   });
 }
-
 function setLastnameInput() {
   let lastName = document.getElementById("inputName");
   lastName.addEventListener("input", function (e) {
@@ -64,28 +67,20 @@ function setEmailInput() {
     console.log(order);
   });
 }
-
+// Set products in order.products
 function setProducts() {
-  
-    if (checkLocalStorageKey("basket")) {
-      let productsInLocalStorage = getLocalstorageKey("basket");
-      for (let product in productsInLocalStorage.products) {
-        let quantity = productsInLocalStorage.products[product].quantity;
-        for (let i = 0; i < quantity; i++) {
-          products.push(productsInLocalStorage.products[product].id);
-        }
+  let products = [];
+  if (checkLocalStorageKey("basket")) {
+    let productsInLocalStorage = getLocalstorageKey("basket");
+    for (let product in productsInLocalStorage.products) {
+      let quantity = productsInLocalStorage.products[product].quantity;
+      for (let i = 0; i < quantity; i++) {
+        products.push(productsInLocalStorage.products[product].id);
       }
-
-      console.log(products);
     }
-  
+
+    console.log(products);
+  }
+
   order.products = products;
 }
-////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
-setProducts();
-setLastnameInput();
-setFirstnameInput();
-setAddressInput();
-setCityInput();
-setEmailInput();
-ClickOnButton();

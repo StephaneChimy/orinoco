@@ -1,3 +1,18 @@
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
+
+if (checkLocalStorageKey("basket") === true) {
+  console.log("Verification passée");
+  fetchProducts("teddies")
+    .then((products) => {
+      showBasket(getLocalstorageKey("basket"), products);
+    })
+    .then(() => {
+      clearBasket();
+    });
+} else {
+  emptyBasket();
+}
+
 ////////////////////////////////////////////// Fonction //////////////////////////////////////////////
 function showBasket(basket, products) {
   let totalPrice = 0;
@@ -41,17 +56,3 @@ function showBasket(basket, products) {
   createNode(".total", "th", "clear", "btn btn-outline-secondary", false, false, "x");
 }
 
-////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
-
-if (checkLocalStorageKey("basket") === true) {
-  console.log("Verification passée");
-  fetchProducts("teddies")
-    .then((products) => {
-      showBasket(getLocalstorageKey("basket"), products);
-    })
-    .then(() => {
-      clearBasket();
-    });
-} else {
-  emptyBasket();
-}

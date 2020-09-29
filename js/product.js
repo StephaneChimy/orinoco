@@ -1,11 +1,19 @@
 ////////////////////////////////////////////// Variables //////////////////////////////////////////////
-//Basket is used in intoBasket.js
-// let basket = {
-//   products: [],
-// };
+
 let productId = window.location.search.slice(11);
-////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 let beingWatchedProduct = null;
+
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
+
+// Global declaration of being watched product
+fetchProduct(productId, "teddies").then(function (product) {
+  // Used by intoBasket.js
+  beingWatchedProduct = product;
+  //
+  showCardProduct(product);
+});
+
+////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
 function showColorsOptions(productId, productColors) {
   let value = 1;
@@ -47,12 +55,3 @@ function showCardProduct(product) {
     console.log("Product not found");
   }
 }
-////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
-
-// Global declaration of being watched product
-fetchProduct(productId, "teddies").then(function (product) {
-  // Used by intoBasket.js
-  beingWatchedProduct = product;
-  //
-  showCardProduct(product);
-});
