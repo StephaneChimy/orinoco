@@ -37,31 +37,31 @@ function sendOrderToServerByClickOnButton() {
 }
 // Set informations from user in order.contact
 function setFirstnameInputToOrderContact() {
-  let firstName = document.getElementById("inputSurname");
+  let firstName = document.querySelector("#inputSurname");
   firstName.addEventListener("input", function (e) {
     order.contact.firstName = e.target.value;
   });
 }
 function setLastnameInputToOrderContact() {
-  let lastName = document.getElementById("inputName");
+  let lastName = document.querySelector("#inputName");
   lastName.addEventListener("input", function (e) {
     order.contact.lastName = e.target.value;
   });
 }
 function setAddressInputToOrderContact() {
-  let address = document.getElementById("inputAddress");
+  let address = document.querySelector("#inputAddress");
   address.addEventListener("input", function (e) {
     order.contact.address = e.target.value;
   });
 }
 function setCityInputToOrderContact() {
-  let city = document.getElementById("inputCity");
+  let city = document.querySelector("#inputCity");
   city.addEventListener("input", function (e) {
     order.contact.city = e.target.value;
   });
 }
 function setEmailInputToOrderContact() {
-  let email = document.getElementById("inputEmail");
+  let email = document.querySelector("#inputEmail");
   email.addEventListener("input", function (e) {
     order.contact.email = e.target.value;
     console.log(order);
