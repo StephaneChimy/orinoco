@@ -11,9 +11,7 @@ function getQuantityOfProductsInBasket(basket) {
 function showBadges() {
   let badgesSpan = document.querySelector(".badge");
   if (checkLocalStorageKey("basket")) {
-    let basket = JSON.parse(localStorage.getItem(localStorage.key(key)));
-    // console.log(basket);
-    nbProducts = getQuantityOfProductsInBasket(basket);
+    nbProducts = getQuantityOfProductsInBasket(getLocalstorageKey("basket"));
   } else {
     nbProducts = "";
   }
