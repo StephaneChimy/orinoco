@@ -1,3 +1,9 @@
+////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
+
+fetchProducts("teddies").then(function (products) {
+  showProducts(products);
+});
+
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
 
 // fonctions of showProducts are in domElements.js
@@ -25,8 +31,4 @@ function showProducts(products) {
     createNode(".card-body" + productIndex, "a", false ,"btn btn-primary", false, "/product.html?ProductId=" + products[productIndex]._id, "Détail");
   }
 }
-////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
-fetchProducts("teddies").then(function (products) {
-  showProducts(products);
-});
