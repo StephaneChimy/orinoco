@@ -12,6 +12,7 @@ let order = {
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 setProductsToOrder();
 setLastnameInputToOrderContact();
+//setInputToOrderContact("#inputName", order.contact.lastName)
 setFirstnameInputToOrderContact();
 setAddressInputToOrderContact();
 setCityInputToOrderContact();
@@ -36,6 +37,17 @@ function sendOrderToServerByClickOnButton() {
   });
 }
 // Set informations from user in order.contact
+
+// function setInputToOrderContact(locationOfInput, ){
+//   let node = document.querySelector(locationOfInput);
+//   node.addEventListener("input", function (e) {
+//     console.log(orderContactField);
+//     orderContactField = e.target.value;
+//     console.log(orderContactField);
+//     console.log(order);
+//   });
+// };
+
 function setFirstnameInputToOrderContact() {
   let firstName = document.querySelector("#inputSurname");
   firstName.addEventListener("input", function (e) {
