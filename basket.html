@@ -63,13 +63,14 @@
 
                 <div class="form-group col-5">
                     <label for="inputName">Nom</label>
-                    <input required type="text" class="form-control" id="lastName" placeholder="Entrez votre nom">
+                    <input required type="text" class="form-control" id="lastName" placeholder="Entrez votre nom" pattern="[\p{L}]*" title="Caractères de A à Z">
+                    
                     <small id="nameHelp" class="form-text text-muted">ex: Dupont</small>
                 </div>
                 <div class="form-group col-7">
                     <label for="inputSurname">Prénom</label>
                     <input required type="text" class="form-control" id="firstName"
-                        placeholder="Entrez votre prénom">
+                        placeholder="Entrez votre prénom" pattern="[\p{L}.-]*" title="Caractères de A à Z">
                     <small id="surnameHelp" class="form-text text-muted">ex: Jean-Claude</small>
                 </div>
 
