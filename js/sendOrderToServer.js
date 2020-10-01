@@ -10,19 +10,13 @@ let order = {
   products: "",
 };
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
+//
 setProductsToOrder();
-// 
+// Create a list of fields used in setEventForField()
 const fields = ["firstName", "lastName", "address", "city", "email"];
 // Create an event for each field to set the input of the user in the order.contact
 fields.forEach(field => setEventForField(field));
 //
-// setLastnameInputToOrderContact();
-//setInputToOrderContact("#inputName", order.contact.lastName)
-//setFirstnameInputToOrderContact();
-// setEventForField("Firstname");
-// setAddressInputToOrderContact();
-// setCityInputToOrderContact();
-// setEmailInputToOrderContact();
 sendOrderToServerByClickOnButton();
 
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////
@@ -42,19 +36,7 @@ function sendOrderToServerByClickOnButton() {
     // }
   });
 }
-// Set informations from user in order.contact
-
-// function setInputToOrderContact(locationOfInput, ){
-//   let node = document.querySelector(locationOfInput);
-//   node.addEventListener("input", function (e) {
-//     console.log(orderContactField);
-//     orderContactField = e.target.value;
-//     console.log(orderContactField);
-//     console.log(order);
-//   });
-// };
-
-
+// Set informations from user input to order.contact
 function setEventForField(fieldName) {
   locationOfIndex = "#" + fieldName;
   console.log(locationOfIndex);
@@ -66,38 +48,6 @@ function setEventForField(fieldName) {
   });
 }
 
-
-// function setFirstnameInputToOrderContact() {
-//   let firstName = document.querySelector("#inputFirstname");
-//   firstName.addEventListener("input", function (e) {
-//     order.contact.firstName = e.target.value;
-//   });
-// }
-// function setLastnameInputToOrderContact() {
-//   let lastName = document.querySelector("#inputLastname");
-//   lastName.addEventListener("input", function (e) {
-//     order.contact.lastName = e.target.value;
-//   });
-// }
-// function setAddressInputToOrderContact() {
-//   let address = document.querySelector("#inputAddress");
-//   address.addEventListener("input", function (e) {
-//     order.contact.address = e.target.value;
-//   });
-// }
-// function setCityInputToOrderContact() {
-//   let city = document.querySelector("#inputCity");
-//   city.addEventListener("input", function (e) {
-//     order.contact.city = e.target.value;
-//   });
-// }
-// function setEmailInputToOrderContact() {
-//   let email = document.querySelector("#inputEmail");
-//   email.addEventListener("input", function (e) {
-//     order.contact.email = e.target.value;
-//     console.log(order);
-//   });
-// }
 // Set products in order.products
 function setProductsToOrder() {
   let products = [];
@@ -109,9 +59,7 @@ function setProductsToOrder() {
         products.push(productsInLocalStorage.products[product].id);
       }
     }
-
     console.log(products);
   }
-
   order.products = products;
 }

@@ -25,7 +25,7 @@ function pushProductInBasket(beingWatchedProduct) {
       // Increment the quantity of the product in the basket
       incrementProductInBasket(
         getIndexOfProductInBasket(basket, beingWatchedProduct._id)
-      ); // retourne l'index du produit trouvé dans le panier
+      ); // return the index of the product found in the basket
       console.log(basket);
       // Then send it to the localStorage
       sendBasketToLocalStorage(basket);
