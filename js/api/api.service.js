@@ -16,12 +16,7 @@ function apiGet(path) {
     };
     request.send();
     request.onerror = function () {
-      if (document.querySelector("#showBasket")) {
-        showErrorConnection();
-      } else {
-        showError();
-      }
-
+        showErrorConnection("Erreur de connection, merci de revenir plus tard.");
       console.log(
         "Status de la requête: " +
           request.status +
@@ -50,12 +45,7 @@ function apiPost(path, body) {
     };
     request.send(body);
     request.onerror = function () {
-      if (document.querySelector("#showBasket")) {
-        showErrorConnection();
-      } else {
-        showError();
-      }
-
+        showErrorConnection("Erreur de connection, merci de revenir plus tard.");
       console.log(
         "Status de la requête: " +
           request.status +

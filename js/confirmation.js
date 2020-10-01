@@ -13,23 +13,16 @@ function getOrderId() {
 function getTotalPaid() {
   return parsedUrl.searchParams.get("totalPaid");
 }
-// Format price
-function PriceFormat(price) {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
-}
-
-function populatetotalPaid() {
-  let getConfirmation = document.querySelector("#total");
-  getConfirmation.innerHTML = "Le montant de votre achat est de: " + PriceFormat(getTotalPaid());
-}
-
-function populateOrderId() {
-  let getConfirmation = document.querySelector("#orderId");
-  getConfirmation.innerHTML = "Votre numéros de commande est le: " + getOrderId();
-}
 
 function showConfirmation() {
-  populatetotalPaid();
-  populateOrderId();
+  if ((getOrderId() != null) && getTotalPaid() != 0){
+    createNode("main", "section", {className : "justify-content-around text-center"});
+    createNode("section", "p", {innerText : "Le montant de votre achat est de: " + PriceFormat(getTotalPaid())});
+    createNode("section", "p", {innerText : "Votre numéros de commande est le: " + getOrderId()});
+    //populateOrderId();
+  }else{
+    showErrorConnection("Vous n'avez pas commandé, merci de revenir sur la page principale");
+  }
+  
 }
 

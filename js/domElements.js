@@ -15,15 +15,19 @@ function createNode(location, tag, ...ListOfAttributs) {
 
 // createNode('main', 'div', 'error', 'card col text-center text-light bg-danger', 'Erreur de connection, merci de revenir plus tard.')
 
-function showError() {
-  createNode("main", "div", {id : "error", className : "card col text-center text-light bg-danger", innerText : "Erreur de connection, merci de revenir plus tard."});
-}
-function showErrorConnection() {
+// function showError() {
+//   createNode("main", "div", {id : "error", className : "card col text-center text-light bg-danger", innerText : "Erreur de connection, merci de revenir plus tard."});
+// }
+function showErrorConnection(message) {
   let getShowBasket = document.querySelector("#showBasket");
-  getShowBasket.style.display = "none";
+  if(getShowBasket != null){
+    getShowBasket.style.display = "none";
+  }
   let getShowForm = document.querySelector("#showForm");
-  getShowForm.style.display = "none";
-  createNode("main", "div", {id : "error", className : "card col text-center text-light bg-danger", innerText : "Erreur de connection, merci de revenir plus tard."});
+  if(getShowForm != null){
+    getShowForm.style.display = "none";
+  }
+  createNode("main", "div", {id : "error", className : "card col text-center text-light bg-danger", innerText : message});
 }
 function emptyBasket() {
   let getShowBasket = document.querySelector("#showBasket");
