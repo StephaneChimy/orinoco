@@ -10,14 +10,7 @@ function createNode(location, tag, ...ListOfAttributs) {
   }
   node.appendChild(createdTag);
 }
-
-
-
-// createNode('main', 'div', 'error', 'card col text-center text-light bg-danger', 'Erreur de connection, merci de revenir plus tard.')
-
-// function showError() {
-//   createNode("main", "div", {id : "error", className : "card col text-center text-light bg-danger", innerText : "Erreur de connection, merci de revenir plus tard."});
-// }
+// Show a message on the page when an error of connection happen
 function showErrorConnection(message) {
   let getShowBasket = document.querySelector("#showBasket");
   if(getShowBasket != null){
@@ -29,6 +22,7 @@ function showErrorConnection(message) {
   }
   createNode("main", "div", {id : "error", className : "card col text-center text-light bg-danger", innerText : message});
 }
+// Show a message on the page basket.html when the basket is empty
 function emptyBasket() {
   let getShowBasket = document.querySelector("#showBasket");
   getShowBasket.style.display = "none";
