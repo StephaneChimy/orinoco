@@ -1,9 +1,9 @@
 const request = new XMLHttpRequest();
 
 // Will perform a GET request to the API
-function apiGet(url) {
+function apiGet(path) {
   return new Promise((resolve, reject) => {
-    request.open("GET", config.apiBaseUrl + "/" + url);
+    request.open("GET", config.apiBaseUrl + "/" + path);
     request.onload = function () {
       if (request.readyState == 4 && request.status == 200) {
         response = JSON.parse(request.response);
@@ -34,9 +34,9 @@ function apiGet(url) {
 }
 
 // Will perform a POST request to the API
-function apiPost(url, body) {
+function apiPost(path, body) {
   return new Promise((resolve, reject) => {
-    request.open("POST", config.apiBaseUrl + "/" + url, true);
+    request.open("POST", config.apiBaseUrl + "/" + path, true);
     request.setRequestHeader("Content-Type", "application/json");
     request.onload = function () {
       if (request.readyState == 4 && request.status == 201) {
