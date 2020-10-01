@@ -26,22 +26,22 @@ function showBasket(basket, products) {
 
     // Ajoute ligne 0, 1, 2 , 3 ....
     //addProductToTable(basket.products[index].id);
-    createNode("tbody", "tr", false, "tbody" + index);
+    createNode("tbody", "tr", {className : "tbody" + index});
     //
 
     // Ajoute le nom du produit
     //addProductNameLigneTable(basket.products[index], basket);
-    createNode(".tbody" + index, "td", false, "tdProduct" + basket.products[index].id, false, false, basket.products[index].name);
+    createNode(".tbody" + index, "td",  {className :"tdProduct" + basket.products[index].id, innerText: basket.products[index].name});
     //
 
     // Ajoute la quantité
     //addProductQuantiteLigneTable(basket.products[index], basket);
-    createNode(".tbody" + index, "td", false, "tdQuantite" + basket.products[index].id, false, false, basket.products[index].quantity);
+    createNode(".tbody" + index, "td",{className : "tdQuantite" + basket.products[index].id, innerText : basket.products[index].quantity});
     //
 
     // Ajoute la prix unitaire du produit
     //setPriceOfProduct(foundProduct.price, basket.products[index].id);
-    createNode(".tbody" + index, "td", false, "tdPrice" + basket.products[index].id, false, false, PriceFormat(foundProduct.price));
+    createNode(".tbody" + index, "td", {className : "tdPrice" + basket.products[index].id, innerText : PriceFormat(foundProduct.price)});
     //
 
     // Calcul du total
@@ -49,10 +49,10 @@ function showBasket(basket, products) {
   }
   // Afficher le total
   //setTotalPrice(totalPrice);
-  createNode(".total", "th", false, false, false, false ,PriceFormat(totalPrice));
+  createNode(".total", "th", {innerText : PriceFormat(totalPrice)});
 
   // Affiche le bouton Clear
   //setClearButton();
-  createNode(".total", "th", "clear", "btn btn-outline-secondary", false, false, "x");
+  createNode(".total", "th", { id : "clear", className : "btn btn-outline-secondary", innerText : "x"});
 }
 
