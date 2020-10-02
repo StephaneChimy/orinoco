@@ -27,13 +27,14 @@ function sendOrderToServerByClickOnButton() {
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
     let orderJsoned = JSON.stringify(order);
-    //try {
+    try {
     console.log("bouton cliqué");
     postOrder(orderJsoned);
     console.log("function postorder");
-    //} catch (error) {
-    //  throw new error(error);
-    // }
+    } catch (error) {
+        console.error(error);
+        throw new error("Erreur lors de l'envoi de l'order");
+    }
   });
 }
 // Set informations from user input to order.contact
