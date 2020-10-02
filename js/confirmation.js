@@ -17,6 +17,7 @@ function getTotalPaid() {
 function showConfirmation() {
   if ((getOrderId() != null) && getTotalPaid() != 0){
     createNode("main", "section", {className : "justify-content-around text-center"});
+    createNode("section", "h1", {innerText : "L'équipe d'Orinoco vous remercie!"});
     createNode("section", "p", {innerText : "Le montant de votre achat est de: " + PriceFormat(getTotalPaid())});
     createNode("section", "p", {innerText : "Votre numéros de commande est le: " + getOrderId()});
     //populateOrderId();
