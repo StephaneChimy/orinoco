@@ -1,6 +1,7 @@
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
 fetchProducts("teddies").then(function (products) {
+  console.log("Écriture des nodes du DOM");
   showProducts(products);
 });
 

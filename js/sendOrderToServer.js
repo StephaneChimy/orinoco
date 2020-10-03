@@ -40,7 +40,6 @@ function sendOrderToServerByClickOnButton() {
 // Set informations from user input to order.contact
 function setEventForField(fieldName) {
   locationOfIndex = "#" + fieldName;
-  console.log(locationOfIndex);
   let element = document.querySelector(locationOfIndex);
   element.addEventListener("input", function (e) {
     order.contact[fieldName] = e.target.value;

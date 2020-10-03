@@ -10,6 +10,7 @@ fetchProduct(productId, "teddies").then(function (product) {
   // Used by intoBasket.js
   beingWatchedProduct = product;
   //
+  console.log("Écriture des nodes du DOM");
   showCardProduct(product);
 });
 

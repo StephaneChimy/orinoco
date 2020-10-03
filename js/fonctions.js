@@ -6,7 +6,7 @@ function checkLocalStorageKey(keyName) {
   var keyFound = false;
   for (key = 0; key < localStorage.length; key++) {
     if (localStorage.key(key) == keyName) {
-      console.log("Clé trouvé");
+      console.log("Clé " + keyName + " trouvé");
       keyFound = true;
       return true;
     }
