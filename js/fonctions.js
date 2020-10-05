@@ -15,12 +15,18 @@ function checkLocalStorageKey(keyName) {
     return false;
   }
 }
+//Price in cents to euros
+function centsToEuros(priceInCents){
+  let result = priceInCents / 100;
+  return result;
+}
+
 // Format price
 function PriceFormat(price) {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
-  }).format(price);
+  }).format(centsToEuros(price));
 }
 
 function clearBasket() {
