@@ -1,5 +1,5 @@
 // Create a node with the location, tag and a list of attributs
-function createNode(location, tag, ListOfAttributs) {
+function createNode(location, tag, ListOfAttributs = {}) {
   
   let node = document.querySelector(location);
   let createdTag = document.createElement(tag);
