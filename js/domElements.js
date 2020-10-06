@@ -1,11 +1,11 @@
 // Create a node with the location, tag and a list of attributs
-function createNode(location, tag, ...ListOfAttributs) {
+function createNode(location, tag, ListOfAttributs) {
   
   let node = document.querySelector(location);
   let createdTag = document.createElement(tag);
 
   // Get the list of attributs and creates tag(s) in fonction of it
-  for(const [key, value] of Object.entries(ListOfAttributs[0])){
+  for(const [key, value] of Object.entries(ListOfAttributs)){
     createdTag[key] = value;
   }
   node.appendChild(createdTag);
