@@ -1,6 +1,8 @@
+////////////////////////////////////////////// Fonctions used a few times in other files //////////////////////////////////////////////
+
 function getLocalstorageKey(key) {
-  let basket = JSON.parse(localStorage.getItem(key));
-  return basket;
+  let localStorageItem = JSON.parse(localStorage.getItem(key));
+  return localStorageItem;
 }
 function checkLocalStorageKey(keyName) {
   var keyFound = false;
