@@ -29,14 +29,15 @@ function PriceFormat(price) {
   }).format(centsToEuros(price));
 }
 
-function clearBasket() {
-  let button = document.querySelector("#clear");
-
-  button.addEventListener("click", (e) => {
-    //e.preventDefault();
-    console.log("Vidage du panier");
-    localStorage.removeItem("basket");
-    // Reload the page
-    window.location.reload();
-  });
+// Return the quantity of products put in the basket
+function getQuantityOfProductsInBasket(basket) {
+  let quantity = 0;
+  let quantityOfProducts = 0;
+  for (var product = 0; product < basket.products.length; product++) {
+    quantity = basket.products[product].quantity;
+    quantityOfProducts += quantity;
+  }
+  return quantityOfProducts;
 }
+
+

@@ -3,6 +3,10 @@
 fetchProducts("teddies").then(function (products) {
   console.log("Écriture des nodes du DOM");
   showProducts(products);
+  if (config.badgesEnabled) {
+    showBadges();
+    console.log("Écriture des badges");
+  }
 });
 
 ////////////////////////////////////////////// Fonctions //////////////////////////////////////////////

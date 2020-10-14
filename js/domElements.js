@@ -30,3 +30,20 @@ function emptyBasket() {
   getShowForm.style.display = "none";
   createNode("main", "div", {id : "error", className : "card col text-center text-info mx-aut",innerText : "Votre panier est vide."});
 }
+
+
+
+// Show the number of products on the basket button
+// Enabled in config.js
+
+function showBadges() {
+  let badgesSpan = document.querySelector(".badge");
+  if (checkLocalStorageKey("basket")) {
+    nbProducts = getQuantityOfProductsInBasket(getLocalstorageKey("basket"));
+  } else {
+    nbProducts = "";
+  }
+  badgesSpan.innerHTML = nbProducts;
+}
+
+

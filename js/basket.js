@@ -1,3 +1,15 @@
+////////////////////////////////////////////// Variables //////////////////////////////////////////////
+let order = {
+  contact: {
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    email: "",
+  },
+  products: "",
+};
+
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
 if (checkLocalStorageKey("basket") === true) {
@@ -5,6 +17,19 @@ if (checkLocalStorageKey("basket") === true) {
   fetchProducts("teddies")
     .then((products) => {
       showBasket(getLocalstorageKey("basket"), products);
+      if (config.badgesEnabled) {
+        showBadges();
+        console.log("Écriture des badges");
+      }
+    })
+    .then(() => {
+      setProductsToOrder();
+      // Create a list of fields used in setEventForField()
+      const fields = ["firstName", "lastName", "address", "city", "email"];
+      // Create an event for each field to set the input of the user in the order.contact
+      fields.forEach((field) => setEventForField(field));
+      //
+      sendOrderToServerByClickOnButton();
     })
     .then(() => {
       clearBasket();
@@ -14,6 +39,18 @@ if (checkLocalStorageKey("basket") === true) {
 }
 
 ////////////////////////////////////////////// Fonction //////////////////////////////////////////////
+function clearBasket() {
+  let button = document.querySelector("#clear");
+
+  button.addEventListener("click", (e) => {
+    //e.preventDefault();
+    console.log("Vidage du panier");
+    localStorage.removeItem("basket");
+    // Reload the page
+    window.location.reload();
+  });
+}
+
 function showBasket(basket, products) {
   let totalPrice = 0;
   // Parcours le basket qui comprend les id des produits
@@ -55,4 +92,50 @@ function showBasket(basket, products) {
   //setClearButton();
   createNode(".total", "th", { id : "clear", className : "btn btn-outline-secondary", innerText : "x"});
 }
+
+////////////////////////////////////////////// Fonctions sendOrder //////////////////////////////////////////////
+
+function sendOrderToServerByClickOnButton() {
+  let formulaire = document.querySelector("#formulaire");
+
+  formulaire.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let orderJsoned = JSON.stringify(order);
+    try {
+    console.log("bouton cliqué");
+    postOrder(orderJsoned);
+    console.log("function postorder");
+    } catch (error) {
+        console.error(error);
+        throw new error("Erreur lors de l'envoi de l'order");
+    }
+  });
+}
+// Set informations from user input to order.contact
+function setEventForField(fieldName) {
+  locationOfField = "#" + fieldName;
+  let element = document.querySelector(locationOfField);
+  element.addEventListener("input", function (e) {
+    order.contact[fieldName] = e.target.value;
+    console.log(order);
+    
+  });
+}
+
+// Set products in order.products
+function setProductsToOrder() {
+  let products = [];
+  if (checkLocalStorageKey("basket")) {
+    let productsInLocalStorage = getLocalstorageKey("basket");
+    for (let product in productsInLocalStorage.products) {
+      let quantity = productsInLocalStorage.products[product].quantity;
+      for (let i = 0; i < quantity; i++) {
+        products.push(productsInLocalStorage.products[product].id);
+      }
+    }
+    console.log(products);
+  }
+  order.products = products;
+}
+
 
