@@ -1,3 +1,5 @@
+////////////////////////////////////////////// Fonctions about DOM elements showed on pages //////////////////////////////////////////////
+
 // Create a node with the location, tag and a list of attributs
 function createNode(location, tag, ListOfAttributs = {}) {
   
@@ -31,11 +33,8 @@ function emptyBasket() {
   createNode("main", "div", {id : "error", className : "card col text-center text-info mx-aut",innerText : "Votre panier est vide."});
 }
 
-
-
 // Show the number of products on the basket button
 // Enabled in config.js
-
 function showBadges() {
   let badgesSpan = document.querySelector(".badge");
   if (checkLocalStorageKey("basket")) {
