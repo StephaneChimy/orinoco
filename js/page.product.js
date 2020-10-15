@@ -48,8 +48,6 @@ function showCardProduct(product) {
     //
     createNode(".card-body" + product._id, "p", {className : "card-text", innerText : PriceFormat(product.price)});
     createNode(".card-body" + product._id, "button", {className : "btn btn-primary addToBasket",innerText : "Ajouter au panier"});
-    // Add the script after creating all elements on the page.
-    //createNode("body", "script",{src : "./js/intoBasket.js"});
   } else {
     console.log("Product not found");
   }
