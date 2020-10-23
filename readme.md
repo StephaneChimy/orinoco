@@ -7,6 +7,7 @@ Projet 5 d'Openclassrooms (création d'un site e-commerce)
 
 Prerequisites
 You will need to have Node and npm installed locally on your machine.
+(The frontend is tested with the live server addon of vs-code)
 
 # Installation:
 
