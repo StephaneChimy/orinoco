@@ -4,3 +4,13 @@ Projet 5 d'Openclassrooms (création d'un site e-commerce)
 * Gérer des événements JavaScript
 * Créer un plan de test pour une application
 * Interagir avec un web service avec JavaScript
+
+Prerequisites
+You will need to have Node and npm installed locally on your machine.
+
+# Installation:
+
+1 - Clone this repo
+
+2 - From the backend folder, run npm install. You can then run the server with node server. The server should run on localhost with default port 3000. If the server runs on another port for any reason, this is printed to the console when the server starts, e.g. Listening on port 3001.
+
