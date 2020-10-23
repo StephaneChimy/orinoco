@@ -17,5 +17,5 @@ You will need to have Node and npm installed locally on your machine.
 
 (The backend folder comes from this repo: https://github.com/OpenClassrooms-Student-Center/JWDP5)
 
-
+3 - Into the frontend folder, use the live server addon of vs-code on the index.html.
 
