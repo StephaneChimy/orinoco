@@ -56,23 +56,3 @@ function apiPost(path, body) {
     };
   });
 }
-// function apiPost(url, body) {
-//   const options = {
-//     method: "POST",
-//     body: body,
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   };
-
-//   return fetch(config.apiBaseUrl + "/" + url, options)
-//     .then((response) => {
-//       if (response.ok) {
-//         return response.json();
-//       }
-//     })
-//     .catch((error) => {
-//       // console.log(error.message);
-//       throw new Error(error).message;
-//     });
-// }
