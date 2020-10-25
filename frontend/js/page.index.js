@@ -1,3 +1,5 @@
+
+
 ////////////////////////////////////////////// Execution of the script //////////////////////////////////////////////
 
 fetchProducts("teddies").then(function (products) {
@@ -25,7 +27,7 @@ function showProducts(products) {
     createNode(".card-body" + productIndex, "h5", {className : "card-title", innerText : products[productIndex].name});
     createNode(".card-body" + productIndex, "p", {className : "card-text", innerText : products[productIndex].description});
     createNode(".card-body" + productIndex, "p", { className :"card-text", innerText : PriceFormat(products[productIndex].price)});
-    createNode(".card-body" + productIndex, "a", {className : "btn btn-primary", href : "/frontend/product.html?ProductId=" + products[productIndex]._id, innerText : "Détail"});
+    createNode(".card-body" + productIndex, "a", {className : "btn btn-primary", href : "./product.html?ProductId=" + products[productIndex]._id, innerText : "Détail"});
   }
 }
 
