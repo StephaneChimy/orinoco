@@ -12,4 +12,4 @@ Projet 5 d'Openclassrooms (création d'un site e-commerce)
 
 2 - Install the backend from https://github.com/OpenClassrooms-Student-Center/JWDP5 and run node server
 
-3 - Open the index.html (from the orinoco/frontend folder you cloned before) in your browser.
+3 - Open the index.html (from the orinoco/frontend/ folder you cloned before) in your browser.
