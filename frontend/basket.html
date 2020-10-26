@@ -28,6 +28,7 @@
 
 
     <main class="row container-fluid justify-content-around mx-auto">
+        <!-- Start of Basket -->
         <section id="showBasket" class="card col-lg-5 mx-auto">
             <h1>
                 Panier
@@ -54,23 +55,26 @@
 
             </table>
         </section>
+        <!-- End of Basket -->
+        <!-- Start of Form -->
         <section id="showForm" class=" card  col-lg-5 mx-auto">
             <form class="row justify-content-around" id="formulaire">
                 <h2 class="col-12 text-center">
                     Informations de commande
-                    
+
                 </h2>
 
                 <div class="form-group col-5">
                     <label for="inputName">Nom</label>
-                    <input required type="text" class="form-control" id="lastName" placeholder="Entrez votre nom" pattern="^([\p{L}]+)([\p{L}\- ']*)$" title="Caractères de a à Z">
-                    
+                    <input required type="text" class="form-control" id="lastName" placeholder="Entrez votre nom"
+                        pattern="^([\p{L}]+)([\p{L}\- ']*)$" title="Caractères de a à Z">
+
                     <small id="nameHelp" class="form-text text-muted">ex: Dupont</small>
                 </div>
                 <div class="form-group col-7">
                     <label for="inputSurname">Prénom</label>
-                    <input required type="text" class="form-control" id="firstName"
-                        placeholder="Entrez votre prénom" pattern="^([\p{L}]+)([\p{L}\- ']*)$" title="Caractères de a à Z">
+                    <input required type="text" class="form-control" id="firstName" placeholder="Entrez votre prénom"
+                        pattern="^([\p{L}]+)([\p{L}\- ']*)$" title="Caractères de a à Z">
                     <small id="surnameHelp" class="form-text text-muted">ex: Jean-Claude</small>
                 </div>
 
@@ -90,8 +94,7 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="inputPostalCode">Code postale</label>
-                    <input type="number" class="form-control" id="postalCode"
-                        placeholder="Entrez votre Code postale">
+                    <input type="number" class="form-control" id="postalCode" placeholder="Entrez votre Code postale">
                     <small id="postalCodeHelp" class="form-text text-muted">ex: 92500</small>
                 </div>
 
@@ -107,6 +110,8 @@
                     <button type="submit" id="submit" class="btn btn-primary">Commandez</button>
                 </div>
             </form>
+        </section>
+        <!-- End of Form -->
 
 
     </main>
@@ -121,4 +126,5 @@
 <script src="./js/api/order.service.js"></script>
 <script src="./js/fonctions.js"></script>
 <script src="./js/page.basket.js"></script>
+
 </html>

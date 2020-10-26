@@ -53,7 +53,7 @@ function clearBasket() {
 
 function showBasket(basket, products) {
   let totalPrice = 0;
-  // Parcours le basket qui comprend les id des produits
+  // Browse the array containing id products
   for (let index = 0; index < basket.products.length; index++) {
     //
     const foundProduct = products.find(
@@ -61,35 +61,29 @@ function showBasket(basket, products) {
     );
     //
 
-    // Ajoute ligne 0, 1, 2 , 3 ....
-    //addProductToTable(basket.products[index].id);
+    // Add line 0, 1, 2 , 3 ....
     createNode("tbody", "tr", {className : "tbody" + index});
     //
 
-    // Ajoute le nom du produit
-    //addProductNameLigneTable(basket.products[index], basket);
+    // Add the name of the product
     createNode(".tbody" + index, "td",  {className :"tdProduct" + basket.products[index].id, innerText: basket.products[index].name});
     //
 
-    // Ajoute la quantité
-    //addProductQuantiteLigneTable(basket.products[index], basket);
+    // Add quantity of product
     createNode(".tbody" + index, "td",{className : "tdQuantite" + basket.products[index].id, innerText : basket.products[index].quantity});
     //
 
-    // Ajoute la prix unitaire du produit
-    //setPriceOfProduct(foundProduct.price, basket.products[index].id);
+    // Add unitary price
     createNode(".tbody" + index, "td", {className : "tdPrice" + basket.products[index].id, innerText : PriceFormat(foundProduct.price)});
     //
 
-    // Calcul du total
+    // Calculate total
     totalPrice += foundProduct.price * basket.products[index].quantity;
   }
-  // Afficher le total
-  //setTotalPrice(totalPrice);
+  // Show total
   createNode(".total", "th", {innerText : PriceFormat(totalPrice)});
 
-  // Affiche le bouton Clear
-  //setClearButton();
+  // Show clear button
   createNode(".total", "th", { id : "clear", className : "btn btn-outline-secondary", innerText : "x"});
 }
 
