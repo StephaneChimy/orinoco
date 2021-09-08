@@ -8,7 +8,7 @@
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/StephaneChimy/orinoco.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/StephaneChimy/orinoco.svg?style=for-the-badge&color=success
 [contributors-url]: https://github.com/StephaneChimy/orinoco/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/StephaneChimy/orinoco.svg?style=for-the-badge
 [forks-url]: https://github.com/StephaneChimy/orinoco/network/members
